@@ -1,22 +1,22 @@
 {
-  "name": "glassine-paper-css",
+  "name": "glassine-paper",
   "version": "0.2.0",
   "description": "CSS for Material Design 3",
   "main": "glassine-paper.min.css",
   "scripts": {
+    "watch:sample": "sass --watch scss/index.scss:docs/sample/glassine-paper.css",
+    "watch:compressed": "sass --watch scss/index.scss:glassine-paper.min.css --style compressed",
+    "watch": "npm-run-all --parallel watch:sample watch:compressed",
+    "build:sample": "sass scss/index.scss docs/sample/glassine-paper.css",
+    "build:compressed": "sass scss/index.scss glassine-paper.min.css --style compressed",
     "build": "npm run build:sample && npm run build:compressed",
-    "watch": "sass --watch src/scss/index.scss:docs/glassine-paper.css",
-    "build:sample": "sass src/scss/index.scss docs/glassine-paper.css",
-    "build:compressed": "sass src/scss/index.scss glassine-paper.min.css --style compressed",
-    "start": "http-server docs -p 8000 -c1 -o index.html",
-    "format": "prettier --write \"src/**/*.scss\"",
-    "lint": "prettier --check \"src/**/*.scss\""
+    "start": ""
   },
   "author": "Michinobu Maeda",
   "license": "MIT",
   "devDependencies": {
-    "sass": "^1.69.0",
-    "http-server": "^14.1.1",
-    "prettier": "^3.0.0"
+    "npm-run-all": "^4.1.5",
+    "prettier": "^3.0.0",
+    "sass": "^1.69.0"
   }
 }

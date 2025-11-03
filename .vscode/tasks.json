@@ -18,6 +18,18 @@
       "script": "watch",
       "problemMatcher": [],
       "label": "npm watch"
+    },
+    {
+      "label": "Live Preview: Start Server",
+      "command": "echo ${command:livePreview.start}",
+      "type": "shell",
+      "problemMatcher": []
+    },
+    {
+      "label": "Live Preview: Stop Server",
+      "command": "echo ${command:livePreview.end}",
+      "type": "shell",
+      "problemMatcher": []
     }
   ]
 }

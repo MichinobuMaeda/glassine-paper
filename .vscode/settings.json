@@ -21,6 +21,6 @@
   },
   "eslint.debug": true,
   "editor.linkedEditing": true,
-  "livePreview.portNumber": 3000,
-  "livePreview.defaultPreviewPath": "docs"
+  "livePreview.defaultPreviewPath": "/docs/sample",
+  "livePreview.serverRoot": "${workspaceFolder}/docs"
 }
