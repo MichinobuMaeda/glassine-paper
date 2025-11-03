@@ -2,21 +2,53 @@
   "name": "glassine-paper",
   "version": "0.2.0",
   "description": "CSS for Material Design 3",
+  "type": "module",
   "main": "glassine-paper.min.css",
   "scripts": {
+    "build:sample": "sass scss/index.scss docs/sample/glassine-paper.css",
+    "build:compressed": "sass scss/index.scss glassine-paper.min.css --style compressed",
+    "build:ts": "tsc -b && vite build && sed -e 's/\\/assets\\//.\\/assets\\//g' -i docs/theme/index.html",
+    "build": "npm-run-all --parallel build:sample build:compressed build:ts",
     "watch:sample": "sass --watch scss/index.scss:docs/sample/glassine-paper.css",
     "watch:compressed": "sass --watch scss/index.scss:glassine-paper.min.css --style compressed",
     "watch": "npm-run-all --parallel watch:sample watch:compressed",
-    "build:sample": "sass scss/index.scss docs/sample/glassine-paper.css",
-    "build:compressed": "sass scss/index.scss glassine-paper.min.css --style compressed",
-    "build": "npm run build:sample && npm run build:compressed",
+    "lint": "eslint .",
+    "preview": "vite preview",
+    "dev": "vite",
     "start": ""
   },
   "author": "Michinobu Maeda",
   "license": "MIT",
+  "dependencies": {
+    "react": "^19.2.0",
+    "react-dom": "^19.2.0"
+  },
   "devDependencies": {
+    "@eslint/js": "^9.37.0",
+    "@types/node": "^24.6.2",
+    "@types/react": "^19.2.0",
+    "@types/react-dom": "^19.2.0",
+    "@vite-pwa/assets-generator": "^1.0.2",
+    "@vitejs/plugin-react": "^5.0.4",
+    "eslint": "^9.37.0",
+    "eslint-plugin-react-hooks": "^5.2.0",
+    "eslint-plugin-react-refresh": "^0.4.23",
+    "globals": "^16.4.0",
     "npm-run-all": "^4.1.5",
     "prettier": "^3.0.0",
-    "sass": "^1.69.0"
+    "sass": "^1.69.0",
+    "typescript": "~5.9.3",
+    "typescript-eslint": "^8.45.0",
+    "vite": "^7.1.9",
+    "vite-plugin-pwa": "^1.1.0",
+    "workbox-core": "^7.3.0",
+    "workbox-precaching": "^7.3.0",
+    "workbox-routing": "^7.3.0",
+    "workbox-strategies": "^7.3.0",
+    "workbox-window": "^7.3.0"
+  },
+  "overrides": {
+    "sharp": "^0.33.5",
+    "sharp-ico": "^0.1.5"
   }
 }

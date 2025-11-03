@@ -2102,29 +2102,28 @@ input.radio:not([disabled]):active:hover::before {
   display: flex;
   flex-direction: row;
   flex-wrap: nowrap;
-  align-items: start;
+  align-items: center;
   background-color: light-dark(var(--color-light-surface), var(--color-dark-surface));
   color: light-dark(var(--color-light-on-surface), var(--color-dark-on-surface));
   width: 100%;
-  min-height: 3rem;
 }
 .tabs a,
 .tabs button {
   position: relative;
   display: flex;
-  align-items: start;
+  align-items: center;
   justify-content: center;
   background: inherit;
   border: none;
   outline: none;
-  box-shadow: none;
   user-select: none;
   text-decoration: none;
-  height: 100%;
+  line-height: 1.5rem;
+  height: 3rem;
   flex-grow: 1;
   gap: 0.25rem;
-  padding-top: 0.75rem;
-  box-shadow: 0 0.0625rem 0 0 light-dark(var(--color-light-outline-variant), var(--color-dark-outline-variant));
+  border-top: 0.0625rem solid light-dark(var(--color-light-surface), var(--color-dark-surface));
+  border-bottom: 0.0625rem solid light-dark(var(--color-light-outline-variant), var(--color-dark-outline-variant));
   cursor: pointer;
   color: light-dark(var(--color-light-on-surface-variant), var(--color-dark-on-surface-variant));
 }
@@ -2144,9 +2143,8 @@ input.radio:not([disabled]):active:hover::before {
 .tabs a.active,
 .tabs button.active {
   color: light-dark(var(--color-light-on-surface), var(--color-dark-on-surface));
-  height: calc(100% - 0.0625rem);
-  box-shadow: none;
-  box-shadow: 0 0.125rem 0 0 light-dark(var(--color-light-primary), var(--color-dark-primary));
+  border-top: 0.125rem solid light-dark(var(--color-light-surface), var(--color-dark-surface));
+  border-bottom: 0.125rem solid light-dark(var(--color-light-primary), var(--color-dark-primary));
 }
 .tabs a:hover::after,
 .tabs button:hover::after {
