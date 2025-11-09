@@ -15,11 +15,13 @@
     "lint": "eslint .",
     "preview": "vite preview",
     "dev": "vite",
-    "start": ""
+    "start": "npm run dev"
   },
   "author": "Michinobu Maeda",
   "license": "MIT",
   "dependencies": {
+    "@material/material-color-utilities": "^0.3.0",
+    "color-convert": "^3.1.2",
     "react": "^19.2.0",
     "react-dom": "^19.2.0"
   },

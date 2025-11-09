@@ -1,8 +1,10 @@
 {
   "cSpell.words": [
     "apdisk",
+    "argb",
     "checkmark",
     "dbnavigator",
+    "desaturated",
     "donotpresent",
     "dotenv",
     "ehthumbs",
@@ -23,6 +25,7 @@
     "pids",
     "precaching",
     "replstate",
+    "RRGGBB",
     "Sessionx",
     "sonarlint",
     "stylelintcache",
