@@ -1903,10 +1903,7 @@ npm install https://github.com/MichinobuMaeda/glassine-paper</pre
 
           <div class="row">
             <div class="row">
-              <div
-                class="textfield filled"
-                style="margin-bottom: 2em; width: 12em"
-              >
+              <div class="textfield filled" style="width: 12em">
                 <!-- Material Icons https://fonts.google.com/icons -->
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
@@ -1917,10 +1914,8 @@ npm install https://github.com/MichinobuMaeda/glassine-paper</pre
                     d="M120-120v-720h720v720H120Zm80-80h560v-560H200v560Zm0 0v-560 560Z"
                   />
                 </svg>
-                <label>
-                  <div class="placeholder">Filled</div>
-                  <input type="text" value="" />
-                </label>
+                <label> Filled</label>
+                <input type="text" value="" placeholder="Filled" />
                 <!-- Material Icons https://fonts.google.com/icons -->
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
@@ -1931,12 +1926,14 @@ npm install https://github.com/MichinobuMaeda/glassine-paper</pre
                     d="M120-120v-720h720v720H120Zm80-80h560v-560H200v560Zm0 0v-560 560Z"
                   />
                 </svg>
-                <div class="supporting-text">Supporting text</div>
+                <div>Supporting text</div>
               </div>
-              <div
-                class="textfield outlined"
-                style="margin-bottom: 2em; width: 12em"
-              >
+              <div class="textfield filled" style="width: 4em">
+                <label> Filled number</label>
+                <input type="number" value="0" placeholder="Filled number" />
+                <div>Supporting text</div>
+              </div>
+              <div class="textfield filled error" style="width: 12em">
                 <!-- Material Icons https://fonts.google.com/icons -->
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
@@ -1947,66 +1944,8 @@ npm install https://github.com/MichinobuMaeda/glassine-paper</pre
                     d="M120-120v-720h720v720H120Zm80-80h560v-560H200v560Zm0 0v-560 560Z"
                   />
                 </svg>
-                <label>
-                  <div class="placeholder">Filled</div>
-                  <input type="text" value="" />
-                </label>
-                <!-- Material Icons https://fonts.google.com/icons -->
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  viewBox="0 -960 960 960"
-                  fill="currentColor"
-                >
-                  <path
-                    d="M120-120v-720h720v720H120Zm80-80h560v-560H200v560Zm0 0v-560 560Z"
-                  />
-                </svg>
-                <div class="supporting-text">Supporting text</div>
-              </div>
-            </div>
-            <div class="row">
-              <div
-                class="textfield filled"
-                style="margin-bottom: 2em; width: 5em"
-              >
-                <label>
-                  <div class="placeholder">Long label text</div>
-                  <input type="number" value="0" />
-                </label>
-                <div class="supporting-text">Long supporting text</div>
-              </div>
-              <div
-                class="textfield outlined"
-                style="margin-bottom: 2em; width: 5em"
-              >
-                <label>
-                  <div class="placeholder">Long label text</div>
-                  <input type="number" value="0" />
-                </label>
-                <div class="supporting-text">Long supporting text</div>
-              </div>
-            </div>
-          </div>
-          <div class="row">
-            <div class="row">
-              <div
-                class="textfield filled error"
-                style="margin-bottom: 2em; width: 12em"
-              >
-                <!-- Material Icons https://fonts.google.com/icons -->
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  viewBox="0 -960 960 960"
-                  fill="currentColor"
-                >
-                  <path
-                    d="M120-120v-720h720v720H120Zm80-80h560v-560H200v560Zm0 0v-560 560Z"
-                  />
-                </svg>
-                <label>
-                  <div class="placeholder">Filled</div>
-                  <input type="email" value="foo@bar." />
-                </label>
+                <label> Long placeholder text</label>
+                <input type="email" value="foo@bar." placeholder="Filled" />
                 <!-- Material Icons https://fonts.google.com/icons -->
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
@@ -2017,12 +1956,11 @@ npm install https://github.com/MichinobuMaeda/glassine-paper</pre
                     d="M480-280q17 0 28.5-11.5T520-320q0-17-11.5-28.5T480-360q-17 0-28.5 11.5T440-320q0 17 11.5 28.5T480-280Zm-40-160h80v-240h-80v240Zm40 360q-83 0-156-31.5T197-197q-54-54-85.5-127T80-480q0-83 31.5-156T197-763q54-54 127-85.5T480-880q83 0 156 31.5T763-763q54 54 85.5 127T880-480q0 83-31.5 156T763-197q-54 54-127 85.5T480-80Z"
                   />
                 </svg>
-                <div class="supporting-text">Invalid email address</div>
+                <div>Invalid email address</div>
               </div>
-              <div
-                class="textfield outlined error"
-                style="margin-bottom: 2em; width: 12em"
-              >
+            </div>
+            <div class="row">
+              <div class="textfield outlined" style="width: 12em">
                 <!-- Material Icons https://fonts.google.com/icons -->
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
@@ -2033,10 +1971,43 @@ npm install https://github.com/MichinobuMaeda/glassine-paper</pre
                     d="M120-120v-720h720v720H120Zm80-80h560v-560H200v560Zm0 0v-560 560Z"
                   />
                 </svg>
-                <label>
-                  <div class="placeholder">Filled</div>
-                  <input type="email" value="foo@bar." />
-                </label>
+                <label> Outlined</label>
+                <input type="text" value="" placeholder="Outlined" />
+
+                <!-- Material Icons https://fonts.google.com/icons -->
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  viewBox="0 -960 960 960"
+                  fill="currentColor"
+                >
+                  <path
+                    d="M120-120v-720h720v720H120Zm80-80h560v-560H200v560Zm0 0v-560 560Z"
+                  />
+                </svg>
+                <div>Supporting text</div>
+              </div>
+              <div class="textfield outlined" style="width: 4em">
+                <label> Outlined number</label>
+                <input type="number" value="0" placeholder="q number" />
+                <div>Supporting text</div>
+              </div>
+              <div class="textfield outlined error" style="width: 12em">
+                <!-- Material Icons https://fonts.google.com/icons -->
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  viewBox="0 -960 960 960"
+                  fill="currentColor"
+                >
+                  <path
+                    d="M120-120v-720h720v720H120Zm80-80h560v-560H200v560Zm0 0v-560 560Z"
+                  />
+                </svg>
+                <label> Long placeholder text</label>
+                <input
+                  type="email"
+                  value="foo@bar."
+                  placeholder="Long placeholder text"
+                />
                 <!-- Material Icons https://fonts.google.com/icons -->
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
@@ -2047,10 +2018,43 @@ npm install https://github.com/MichinobuMaeda/glassine-paper</pre
                     d="M480-280q17 0 28.5-11.5T520-320q0-17-11.5-28.5T480-360q-17 0-28.5 11.5T440-320q0 17 11.5 28.5T480-280Zm-40-160h80v-240h-80v240Zm40 360q-83 0-156-31.5T197-197q-54-54-85.5-127T80-480q0-83 31.5-156T197-763q54-54 127-85.5T480-880q83 0 156 31.5T763-763q54 54 85.5 127T880-480q0 83-31.5 156T763-197q-54 54-127 85.5T480-80Z"
                   />
                 </svg>
-                <div class="supporting-text">Invalid email address</div>
+                <div>Invalid email address</div>
               </div>
             </div>
           </div>
+
+          <p>
+            Variant: <code>filled outlined</code><br />
+            State: <code>(default) error</code>
+          </p>
+
+          <p>Note: Use the same text for both label and placeholder.</p>
+
+          <pre>
+&lt;div class="textfield filled"&gt;
+  &lt;svg&gt;...&lt;/svg&gt;
+  &lt;label&gt;Label text&lt;/label&gt;
+  &lt;input type="text" value="" placeholder="Label text" /&gt;
+  &lt;svg&gt;...&lt;/svg&gt;
+  &lt;div&gt;Supporting text&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;div class="textfield outlined"&gt;
+  &lt;svg&gt;...&lt;/svg&gt;
+  &lt;label&gt;Label text&lt;/label&gt;
+  &lt;input type="text" value="" placeholder="Label text" /&gt;
+  &lt;svg&gt;...&lt;/svg&gt;
+  &lt;div&gt;Supporting text&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;div class="textfield filled error"&gt;
+  &lt;svg&gt;...&lt;/svg&gt;
+  &lt;label&gt;Label text&lt;/label&gt;
+  &lt;input type="email" value="invalid" placeholder="Label text" /&gt;
+  &lt;svg&gt;...&lt;/svg&gt;
+  &lt;div&gt;Error message&lt;/div&gt;
+&lt;/div&gt;</pre
+          >
 
           <h3>App bar</h3>
 

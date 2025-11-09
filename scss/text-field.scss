@@ -5,59 +5,12 @@
 @use 'mixins' as *;
 
 // Mixins
-@mixin textfield-base {
-  position: relative;
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  padding-right: $spacing-12px;
-  padding-left: $spacing-12px;
-  gap: $spacing-12px;
-  height: $spacing-56px;
-}
-
-@mixin input-reset {
-  border: none;
-  outline: none;
-  padding: 0;
-  margin: 0;
-}
-
-@mixin input-base {
-  margin-right: $spacing-4px;
-  margin-left: $spacing-4px;
-  background-color: transparent;
-  height: $spacing-24px;
-  width: 100%;
-}
-
-@mixin placeholder-base {
-  @include fg-color(primary);
-  position: absolute;
-  top: $spacing-4px;
-  left: 0;
-  font-size: 1rem;
-}
-
 @mixin placeholder-small {
-  font-size: 0.75rem;
+  font-size: $spacing-12px;
   @include fg-color(on-surface-variant);
   display: block;
-  line-height: calc(4 / 3);
-  max-height: calc(4 / 3);
-
-  @include one-line-truncate;
-}
-
-@mixin supporting-text-base {
-  position: absolute;
-  top: $spacing-56px;
-  left: $spacing-12px;
-  font-size: 0.75rem;
-  display: block;
-  line-height: calc(4 / 3);
-  max-height: calc(4 / 3);
-  max-width: calc(100% - 2rem);
+  line-height: $spacing-16px;
+  max-height: $spacing-16px;
 
   @include one-line-truncate;
 }
@@ -76,23 +29,111 @@
 
 // Text Field Component
 .textfield {
-  @include textfield-base;
+  position: relative;
+  display: flex;
+  flex-direction: row;
+  justify-items: start;
+  align-items: center;
+  height: $spacing-56px;
+  margin: 0;
+  padding: 0 $spacing-12px;
+  gap: $spacing-12px;
+  background-color: transparent;
 
-  input {
-    @include input-base;
+  label {
+    line-height: $spacing-16px;
+    max-height: $spacing-16px;
+    font-size: $spacing-12px;
+    @include one-line-truncate;
+  }
 
-    &,
-    &:focus,
-    &:focus-visible,
-    &:hover,
-    &:active {
-      @include input-reset;
+  &:has(input:not(:focus):placeholder-shown) {
+    label {
+      display: none;
+    }
+  }
+
+  &:has(input:focus),
+  &:has(input:not(:placeholder-shown)) {
+    label {
+      display: inline-block;
+      @include fg-color(on-surface-variant);
+    }
+
+    &.error {
+      label {
+        @include error-color;
+      }
+    }
+  }
+
+  input:focus,
+  input:not(:placeholder-shown) {
+    &::placeholder {
+      color: transparent;
+    }
+  }
+
+  input,
+  input:focus,
+  input:focus-visible,
+  input:hover,
+  input:active {
+    border: none;
+    outline: none;
+    padding: 0;
+    margin: 0;
+    background-color: transparent;
+
+    height: $spacing-24px;
+    width: 100%;
+
+    z-index: 1;
+  }
+
+  input::placeholder {
+    @include fg-color(on-surface-variant);
+    @include one-line-truncate;
+  }
+
+  &:has(input:not(:focus):placeholder-shown).error {
+    input::placeholder {
+      @include error-color;
     }
   }
 
   svg,
   img {
     @include square-size($spacing-24px);
+  }
+
+  // Supporting text
+  & > div,
+  & > span {
+    position: absolute;
+    top: $spacing-56px;
+    left: $spacing-12px;
+    font-size: $spacing-12px;
+    display: block;
+    line-height: $spacing-16px;
+    max-height: $spacing-16px;
+    max-width: calc(100% - $spacing-32px);
+
+    @include one-line-truncate;
+  }
+
+  // Error states
+  &.error {
+    & > div,
+    & > span {
+      @include error-color;
+    }
+
+    // Error icon styling
+    svg:not(:first-child),
+    img:not(:first-child) {
+      @include error-color;
+    }
   }
 
   // Filled variant
@@ -106,33 +147,54 @@
         var(--color-dark-on-surface-variant)
       );
 
-    &:has(input:focus) {
+    &:has(input:focus)::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 100%;
       border-bottom: $spacing-3px solid
         light-dark(var(--color-light-primary), var(--color-dark-primary));
     }
 
-    // Filled label states
-    &:has(input:focus) label,
-    &:has(input:not([value=''])) label {
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      height: $spacing-40px;
-      gap: $spacing-4px;
-
-      .placeholder {
-        @include placeholder-small;
-        position: relative;
-        max-width: calc(100% - 2rem);
+    &:has(input:focus),
+    &:has(input:not(:placeholder-shown)) {
+      input {
+        margin-top: $spacing-16px;
       }
     }
 
-    // Error state
+    label {
+      position: absolute;
+      top: $spacing-8px;
+      left: $spacing-12px;
+      padding: 0 $spacing-4px;
+      max-width: calc(100% - $spacing-24px);
+    }
+
+    svg + label,
+    img + label {
+      left: $spacing-44px;
+      max-width: calc(100% - $spacing-44px);
+    }
+
+    &:has(input + svg),
+    &:has(input + img) {
+      label {
+        max-width: calc(100% - $spacing-44px);
+      }
+
+      svg + label,
+      img + label {
+        max-width: calc(100% - $spacing-44px - $spacing-44px);
+      }
+    }
+
     &.error {
       @include error-border;
 
-      &:has(input:focus),
-      &:has(input:not([value=''])) {
+      &:has(input:focus)::after,
+      &:has(input:not(:placeholder-shown))::after {
         @include error-border;
       }
     }
@@ -151,23 +213,15 @@
       outline-offset: -$spacing-3px;
     }
 
-    // Outlined label states
-    &:has(input:focus) label,
-    &:has(input:not([value=''])) label {
-      position: static;
-
-      .placeholder {
-        @include placeholder-small;
-        position: absolute;
-        top: -$spacing-8px;
-        left: $spacing-12px;
-        @include bg-color(surface-container-lowest);
-        padding: 0 $spacing-4px;
-        max-width: calc(100% - 1rem);
-      }
+    label {
+      position: absolute;
+      top: -$spacing-8px;
+      left: $spacing-12px;
+      padding: 0 $spacing-4px;
+      max-width: calc(100% - $spacing-24px);
+      @include bg-color(form);
     }
 
-    // Error state
     &.error {
       @include error-outline;
 
@@ -175,48 +229,6 @@
       &:has(input:not([value=''])) {
         @include error-outline;
       }
-    }
-  }
-
-  // Label base
-  label {
-    position: relative;
-
-    .placeholder {
-      @include placeholder-base;
-    }
-  }
-
-  // Supporting text
-  .supporting-text {
-    @include supporting-text-base;
-  }
-
-  // Error states
-  &.error {
-    label .placeholder,
-    .supporting-text {
-      @include error-color;
-    }
-
-    &:has(input:focus) {
-      label .placeholder,
-      .supporting-text {
-        @include error-color;
-      }
-    }
-
-    &:has(input:not([value=''])) {
-      label .placeholder,
-      .supporting-text {
-        @include error-color;
-      }
-    }
-
-    // Error icon styling
-    label + svg,
-    label + img {
-      @include error-color;
     }
   }
 }

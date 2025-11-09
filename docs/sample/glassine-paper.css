@@ -1327,24 +1327,58 @@ input.radio:not([disabled]):active:hover::before {
   position: relative;
   display: flex;
   flex-direction: row;
+  justify-items: start;
   align-items: center;
-  padding-right: 0.75rem;
-  padding-left: 0.75rem;
-  gap: 0.75rem;
   height: 3.5rem;
-}
-.textfield input {
-  margin-right: 0.25rem;
-  margin-left: 0.25rem;
+  margin: 0;
+  padding: 0 0.75rem;
+  gap: 0.75rem;
   background-color: transparent;
-  height: 1.5rem;
-  width: 100%;
 }
-.textfield input, .textfield input:focus, .textfield input:focus-visible, .textfield input:hover, .textfield input:active {
+.textfield label {
+  line-height: 1rem;
+  max-height: 1rem;
+  font-size: 0.75rem;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.textfield:has(input:not(:focus):placeholder-shown) label {
+  display: none;
+}
+.textfield:has(input:focus) label, .textfield:has(input:not(:placeholder-shown)) label {
+  display: inline-block;
+  color: light-dark(var(--color-light-on-surface-variant), var(--color-dark-on-surface-variant));
+}
+.textfield:has(input:focus).error label, .textfield:has(input:not(:placeholder-shown)).error label {
+  color: light-dark(var(--color-light-error), var(--color-dark-error));
+}
+.textfield input:focus::placeholder,
+.textfield input:not(:placeholder-shown)::placeholder {
+  color: transparent;
+}
+.textfield input,
+.textfield input:focus,
+.textfield input:focus-visible,
+.textfield input:hover,
+.textfield input:active {
   border: none;
   outline: none;
   padding: 0;
   margin: 0;
+  background-color: transparent;
+  height: 1.5rem;
+  width: 100%;
+  z-index: 1;
+}
+.textfield input::placeholder {
+  color: light-dark(var(--color-light-on-surface-variant), var(--color-dark-on-surface-variant));
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.textfield:has(input:not(:focus):placeholder-shown).error input::placeholder {
+  color: light-dark(var(--color-light-error), var(--color-dark-error));
 }
 .textfield svg,
 .textfield img {
@@ -1356,38 +1390,67 @@ input.radio:not([disabled]):active:hover::before {
   min-height: 1.5rem;
   max-height: 1.5rem;
 }
+.textfield > div, .textfield > span {
+  position: absolute;
+  top: 3.5rem;
+  left: 0.75rem;
+  font-size: 0.75rem;
+  display: block;
+  line-height: 1rem;
+  max-height: 1rem;
+  max-width: calc(100% - 2rem);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.textfield.error > div, .textfield.error > span {
+  color: light-dark(var(--color-light-error), var(--color-dark-error));
+}
+.textfield.error svg:not(:first-child),
+.textfield.error img:not(:first-child) {
+  color: light-dark(var(--color-light-error), var(--color-dark-error));
+}
 .textfield.filled {
   border-top-left-radius: 0.25rem;
   border-top-right-radius: 0.25rem;
   background-color: light-dark(var(--color-light-surface-container-highest), var(--color-dark-surface-container-highest));
   border-bottom: 0.0625rem solid light-dark(var(--color-light-on-surface-variant), var(--color-dark-on-surface-variant));
 }
-.textfield.filled:has(input:focus) {
+.textfield.filled:has(input:focus)::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
   border-bottom: 0.1875rem solid light-dark(var(--color-light-primary), var(--color-dark-primary));
 }
-.textfield.filled:has(input:focus) label, .textfield.filled:has(input:not([value=""])) label {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  height: 2.5rem;
-  gap: 0.25rem;
+.textfield.filled:has(input:focus) input, .textfield.filled:has(input:not(:placeholder-shown)) input {
+  margin-top: 1rem;
 }
-.textfield.filled:has(input:focus) label .placeholder, .textfield.filled:has(input:not([value=""])) label .placeholder {
-  font-size: 0.75rem;
-  color: light-dark(var(--color-light-on-surface-variant), var(--color-dark-on-surface-variant));
-  display: block;
-  line-height: 1.3333333333;
-  max-height: 1.3333333333;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
-  position: relative;
-  max-width: calc(100% - 2rem);
+.textfield.filled label {
+  position: absolute;
+  top: 0.5rem;
+  left: 0.75rem;
+  padding: 0 0.25rem;
+  max-width: calc(100% - 1.5rem);
+}
+.textfield.filled svg + label,
+.textfield.filled img + label {
+  left: 2.75rem;
+  max-width: calc(100% - 2.75rem);
+}
+.textfield.filled:has(input + svg) label, .textfield.filled:has(input + img) label {
+  max-width: calc(100% - 2.75rem);
+}
+.textfield.filled:has(input + svg) svg + label,
+.textfield.filled:has(input + svg) img + label, .textfield.filled:has(input + img) svg + label,
+.textfield.filled:has(input + img) img + label {
+  max-width: calc(100% - 2.75rem - 2.75rem);
 }
 .textfield.filled.error {
   border-color: light-dark(var(--color-light-error), var(--color-dark-error));
 }
-.textfield.filled.error:has(input:focus), .textfield.filled.error:has(input:not([value=""])) {
+.textfield.filled.error:has(input:focus)::after, .textfield.filled.error:has(input:not(:placeholder-shown))::after {
   border-color: light-dark(var(--color-light-error), var(--color-dark-error));
 }
 .textfield.outlined {
@@ -1399,69 +1462,19 @@ input.radio:not([disabled]):active:hover::before {
   outline: 0.1875rem solid light-dark(var(--color-light-primary), var(--color-dark-primary));
   outline-offset: -0.1875rem;
 }
-.textfield.outlined:has(input:focus) label, .textfield.outlined:has(input:not([value=""])) label {
-  position: static;
-}
-.textfield.outlined:has(input:focus) label .placeholder, .textfield.outlined:has(input:not([value=""])) label .placeholder {
-  font-size: 0.75rem;
-  color: light-dark(var(--color-light-on-surface-variant), var(--color-dark-on-surface-variant));
-  display: block;
-  line-height: 1.3333333333;
-  max-height: 1.3333333333;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
+.textfield.outlined label {
   position: absolute;
   top: -0.5rem;
   left: 0.75rem;
-  background-color: light-dark(var(--color-light-surface-container-lowest), var(--color-dark-surface-container-lowest));
   padding: 0 0.25rem;
-  max-width: calc(100% - 1rem);
+  max-width: calc(100% - 1.5rem);
+  background-color: light-dark(var(--color-light-form), var(--color-dark-form));
 }
 .textfield.outlined.error {
   outline-color: light-dark(var(--color-light-error), var(--color-dark-error));
 }
 .textfield.outlined.error:has(input:focus), .textfield.outlined.error:has(input:not([value=""])) {
   outline-color: light-dark(var(--color-light-error), var(--color-dark-error));
-}
-.textfield label {
-  position: relative;
-}
-.textfield label .placeholder {
-  color: light-dark(var(--color-light-primary), var(--color-dark-primary));
-  position: absolute;
-  top: 0.25rem;
-  left: 0;
-  font-size: 1rem;
-}
-.textfield .supporting-text {
-  position: absolute;
-  top: 3.5rem;
-  left: 0.75rem;
-  font-size: 0.75rem;
-  display: block;
-  line-height: 1.3333333333;
-  max-height: 1.3333333333;
-  max-width: calc(100% - 2rem);
-  overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
-}
-.textfield.error label .placeholder,
-.textfield.error .supporting-text {
-  color: light-dark(var(--color-light-error), var(--color-dark-error));
-}
-.textfield.error:has(input:focus) label .placeholder,
-.textfield.error:has(input:focus) .supporting-text {
-  color: light-dark(var(--color-light-error), var(--color-dark-error));
-}
-.textfield.error:has(input:not([value=""])) label .placeholder,
-.textfield.error:has(input:not([value=""])) .supporting-text {
-  color: light-dark(var(--color-light-error), var(--color-dark-error));
-}
-.textfield.error label + svg,
-.textfield.error label + img {
-  color: light-dark(var(--color-light-error), var(--color-dark-error));
 }
 
 .app-bar {
