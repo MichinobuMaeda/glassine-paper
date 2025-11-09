@@ -24,6 +24,8 @@ $slider-thumb-radius: $spacing-2px;
 $slider-dot-size: $spacing-4px;
 $slider-margin: $spacing-4px;
 
+$value-indicator-height: $spacing-40px;
+
 @mixin slider-thumb {
   appearance: none;
   @include bg-color(primary);
@@ -62,6 +64,31 @@ $slider-margin: $spacing-4px;
     border-radius: $slider-track-border-radius-md;
   }
 
+  .value-indicator {
+    position: absolute;
+    --value-indicator-ratio: 0;
+    left: calc(
+      $slider-margin + (100% - $slider-margin * 2) *
+        var(--value-indicator-ratio)
+    );
+    transform: translateX(-50%);
+
+    height: $value-indicator-height;
+    min-width: $value-indicator-height;
+    padding: 0 $spacing-8px;
+    border-radius: calc($value-indicator-height / 2);
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    white-space: nowrap;
+    pointer-events: none;
+
+    @include bg-color(inverse-surface);
+    @include fg-color(inverse-on-surface);
+  }
+
   &:not(.top-bottom):not(.bottom-top) {
     height: $slider-track-height-sm;
     margin: calc(($slider-height-sm - $slider-track-height-sm) / 2) 0;
@@ -75,16 +102,58 @@ $slider-margin: $spacing-4px;
         )
         var(--slider-progress)
     );
+
+    &:has(.value-indicator) {
+      margin-top: calc(
+        ($slider-height-sm - $slider-track-height-sm) / 2 +
+          $value-indicator-height + $slider-margin
+      );
+
+      .value-indicator {
+        top: calc(
+          0rem - ($slider-height-sm - $slider-track-height-sm) / 2 -
+            $value-indicator-height - $slider-margin
+        );
+      }
+    }
   }
 
   &:not(.top-bottom):not(.bottom-top).xs {
     height: $slider-track-height-xs;
     margin: calc(($slider-height-xs - $slider-track-height-xs) / 2) 0;
+
+    &:has(.value-indicator) {
+      margin-top: calc(
+        ($slider-height-xs - $slider-track-height-xs) / 2 +
+          $value-indicator-height + $slider-margin
+      );
+
+      .value-indicator {
+        top: calc(
+          0rem - ($slider-height-xs - $slider-track-height-xs) / 2 -
+            $value-indicator-height - $slider-margin
+        );
+      }
+    }
   }
 
   &:not(.top-bottom):not(.bottom-top).md {
     height: $slider-track-height-md;
     margin: calc(($slider-height-md - $slider-track-height-md) / 2) 0;
+
+    &:has(.value-indicator) {
+      margin-top: calc(
+        ($slider-height-md - $slider-track-height-md) / 2 +
+          $value-indicator-height + $slider-margin
+      );
+
+      .value-indicator {
+        top: calc(
+          0rem - ($slider-height-md - $slider-track-height-md) / 2 -
+            $value-indicator-height - $slider-margin
+        );
+      }
+    }
   }
 
   &.top-bottom {
@@ -100,6 +169,10 @@ $slider-margin: $spacing-4px;
         )
         var(--slider-progress)
     );
+
+    .value-indicator {
+      display: none;
+    }
   }
 
   &.top-bottom.xs {
@@ -125,6 +198,10 @@ $slider-margin: $spacing-4px;
         )
         var(--slider-progress)
     );
+
+    .value-indicator {
+      display: none;
+    }
   }
 
   &.bottom-top.xs {
@@ -169,7 +246,7 @@ $slider-margin: $spacing-4px;
       margin: 0 $slider-margin;
       top: calc($slider-track-height-sm / 2 - $slider-height-sm / 2);
       height: $slider-height-sm;
-      width: calc(100% - #{$slider-margin * 2});
+      width: calc(100% - $slider-margin * 2);
 
       // WebKit thumb (Chrome, Safari, Edge)
       &::-webkit-slider-thumb {
@@ -207,7 +284,7 @@ $slider-margin: $spacing-4px;
       margin: $slider-margin 0;
       left: calc($slider-track-height-sm / 2 - $slider-height-sm / 2);
       width: $slider-height-sm;
-      height: calc(100% - #{$slider-margin * 2});
+      height: calc(100% - $slider-margin * 2);
       writing-mode: sideways-rl;
 
       // WebKit thumb (Chrome, Safari, Edge)
@@ -246,7 +323,7 @@ $slider-margin: $spacing-4px;
       margin: $slider-margin 0;
       left: calc($slider-track-height-sm / 2 - $slider-height-sm / 2);
       width: $slider-height-sm;
-      height: calc(100% - #{$slider-margin * 2});
+      height: calc(100% - $slider-margin * 2);
       writing-mode: sideways-lr;
 
       // WebKit thumb (Chrome, Safari, Edge)
@@ -312,6 +389,7 @@ $slider-margin: $spacing-4px;
         border-radius: 50%;
         pointer-events: none;
       }
+
       &.lower::after {
         content: '';
         position: absolute;
@@ -330,7 +408,7 @@ $slider-margin: $spacing-4px;
   &:not(.top-bottom):not(.bottom-top) .datalist {
     flex-direction: row;
     height: $slider-dot-size;
-    top: calc(50% - #{$slider-dot-size} / 2);
+    top: calc(50% - $slider-dot-size / 2);
     left: $slider-margin;
     right: $slider-margin;
   }
@@ -339,11 +417,11 @@ $slider-margin: $spacing-4px;
   &.top-bottom .datalist {
     flex-direction: column;
     justify-content: space-between;
-    height: calc(100% - #{$slider-margin * 2});
+    height: calc(100% - $slider-margin * 2);
     width: $slider-dot-size;
     top: $slider-margin;
     bottom: $slider-margin;
-    left: calc(50% - #{$slider-dot-size} / 2);
+    left: calc(50% - $slider-dot-size / 2);
 
     option,
     .option {
@@ -354,11 +432,11 @@ $slider-margin: $spacing-4px;
   &.bottom-top datalist,
   &.bottom-top .datalist {
     flex-direction: column-reverse;
-    height: calc(100% - #{$slider-margin * 2});
+    height: calc(100% - $slider-margin * 2);
     width: $slider-dot-size;
     top: $slider-margin;
     bottom: $slider-margin;
-    left: calc(50% - #{$slider-dot-size} / 2);
+    left: calc(50% - $slider-dot-size / 2);
 
     option,
     .option {
