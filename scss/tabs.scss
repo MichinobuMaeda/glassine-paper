@@ -17,7 +17,8 @@
   width: 100%;
 
   a,
-  button {
+  button,
+  div {
     position: relative;
     display: flex;
     align-items: center;
@@ -28,6 +29,8 @@
     user-select: none;
     text-decoration: none;
     line-height: $spacing-24px;
+    padding: 0 $spacing-4px;
+    margin: 0;
 
     height: $spacing-48px;
     flex-grow: 1;

@@ -1995,7 +1995,8 @@ input.radio:not([disabled]):active:hover::before {
   display: none;
 }
 .menu a,
-.menu button {
+.menu button,
+.menu div {
   appearance: none;
   background: none;
   border: none;
@@ -2010,13 +2011,16 @@ input.radio:not([disabled]):active:hover::before {
   align-items: center;
   height: 3rem;
   padding: 0 3rem;
+  margin: 0;
   width: 100%;
   position: relative;
 }
 .menu a .prefix,
 .menu a .suffix,
 .menu button .prefix,
-.menu button .suffix {
+.menu button .suffix,
+.menu div .prefix,
+.menu div .suffix {
   width: 1.5rem;
   min-width: 1.5rem;
   max-width: 1.5rem;
@@ -2026,55 +2030,67 @@ input.radio:not([disabled]):active:hover::before {
   max-height: 1.5rem;
 }
 .menu a .prefix,
-.menu button .prefix {
+.menu button .prefix,
+.menu div .prefix {
   position: absolute;
   left: 0.75rem;
   top: 50%;
   transform: translateY(-50%);
 }
 .menu a .suffix,
-.menu button .suffix {
+.menu button .suffix,
+.menu div .suffix {
   position: absolute;
   right: 0.75rem;
   top: 50%;
   transform: translateY(-50%);
 }
 .menu a:not(.disabled),
-.menu button:enabled:not(.disabled) {
+.menu button:enabled:not(.disabled),
+.menu div:not(.disabled) {
+  color: light-dark(var(--color-light-on-surface), var(--color-dark-on-surface));
   cursor: pointer;
 }
 .menu a:not(.disabled) .prefix,
 .menu a:not(.disabled) .suffix,
 .menu button:enabled:not(.disabled) .prefix,
-.menu button:enabled:not(.disabled) .suffix {
+.menu button:enabled:not(.disabled) .suffix,
+.menu div:not(.disabled) .prefix,
+.menu div:not(.disabled) .suffix {
   color: light-dark(var(--color-light-on-surface-variant), var(--color-dark-on-surface-variant));
 }
 .menu a:not(.disabled) .prefix,
-.menu button:enabled:not(.disabled) .prefix {
+.menu button:enabled:not(.disabled) .prefix,
+.menu div:not(.disabled) .prefix {
   position: absolute;
   left: 0.75rem;
   top: 50%;
   transform: translateY(-50%);
 }
 .menu a:not(.disabled) .suffix,
-.menu button:enabled:not(.disabled) .suffix {
+.menu button:enabled:not(.disabled) .suffix,
+.menu div:not(.disabled) .suffix {
   position: absolute;
   right: 0.75rem;
   top: 50%;
   transform: translateY(-50%);
 }
 .menu a:not(.disabled).active,
-.menu button:enabled:not(.disabled).active {
+.menu button:enabled:not(.disabled).active,
+.menu div:not(.disabled).active {
   background-color: light-dark(var(--color-light-secondary-container), var(--color-dark-secondary-container));
   color: light-dark(var(--color-light-on-secondary-container), var(--color-dark-on-secondary-container));
 }
 .menu a:not(.disabled).active .prefix, .menu a:not(.disabled).active .suffix,
 .menu button:enabled:not(.disabled).active .prefix,
-.menu button:enabled:not(.disabled).active .suffix {
+.menu button:enabled:not(.disabled).active .suffix,
+.menu div:not(.disabled).active .prefix,
+.menu div:not(.disabled).active .suffix {
   color: light-dark(var(--color-light-on-secondary-container), var(--color-dark-on-secondary-container));
 }
 .menu a:not(.disabled):hover::after,
-.menu button:enabled:not(.disabled):hover::after {
+.menu button:enabled:not(.disabled):hover::after,
+.menu div:not(.disabled):hover::after {
   content: "";
   position: absolute;
   top: 0;
@@ -2088,7 +2104,9 @@ input.radio:not([disabled]):active:hover::before {
 }
 .menu a:not(.disabled):focus::after, .menu a:not(.disabled):active::after,
 .menu button:enabled:not(.disabled):focus::after,
-.menu button:enabled:not(.disabled):active::after {
+.menu button:enabled:not(.disabled):active::after,
+.menu div:not(.disabled):focus::after,
+.menu div:not(.disabled):active::after {
   content: "";
   position: absolute;
   top: 0;
@@ -2102,7 +2120,8 @@ input.radio:not([disabled]):active:hover::before {
 }
 .menu a.disabled,
 .menu button.disabled,
-.menu button:disabled {
+.menu button:disabled,
+.menu div.disabled {
   background-color: color(from light-dark(var(--color-light-on-surface), var(--color-dark-on-surface)) srgb r g b/0.1);
   color: color(from light-dark(var(--color-light-on-surface), var(--color-dark-on-surface)) srgb r g b/0.38);
   cursor: default;
@@ -2121,7 +2140,8 @@ input.radio:not([disabled]):active:hover::before {
   width: 100%;
 }
 .tabs a,
-.tabs button {
+.tabs button,
+.tabs div {
   position: relative;
   display: flex;
   align-items: center;
@@ -2132,6 +2152,8 @@ input.radio:not([disabled]):active:hover::before {
   user-select: none;
   text-decoration: none;
   line-height: 1.5rem;
+  padding: 0 0.25rem;
+  margin: 0;
   height: 3rem;
   flex-grow: 1;
   gap: 0.25rem;
@@ -2143,7 +2165,9 @@ input.radio:not([disabled]):active:hover::before {
 .tabs a img,
 .tabs a svg,
 .tabs button img,
-.tabs button svg {
+.tabs button svg,
+.tabs div img,
+.tabs div svg {
   width: 1.5rem;
   min-width: 1.5rem;
   max-width: 1.5rem;
@@ -2154,13 +2178,15 @@ input.radio:not([disabled]):active:hover::before {
   padding: 0 0.25rem;
 }
 .tabs a.active,
-.tabs button.active {
+.tabs button.active,
+.tabs div.active {
   color: light-dark(var(--color-light-on-surface), var(--color-dark-on-surface));
   border-top: 0.125rem solid light-dark(var(--color-light-surface), var(--color-dark-surface));
   border-bottom: 0.125rem solid light-dark(var(--color-light-primary), var(--color-dark-primary));
 }
 .tabs a:hover::after,
-.tabs button:hover::after {
+.tabs button:hover::after,
+.tabs div:hover::after {
   content: "";
   position: absolute;
   top: 0;

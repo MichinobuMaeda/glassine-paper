@@ -21,13 +21,15 @@
   }
 
   a,
-  button {
+  button,
+  div {
     @include reset-control-appearance;
     display: flex;
     flex-direction: row;
     align-items: center;
     height: $spacing-48px;
     padding: 0 $spacing-48px;
+    margin: 0;
 
     width: 100%;
     position: relative;
@@ -53,7 +55,9 @@
   }
 
   a:not(.disabled),
-  button:enabled:not(.disabled) {
+  button:enabled:not(.disabled),
+  div:not(.disabled) {
+    @include fg-color(on-surface);
     cursor: pointer;
 
     .prefix,
@@ -97,7 +101,8 @@
 
   a.disabled,
   button.disabled,
-  button:disabled {
+  button:disabled,
+  div.disabled {
     background-color: color(
       from
         light-dark(var(--color-light-on-surface), var(--color-dark-on-surface))

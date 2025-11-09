@@ -56,11 +56,16 @@ function App(): JSX.Element {
   const [saturation, setSaturation] = useState(s);
   const [brightness, setBrightness] = useState(v);
   const [colorModel, setColorModel] = useState<'RGB' | 'HSV'>('HSV');
+  const [rgbUpdating, setRgbUpdating] = useState(false);
+  const [hsvUpdating, setHsvUpdating] = useState(false);
   const [contrast, setContrast] = useState(0);
   const [variant, setVariant] = useState(Number(Variant.TONAL_SPOT));
   const [variables, setVariables] = useState<Array<[string, string]>>([]);
 
   useEffect(() => {
+    setRgbUpdating(false);
+    setHsvUpdating(false);
+
     if (seedColor.startsWith('#') && seedColor.length === 7) {
       const [r, g, b] = convert.hex.rgb(seedColor);
       setRed(r);
@@ -75,18 +80,18 @@ function App(): JSX.Element {
   }, [seedColor]);
 
   useEffect(() => {
-    if (colorModel === 'RGB') {
+    if (colorModel === 'RGB' && rgbUpdating) {
       setSeedColor(`#${convert.rgb.hex([red, green, blue])}`);
     }
-  }, [red, green, blue, colorModel]);
+  }, [red, green, blue, colorModel, rgbUpdating]);
 
   useEffect(() => {
-    if (colorModel === 'HSV') {
+    if (colorModel === 'HSV' && hsvUpdating) {
       setSeedColor(
         `#${convert.hsv.hex([hue === 360 ? 0 : hue, saturation, brightness])}`
       );
     }
-  }, [hue, saturation, brightness, colorModel]);
+  }, [hue, saturation, brightness, colorModel, hsvUpdating]);
 
   useEffect(() => {
     generateScheme(seedColor, variant, contrast).then((scheme) =>
@@ -121,7 +126,7 @@ function App(): JSX.Element {
 
         <div className="tabs">
           <a href="../sample">Sample</a>
-          <button className="active">Theme</button>
+          <div className="active">Theme</div>
           <a href="#">
             <SvgSquare />
             Tab item
@@ -129,7 +134,7 @@ function App(): JSX.Element {
         </div>
 
         {menuVisible && (
-          <div className="menu">
+          <div className="menu" id="main-menu">
             <a href="https://github.com/MichinobuMaeda/glassine-paper">
               <SvgGitHub />
               GitHub
@@ -230,13 +235,13 @@ function App(): JSX.Element {
 
           <div className="tabs">
             <button
-              className={colorModel === 'RGB' ? 'active' : ''}
+              className={rgbUpdating ? 'active' : ''}
               onClick={() => setColorModel('RGB')}
             >
               RGB
             </button>
             <button
-              className={colorModel === 'HSV' ? 'active' : ''}
+              className={hsvUpdating ? 'active' : ''}
               onClick={() => setColorModel('HSV')}
             >
               HSV
@@ -248,7 +253,10 @@ function App(): JSX.Element {
                 min={0}
                 max={255}
                 value={red}
-                onChange={(val) => setRed(val)}
+                onChange={(val) => {
+                  setRgbUpdating(true);
+                  setRed(val);
+                }}
                 width={sliderWidth}
                 showValueIndicator
               />
@@ -256,7 +264,10 @@ function App(): JSX.Element {
                 min={0}
                 max={255}
                 value={green}
-                onChange={(val) => setGreen(val)}
+                onChange={(val) => {
+                  setRgbUpdating(true);
+                  setGreen(val);
+                }}
                 width={sliderWidth}
                 showValueIndicator
               />
@@ -264,7 +275,10 @@ function App(): JSX.Element {
                 min={0}
                 max={255}
                 value={blue}
-                onChange={(val) => setBlue(val)}
+                onChange={(val) => {
+                  setRgbUpdating(true);
+                  setBlue(val);
+                }}
                 width={sliderWidth}
                 showValueIndicator
               />
@@ -276,7 +290,10 @@ function App(): JSX.Element {
                 min={0}
                 max={360}
                 value={hue}
-                onChange={(val) => setHue(val)}
+                onChange={(val) => {
+                  setHsvUpdating(true);
+                  setHue(val);
+                }}
                 width={sliderWidth}
                 showValueIndicator
               />
@@ -284,7 +301,10 @@ function App(): JSX.Element {
                 min={0}
                 max={100}
                 value={saturation}
-                onChange={(val) => setSaturation(val)}
+                onChange={(val) => {
+                  setHsvUpdating(true);
+                  setSaturation(val);
+                }}
                 width={sliderWidth}
                 showValueIndicator
               />
@@ -292,7 +312,10 @@ function App(): JSX.Element {
                 min={0}
                 max={100}
                 value={brightness}
-                onChange={(val) => setBrightness(val)}
+                onChange={(val) => {
+                  setHsvUpdating(true);
+                  setBrightness(val);
+                }}
                 width={sliderWidth}
                 showValueIndicator
               />
@@ -302,6 +325,7 @@ function App(): JSX.Element {
             style={{
               display: 'flex',
               flexDirection: 'column',
+              gap: 0,
               overflowX: 'scroll',
             }}
           >
@@ -311,6 +335,11 @@ function App(): JSX.Element {
                 style={{
                   margin: 0,
                   padding: 0,
+                  height: '1.5rem',
+                  display: 'flex',
+                  flexDirection: 'row',
+                  gap: '0',
+                  alignItems: 'center',
                 }}
               >
                 <span
@@ -338,6 +367,7 @@ function App(): JSX.Element {
                 <span
                   style={{
                     margin: 0,
+                    fontFamily: 'monospace',
                     padding: '0 0.25rem',
                   }}
                 >
