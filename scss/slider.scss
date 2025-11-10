@@ -36,6 +36,7 @@ $value-indicator-height: $spacing-40px;
       var(--color-light-surface-container-lowest),
       var(--color-dark-surface-container-lowest)
     );
+  z-index: 1;
   cursor: pointer;
 }
 
@@ -219,7 +220,6 @@ $value-indicator-height: $spacing-40px;
     @include reset-control-appearance;
 
     position: relative;
-    pointer-events: default;
 
     // WebKit thumb (Chrome, Safari, Edge)
     &::-webkit-slider-thumb {
