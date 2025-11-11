@@ -27,7 +27,7 @@ $slider-margin: $spacing-4px;
 $value-indicator-height: $spacing-40px;
 
 @mixin slider-thumb {
-  appearance: none;
+  // appearance: none;
   @include bg-color(primary);
   border-radius: $slider-thumb-radius;
   border: none;
@@ -37,18 +37,7 @@ $value-indicator-height: $spacing-40px;
       var(--color-dark-surface-container-lowest)
     );
 
-  position: relative;
-
-  &::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    bottom: 0;
-    left: -$spacing-8px;
-    right: -$spacing-8px;
-    pointer-events: auto;
-    cursor: pointer;
-  }
+  z-index: 1;
 }
 
 @mixin slider-thumb-horizontal {
