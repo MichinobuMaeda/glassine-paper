@@ -44,8 +44,8 @@ $value-indicator-height: $spacing-40px;
     position: absolute;
     top: 0;
     bottom: 0;
-    left: $spacing-8px;
-    right: $spacing-8px;
+    left: -$spacing-8px;
+    right: -$spacing-8px;
     pointer-events: auto;
     cursor: pointer;
   }

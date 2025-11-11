@@ -2317,8 +2317,8 @@ input.radio:not([disabled]):active:hover::before {
   position: absolute;
   top: 0;
   bottom: 0;
-  left: 0.5rem;
-  right: 0.5rem;
+  left: -0.5rem;
+  right: -0.5rem;
   pointer-events: auto;
   cursor: pointer;
 }
@@ -2338,8 +2338,8 @@ input.radio:not([disabled]):active:hover::before {
   position: absolute;
   top: 0;
   bottom: 0;
-  left: 0.5rem;
-  right: 0.5rem;
+  left: -0.5rem;
+  right: -0.5rem;
   pointer-events: auto;
   cursor: pointer;
 }
@@ -2360,8 +2360,8 @@ input.radio:not([disabled]):active:hover::before {
   position: absolute;
   top: 0;
   bottom: 0;
-  left: 0.5rem;
-  right: 0.5rem;
+  left: -0.5rem;
+  right: -0.5rem;
   pointer-events: auto;
   cursor: pointer;
 }
