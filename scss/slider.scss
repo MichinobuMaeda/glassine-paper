@@ -30,6 +30,7 @@ $value-indicator-height: $spacing-40px;
   @include bg-color(surface-container-lowest);
   border-radius: $slider-thumb-radius;
   border: none;
+  box-shadow: none;
   outline: calc($slider-thumb-outline / 2) solid
     light-dark(var(--color-light-primary), var(--color-dark-primary));
   outline-offset: calc($slider-thumb-outline * -1.5);
