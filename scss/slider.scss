@@ -5,9 +5,13 @@
 @use 'mixins' as *;
 
 // Variables
-$slider-height-sm: $spacing-44px;
-$slider-height-xs: $spacing-44px;
-$slider-height-md: $spacing-44px;
+$slider-thumb-width: $spacing-12px;
+$slider-thumb-outline: $spacing-4px;
+$slider-thumb-radius: $spacing-2px;
+
+$slider-height-sm: calc($spacing-44px + $slider-thumb-outline * 2);
+$slider-height-xs: calc($spacing-44px + $slider-thumb-outline * 2);
+$slider-height-md: calc($spacing-44px + $slider-thumb-outline * 2);
 
 $slider-track-height-xs: $spacing-16px;
 $slider-track-height-sm: $spacing-24px;
@@ -17,25 +21,18 @@ $slider-track-border-radius-xs: $spacing-8px;
 $slider-track-border-radius-sm: $spacing-8px;
 $slider-track-border-radius-md: $spacing-8px;
 
-$slider-thumb-width: $spacing-4px;
-$slider-thumb-outline: $spacing-4px;
-$slider-thumb-radius: $spacing-2px;
-
 $slider-dot-size: $spacing-4px;
 $slider-margin: $spacing-4px;
 
 $value-indicator-height: $spacing-40px;
 
 @mixin slider-thumb {
-  // appearance: none;
-  @include bg-color(primary);
+  @include bg-color(surface-container-lowest);
   border-radius: $slider-thumb-radius;
   border: none;
-  outline: $slider-thumb-outline solid
-    light-dark(
-      var(--color-light-surface-container-lowest),
-      var(--color-dark-surface-container-lowest)
-    );
+  outline: calc($slider-thumb-outline / 2) solid
+    light-dark(var(--color-light-primary), var(--color-dark-primary));
+  outline-offset: calc($slider-thumb-outline * -1.5);
 
   z-index: 1;
 }
@@ -69,7 +66,8 @@ $value-indicator-height: $spacing-40px;
     position: absolute;
     --value-indicator-ratio: 0;
     left: calc(
-      $slider-margin + (100% - $slider-margin * 2) *
+      $slider-margin + $slider-thumb-outline +
+        (100% - $slider-margin * 2 - $slider-thumb-outline * 2) *
         var(--value-indicator-ratio)
     );
     transform: translateX(-50%);
@@ -93,16 +91,26 @@ $value-indicator-height: $spacing-40px;
   &:not(.top-bottom):not(.bottom-top) {
     height: $slider-track-height-sm;
     margin: calc(($slider-height-sm - $slider-track-height-sm) / 2) 0;
-    background: linear-gradient(
-      to right,
-      light-dark(var(--color-light-primary), var(--color-dark-primary))
-        var(--slider-progress),
-      light-dark(
-          var(--color-light-surface-container-highest),
-          var(--color-dark-surface-container-highest)
-        )
-        var(--slider-progress)
-    );
+
+    &::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: $slider-thumb-outline;
+      right: $slider-thumb-outline;
+      height: 100%;
+      border-radius: inherit;
+      background: linear-gradient(
+        to right,
+        light-dark(var(--color-light-primary), var(--color-dark-primary))
+          var(--slider-progress),
+        light-dark(
+            var(--color-light-surface-container-highest),
+            var(--color-dark-surface-container-highest)
+          )
+          var(--slider-progress)
+      );
+    }
 
     &:has(.value-indicator) {
       margin-top: calc(
@@ -160,16 +168,26 @@ $value-indicator-height: $spacing-40px;
   &.top-bottom {
     width: $slider-track-height-sm;
     margin: 0 calc(($slider-height-sm - $slider-track-height-sm) / 2);
-    background: linear-gradient(
-      to bottom,
-      light-dark(var(--color-light-primary), var(--color-dark-primary))
-        var(--slider-progress),
-      light-dark(
-          var(--color-light-surface-container-highest),
-          var(--color-dark-surface-container-highest)
-        )
-        var(--slider-progress)
-    );
+
+    &::before {
+      content: '';
+      position: absolute;
+      top: $slider-thumb-outline;
+      bottom: $slider-thumb-outline;
+      left: 0;
+      width: 100%;
+      border-radius: inherit;
+      background: linear-gradient(
+        to bottom,
+        light-dark(var(--color-light-primary), var(--color-dark-primary))
+          var(--slider-progress),
+        light-dark(
+            var(--color-light-surface-container-highest),
+            var(--color-dark-surface-container-highest)
+          )
+          var(--slider-progress)
+      );
+    }
 
     .value-indicator {
       display: none;
@@ -189,16 +207,26 @@ $value-indicator-height: $spacing-40px;
   &.bottom-top {
     width: $slider-track-height-sm;
     margin: 0 calc(($slider-height-sm - $slider-track-height-sm) / 2);
-    background: linear-gradient(
-      to top,
-      light-dark(var(--color-light-primary), var(--color-dark-primary))
-        var(--slider-progress),
-      light-dark(
-          var(--color-light-surface-container-highest),
-          var(--color-dark-surface-container-highest)
-        )
-        var(--slider-progress)
-    );
+
+    &::before {
+      content: '';
+      position: absolute;
+      top: $slider-thumb-outline;
+      bottom: $slider-thumb-outline;
+      left: 0;
+      width: 100%;
+      border-radius: inherit;
+      background: linear-gradient(
+        to top,
+        light-dark(var(--color-light-primary), var(--color-dark-primary))
+          var(--slider-progress),
+        light-dark(
+            var(--color-light-surface-container-highest),
+            var(--color-dark-surface-container-highest)
+          )
+          var(--slider-progress)
+      );
+    }
 
     .value-indicator {
       display: none;
@@ -409,18 +437,18 @@ $value-indicator-height: $spacing-40px;
     flex-direction: row;
     height: $slider-dot-size;
     top: calc(50% - $slider-dot-size / 2);
-    left: $slider-margin;
-    right: $slider-margin;
+    left: calc($slider-margin + $slider-thumb-outline);
+    right: calc($slider-margin + $slider-thumb-outline);
   }
 
   &.top-bottom datalist,
   &.top-bottom .datalist {
     flex-direction: column;
     justify-content: space-between;
-    height: calc(100% - $slider-margin * 2);
+    // height: calc(100% - $slider-margin * 2);
     width: $slider-dot-size;
-    top: $slider-margin;
-    bottom: $slider-margin;
+    top: calc($slider-margin + $slider-thumb-outline);
+    bottom: calc($slider-margin + $slider-thumb-outline);
     left: calc(50% - $slider-dot-size / 2);
 
     option,
@@ -432,10 +460,10 @@ $value-indicator-height: $spacing-40px;
   &.bottom-top datalist,
   &.bottom-top .datalist {
     flex-direction: column-reverse;
-    height: calc(100% - $slider-margin * 2);
+    // height: calc(100% - $slider-margin * 2);
     width: $slider-dot-size;
-    top: $slider-margin;
-    bottom: $slider-margin;
+    top: calc($slider-margin + $slider-thumb-outline);
+    bottom: calc($slider-margin + $slider-thumb-outline);
     left: calc(50% - $slider-dot-size / 2);
 
     option,
