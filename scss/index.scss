@@ -1,5 +1,4 @@
 // Glassine Paper CSS - Material Design 3
-
 @use './reset.scss';
 @use './font.scss';
 @use './button.scss';
@@ -17,3 +16,7 @@
 @use './menu.scss';
 @use './tabs.scss';
 @use './slider.scss';
+
+:root {
+  color-scheme: light dark;
+}

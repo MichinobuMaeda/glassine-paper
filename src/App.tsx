@@ -18,6 +18,9 @@ import SvgSquare from './icons/SvgSquare';
 import SvgGitHub from './icons/SvgGitHub';
 import SvgResetSettings from './icons/SvgResetSettings';
 import SvgDownload from './icons/SvgDownload';
+import SvgBrightnessAuto from './icons/SvgBrightnessAuto';
+import SvgLightMode from './icons/SvgLightMode';
+import SvgDarkMode from './icons/SvgDarkMode';
 
 const downloadFile = (filename: string, content: string) => {
   const data = new Blob([content]);
@@ -61,6 +64,13 @@ function App(): JSX.Element {
   const [contrast, setContrast] = useState(0);
   const [variant, setVariant] = useState(Number(Variant.TONAL_SPOT));
   const [variables, setVariables] = useState<Array<[string, string]>>([]);
+  const [darkMode, setDarkMode] = useState<'light dark' | 'light' | 'dark'>(
+    'light dark'
+  );
+
+  useEffect(() => {
+    document.documentElement.style.setProperty('color-scheme', darkMode);
+  }, [darkMode]);
 
   useEffect(() => {
     setRgbUpdating(false);
@@ -135,6 +145,37 @@ function App(): JSX.Element {
 
         {menuVisible && (
           <div className="menu" id="main-menu">
+            <button
+              onClick={() => {
+                setDarkMode('light');
+                setMenuVisible(false);
+              }}
+              className={darkMode === 'light' ? 'active' : ''}
+            >
+              <SvgLightMode />
+              Light mode
+            </button>
+            <button
+              onClick={() => {
+                setDarkMode('dark');
+                setMenuVisible(false);
+              }}
+              className={darkMode === 'dark' ? 'active' : ''}
+            >
+              <SvgDarkMode />
+              Dark mode
+            </button>
+            <button
+              onClick={() => {
+                setDarkMode('light dark');
+                setMenuVisible(false);
+              }}
+              className={darkMode === 'light dark' ? 'active' : ''}
+            >
+              <SvgBrightnessAuto />
+              Auto
+            </button>
+            <hr />
             <a href="https://github.com/MichinobuMaeda/glassine-paper">
               <SvgGitHub />
               GitHub
@@ -235,13 +276,13 @@ function App(): JSX.Element {
 
           <div className="tabs">
             <button
-              className={rgbUpdating ? 'active' : ''}
+              className={colorModel === 'RGB' ? 'active' : ''}
               onClick={() => setColorModel('RGB')}
             >
               RGB
             </button>
             <button
-              className={hsvUpdating ? 'active' : ''}
+              className={colorModel === 'HSV' ? 'active' : ''}
               onClick={() => setColorModel('HSV')}
             >
               HSV

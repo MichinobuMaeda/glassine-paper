@@ -34,23 +34,23 @@
     width: 100%;
     position: relative;
 
-    .prefix,
-    .suffix {
+    img,
+    svg {
       @include square-size($spacing-24px);
-    }
 
-    .prefix {
-      position: absolute;
-      left: $spacing-12px;
-      top: 50%;
-      transform: translateY(-50%);
-    }
+      &:first-child {
+        position: absolute;
+        left: $spacing-12px;
+        top: 50%;
+        transform: translateY(-50%);
+      }
 
-    .suffix {
-      position: absolute;
-      right: $spacing-12px;
-      top: 50%;
-      transform: translateY(-50%);
+      &:not(:first-child) {
+        position: absolute;
+        right: $spacing-12px;
+        top: 50%;
+        transform: translateY(-50%);
+      }
     }
   }
 

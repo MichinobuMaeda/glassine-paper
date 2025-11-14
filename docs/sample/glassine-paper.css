@@ -2015,12 +2015,12 @@ input.radio:not([disabled]):active:hover::before {
   width: 100%;
   position: relative;
 }
-.menu a .prefix,
-.menu a .suffix,
-.menu button .prefix,
-.menu button .suffix,
-.menu div .prefix,
-.menu div .suffix {
+.menu a img,
+.menu a svg,
+.menu button img,
+.menu button svg,
+.menu div img,
+.menu div svg {
   width: 1.5rem;
   min-width: 1.5rem;
   max-width: 1.5rem;
@@ -2029,17 +2029,23 @@ input.radio:not([disabled]):active:hover::before {
   min-height: 1.5rem;
   max-height: 1.5rem;
 }
-.menu a .prefix,
-.menu button .prefix,
-.menu div .prefix {
+.menu a img:first-child,
+.menu a svg:first-child,
+.menu button img:first-child,
+.menu button svg:first-child,
+.menu div img:first-child,
+.menu div svg:first-child {
   position: absolute;
   left: 0.75rem;
   top: 50%;
   transform: translateY(-50%);
 }
-.menu a .suffix,
-.menu button .suffix,
-.menu div .suffix {
+.menu a img:not(:first-child),
+.menu a svg:not(:first-child),
+.menu button img:not(:first-child),
+.menu button svg:not(:first-child),
+.menu div img:not(:first-child),
+.menu div svg:not(:first-child) {
   position: absolute;
   right: 0.75rem;
   top: 50%;
@@ -2523,6 +2529,10 @@ input.radio:not([disabled]):active:hover::before {
 .slider.bottom-top datalist .option, .slider.bottom-top .datalist option,
 .slider.bottom-top .datalist .option {
   writing-mode: sideways-lr;
+}
+
+:root {
+  color-scheme: light dark;
 }
 
 /*# sourceMappingURL=glassine-paper.css.map */

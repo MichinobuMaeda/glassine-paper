@@ -371,8 +371,6 @@ export function generateThemeCss(
  */
 
 :root {
-  color-scheme: light dark;
-
 ${variables
   .map(([varName, hex]: [string, string]) => `  ${varName}: ${hex};`)
   .join('\n')}
