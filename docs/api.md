@@ -11,20 +11,8 @@
 ## Constants
 
 <dl>
-<dt><a href="#AppBarItem">AppBarItem</a> ⇒</dt>
-<dd><p>Material Design 3 App bar item component</p>
-</dd>
-<dt><a href="#AppBar">AppBar</a> ⇒</dt>
-<dd><p>Material Design 3 App bar component</p>
-</dd>
 <dt><a href="#Button">Button</a> ⇒</dt>
 <dd><p>Material Design 3 Button component</p>
-</dd>
-<dt><a href="#MenuItem">MenuItem</a> ⇒</dt>
-<dd><p>Material Design 3 Menu item component</p>
-</dd>
-<dt><a href="#Menu">Menu</a> ⇒</dt>
-<dd><p>Material Design 3 Menu component</p>
 </dd>
 <dt><a href="#Slider">Slider</a></dt>
 <dd><p>Material Design 3 Slider component</p>
@@ -45,64 +33,6 @@
 ## glassine-paper
 Glassine Paper - Material Design 3 React Components
 
-<a name="AppBarItem"></a>
-
-## AppBarItem ⇒
-Material Design 3 App bar item component
-
-**Kind**: global constant  
-**Returns**: JSX.Element  
-
-| Param | Description |
-| --- | --- |
-| props | AppBarItemProps |
-
-**Example**  
-```js
-<MenuItem onClick={() => {}} active={true}>
-  <svg>...</svg>
-  Item 1
-</MenuItem>
-```
-**Example**  
-```js
-<MenuItem href="...">
-  Item 2
-</MenuItem>
-```
-<a name="AppBar"></a>
-
-## AppBar ⇒
-Material Design 3 App bar component
-
-**Kind**: global constant  
-**Returns**: JSX.Element  
-
-| Param | Description |
-| --- | --- |
-| props | AppBarProps |
-
-**Example**  
-```js
-const [scrolled, setScrolled] = useState(false);
-
-<div
-  className="content-area"
-  onScroll={(e) => setScrolled(e.currentTarget.scrollTop > 0)}
->
-  <AppBar sticky scrolled={scrolled}>
-    <AppBarItem onClick={() => {}} active={true}>
-      <svg>...</svg>
-    </AppBarItem>
-    <img src="./favicon.svg" alt="Glassine Paper" />
-    <AppBarTitle title="App Title" subtitle="Subtitle" />
-    <AppBarItem href="...">
-      <svg>...</svg>
-    </AppBarItem>
-  </AppBar>
-  ... ...
-</div>
-```
 <a name="Button"></a>
 
 ## Button ⇒
@@ -151,55 +81,6 @@ Material Design 3 Button component
   <svg>...</svg>
   Toggle
 </Button>
-```
-<a name="MenuItem"></a>
-
-## MenuItem ⇒
-Material Design 3 Menu item component
-
-**Kind**: global constant  
-**Returns**: JSX.Element  
-
-| Param | Description |
-| --- | --- |
-| props | MenuItemProps |
-
-**Example**  
-```js
-<MenuItem onClick={() => {}} active={true}>
-  <svg>...</svg>
-  Item 1
-</MenuItem>
-```
-**Example**  
-```js
-<MenuItem href="...">
-  Item 2
-</MenuItem>
-```
-<a name="Menu"></a>
-
-## Menu ⇒
-Material Design 3 Menu component
-
-**Kind**: global constant  
-**Returns**: JSX.Element  
-
-| Param | Description |
-| --- | --- |
-| props | MenuProps |
-
-**Example**  
-```js
-<Menu id="example-menu">
-  <MenuItem onClick={() => {}} active={true}>
-    <svg>...</svg>
-    Item 1
-  </MenuItem>
-  <MenuItem href="...">
-    Item 2
-  </MenuItem>
-</Menu>
 ```
 <a name="Slider"></a>
 
