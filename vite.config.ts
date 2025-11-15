@@ -1,6 +1,10 @@
-// import { VitePWA } from 'vite-plugin-pwa';
+import path from 'path';
 import { defineConfig } from 'vite';
+// eslint-disable-next-line @typescript-eslint/ban-ts-comment
+// @ts-ignore
+import { apiDocsPlugin } from './tools/generate-api-docs.js';
 import react from '@vitejs/plugin-react';
+import { name, version } from './package.json';
 
 // https://vitejs.dev/config/
 export default defineConfig({
@@ -11,36 +15,13 @@ export default defineConfig({
     outDir: 'docs/theme',
   },
   plugins: [
+    apiDocsPlugin({
+      name,
+      version,
+      inputs: ['lib/*.{js,jsx}'],
+      output: path.join('docs', 'api.md'),
+      options: {},
+    }),
     react(),
-    // VitePWA({
-    //   strategies: 'injectManifest',
-    //   srcDir: 'src',
-    //   filename: 'sw.ts',
-    //   registerType: 'prompt',
-    //   injectRegister: false,
-
-    //   pwaAssets: {
-    //     disabled: false,
-    //     config: true,
-    //   },
-
-    //   manifest: {
-    //     name: 'glassine-paper',
-    //     short_name: 'Glassine Paper',
-    //     description: 'glassine-paper',
-    //     theme_color: '#898dc9',
-    //   },
-
-    //   injectManifest: {
-    //     globPatterns: ['**/*.{js,css,html,svg,png,ico}'],
-    //   },
-
-    //   devOptions: {
-    //     enabled: false,
-    //     navigateFallback: 'index.html',
-    //     suppressWarnings: true,
-    //     type: 'module',
-    //   },
-    // }),
   ],
 });

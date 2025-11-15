@@ -3,14 +3,42 @@
   "version": "1.0.0",
   "description": "CSS for Material Design 3",
   "type": "module",
-  "main": "glassine-paper.min.css",
+  "main": "lib/glassine-paper.min.css",
+  "exports": {
+    ".": {
+      "import": "./lib/index.js",
+      "types": "./lib/index.d.ts"
+    },
+    "./css": "./lib/glassine-paper.min.css",
+    "./Button": {
+      "import": "./lib/Button.js",
+      "types": "./lib/Button.d.ts"
+    },
+    "./Slider": {
+      "import": "./lib/Slider.js",
+      "types": "./lib/Slider.d.ts"
+    },
+    "./TextField": {
+      "import": "./lib/TextField.js",
+      "types": "./lib/TextField.d.ts"
+    }
+  },
+  "files": [
+    "lib/glassine-paper.min.css",
+    "lib"
+  ],
+  "peerDependencies": {
+    "react": "^18.0.0 || ^19.0.0",
+    "react-dom": "^18.0.0 || ^19.0.0"
+  },
   "scripts": {
     "build:sample": "sass scss/index.scss docs/sample/glassine-paper.css",
-    "build:compressed": "sass scss/index.scss glassine-paper.min.css --style compressed",
-    "build:ts": "tsc -b && vite build && sed -e 's/\\/assets\\//.\\/assets\\//g' -i docs/theme/index.html",
-    "build": "npm-run-all --parallel build:sample build:compressed build:ts",
+    "build:compressed": "sass scss/index.scss lib/glassine-paper.min.css --style compressed",
+    "build:components": "tsc -p tsconfig.components.json",
+    "build:ui": "tsc -b && vite build && sed -e 's//assets//./assets//g' -i docs/theme/index.html",
+    "build": "npm-run-all --parallel build:sample build:compressed build:components build:ui",
     "watch:sample": "sass --watch scss/index.scss:docs/sample/glassine-paper.css",
-    "watch:compressed": "sass --watch scss/index.scss:glassine-paper.min.css --style compressed",
+    "watch:compressed": "sass --watch scss/index.scss:lib/glassine-paper.min.css --style compressed",
     "watch": "npm-run-all --parallel watch:sample watch:compressed",
     "lint": "eslint .",
     "preview": "vite preview",
@@ -22,8 +50,8 @@
   "dependencies": {
     "@material/material-color-utilities": "^0.3.0",
     "color-convert": "^3.1.2",
-    "react": "^19.2.0",
-    "react-dom": "^19.2.0"
+    "react": "^18.0.0 || ^19.0.0",
+    "react-dom": "^18.0.0 || ^19.0.0"
   },
   "devDependencies": {
     "@eslint/js": "^9.37.0",
@@ -36,6 +64,7 @@
     "eslint-plugin-react-hooks": "^5.2.0",
     "eslint-plugin-react-refresh": "^0.4.23",
     "globals": "^16.4.0",
+    "jsdoc-to-markdown": "^9.1.3",
     "npm-run-all": "^4.1.5",
     "prettier": "^3.0.0",
     "sass": "^1.69.0",

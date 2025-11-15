@@ -12,6 +12,10 @@ export interface SliderOption {
  * Slider component props
  */
 export interface SliderProps {
+  /** Input id attribute */
+  id?: string;
+  /** Input name attribute */
+  name?: string;
   /** Minimum value */
   min?: number;
   /** Maximum value */
@@ -32,8 +36,6 @@ export interface SliderProps {
   width?: string;
   /** onChange handler */
   onChange?: (value: number) => void;
-  /** Input id */
-  id?: string;
   /** Additional CSS class names */
   className?: string;
 }
@@ -67,6 +69,8 @@ export interface SliderProps {
  * />
  */
 export const Slider: React.FC<SliderProps> = ({
+  id,
+  name,
   min = 0,
   max = 100,
   step = 1,
@@ -77,7 +81,6 @@ export const Slider: React.FC<SliderProps> = ({
   options = [],
   width,
   onChange,
-  id,
   className = '',
 }) => {
   const sliderRef = useRef<HTMLDivElement>(null);
@@ -149,6 +152,7 @@ export const Slider: React.FC<SliderProps> = ({
       <input
         ref={inputRef}
         id={id}
+        name={name}
         type="range"
         min={min}
         max={max}

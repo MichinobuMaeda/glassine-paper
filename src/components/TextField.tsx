@@ -4,6 +4,10 @@ import React, { type ReactNode, type CSSProperties } from 'react';
  * TextField component props
  */
 export interface TextFieldProps {
+  /** Input id attribute */
+  id?: string;
+  /** Input name attribute */
+  name?: string;
   /** Variant of the text field */
   variant?: 'filled' | 'outlined';
   /** Input type */
@@ -32,10 +36,6 @@ export interface TextFieldProps {
   onBlur?: (e: React.FocusEvent<HTMLInputElement>) => void;
   /** onFocus handler */
   onFocus?: (e: React.FocusEvent<HTMLInputElement>) => void;
-  /** Input name attribute */
-  name?: string;
-  /** Input id attribute */
-  id?: string;
   /** Additional CSS class names */
   className?: string;
   /** Custom inline styles */
@@ -65,6 +65,8 @@ export interface TextFieldProps {
  * />
  */
 export const TextField: React.FC<TextFieldProps> = ({
+  id,
+  name,
   variant = 'outlined',
   type = 'text',
   label,
@@ -78,8 +80,6 @@ export const TextField: React.FC<TextFieldProps> = ({
   onChange,
   onBlur,
   onFocus,
-  name,
-  id,
   className = '',
   style,
 }) => {
@@ -92,6 +92,8 @@ export const TextField: React.FC<TextFieldProps> = ({
       {leadingIcon && leadingIcon}
       <label>{label}</label>
       <input
+        id={id}
+        name={name}
         type={type}
         value={value}
         placeholder={label}
@@ -99,8 +101,6 @@ export const TextField: React.FC<TextFieldProps> = ({
         onChange={onChange}
         onBlur={onBlur}
         onFocus={onFocus}
-        name={name}
-        id={id}
         style={style}
       />
       {trailingIcon && trailingIcon}
