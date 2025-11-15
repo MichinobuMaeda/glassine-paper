@@ -1729,11 +1729,11 @@ input.radio:not([disabled]):active:hover::before {
   justify-content: space-around;
   bottom: 0;
   left: 0;
-  height: var(--nav-bar-height, 4rem);
+  height: var(--nav-bar-height, calc(4rem + env(safe-area-inset-bottom)));
   width: 100%;
   position: fixed;
   background-color: light-dark(var(--color-light-surface-container), var(--color-dark-surface-container));
-  z-index: var(--nav-bar-z-index, 5);
+  z-index: var(--nav-bar-z-index, 6);
 }
 .nav-bar.hidden {
   display: none;
@@ -1773,7 +1773,7 @@ input.radio:not([disabled]):active:hover::before {
   min-height: 1.5rem;
   min-height: 1.5rem;
   max-height: 1.5rem;
-  z-index: calc(var(--nav-bar-z-index, 5) + 1);
+  z-index: calc(var(--nav-bar-z-index, 6) + 1);
 }
 .nav-bar:not(.wide) button:not(.icon) {
   display: flex;
@@ -1858,7 +1858,7 @@ input.radio:not([disabled]):active:hover::before {
   position: sticky;
   background-color: light-dark(var(--color-light-surface-container), var(--color-dark-surface-container));
   color: light-dark(var(--color-light-on-surface), var(--color-dark-on-surface));
-  z-index: var(--nav-rail-z-index, 5);
+  z-index: var(--nav-rail-z-index, 8);
   padding: 1rem;
 }
 .nav-rail.hidden {
@@ -1902,7 +1902,7 @@ input.radio:not([disabled]):active:hover::before {
   min-height: 1.5rem;
   min-height: 1.5rem;
   max-height: 1.5rem;
-  z-index: calc(var(--nav-rail-z-index, 5) + 1);
+  z-index: calc(var(--nav-rail-z-index, 8) + 1);
 }
 .nav-rail:not(.wide) button:not(.fab):not(.icon) {
   display: flex;
@@ -1986,7 +1986,7 @@ input.radio:not([disabled]):active:hover::before {
 .menu {
   background-color: light-dark(var(--color-light-surface-container), var(--color-dark-surface-container));
   color: light-dark(var(--color-light-on-surface), var(--color-dark-on-surface));
-  width: var(--menu-width);
+  width: var(var(--menu-width, 256px));
   box-shadow: 0.25rem 0.25rem 0.25rem 0.25rem color(from light-dark(var(--color-light-shadow), var(--color-dark-shadow)) srgb r g b/0.15);
   border-radius: 0.25rem;
   padding: 0.5rem 0;

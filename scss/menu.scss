@@ -4,10 +4,12 @@
 @use 'variables' as *;
 @use 'mixins' as *;
 
+$menu-width: var(--menu-width, 256px);
+
 .menu {
   @include bg-color(surface-container);
   @include fg-color(on-surface);
-  width: var(--menu-width);
+  width: var($menu-width);
   box-shadow: $spacing-4px $spacing-4px $spacing-4px $spacing-4px
     color(
       from light-dark(var(--color-light-shadow), var(--color-dark-shadow)) srgb

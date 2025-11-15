@@ -1,4 +1,4 @@
-# glassine-paper-css
+# Glassine Paper
 
 CSS and some React components for Material Design 3
 
@@ -7,6 +7,33 @@ CSS and some React components for Material Design 3
 - [Theme color generator](https://pages.michinobu.jp/glassine-paper/theme)
 
 ## Usage
+
+```css
+@import url('https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,500,500i,700,700i,900,900i');
+@import './glassine-paper-variables.css';
+@import './theme.css';
+@import './glassine-paper.min.css';
+```
+
+`glassine-paper-variables.css` with default values
+
+```css
+:root {
+  --root-font-family: Roboto, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+  --root-font-size: 16px;
+  --root-font-weight: 400;
+
+  --app-bar-z-index: 4;
+  --nav-bar-z-index: 6;
+  --nav-bar-height: calc(64px + env(safe-area-inset-bottom));
+  --nav-rail-z-index: 8;
+  --nav-rail-width: 240px;
+  --nav-drawer-z-index: 10;
+  --nav-drawer-width: 360px;
+
+  --menu-width: 256px;
+}
+```
 
 ### Installation
 

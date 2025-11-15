@@ -423,8 +423,6 @@ function App(): JSX.Element {
                     margin: 0,
                     fontFamily: 'monospace',
                     padding: '0 0.25rem',
-                    overflow: 'hidden',
-                    textOverflow: 'ellipsis',
                     whiteSpace: 'nowrap',
                   }}
                 >

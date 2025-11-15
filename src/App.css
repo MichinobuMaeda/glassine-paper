@@ -6,7 +6,7 @@
 
 body {
   margin: 0;
-  padding: env(safe-area-inset-top) 0 env(safe-area-inset-bottom) 0;
+  padding: env(safe-area-inset-top) 0 calc(env(safe-area-inset-bottom) + 2rem) 0;
   background-color: light-dark(var(--color-background), var(--color-dark-background));
   color: light-dark(var(--color-light-on-background), var(--color-dark-on-background));
 }
@@ -41,6 +41,7 @@ body {
     flex-grow: 1;
     height: 100vh;
     max-width: 100vw;
+    background-color: light-dark(var(--color-form), var(--color-dark-form));
   }
 }
 

@@ -5,7 +5,7 @@
 @use 'mixins' as *;
 @use 'nav-item' as *;
 
-$nav-rail-z-index: var(--nav-rail-z-index, 5);
+$nav-rail-z-index: var(--nav-rail-z-index, 8);
 $nav-rail-width: var(--nav-rail-width, calc($spacing-80px * 3));
 $nav-rail-width-narrow: $spacing-80px;
 $nav-horizontal-item-height: $spacing-56px;

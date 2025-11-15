@@ -5,8 +5,11 @@
 @use 'mixins' as *;
 @use 'nav-item' as *;
 
-$nav-bar-z-index: var(--nav-bar-z-index, 5);
-$nav-bar-height: var(--nav-bar-height, $spacing-64px);
+$nav-bar-z-index: var(--nav-bar-z-index, 6);
+$nav-bar-height: var(
+  --nav-bar-height,
+  calc($spacing-64px + env(safe-area-inset-bottom))
+);
 $nav-horizontal-item-height: $spacing-40px;
 
 .nav-bar {
