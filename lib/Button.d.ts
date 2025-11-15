@@ -28,7 +28,7 @@ export interface ButtonProps {
     /** Children elements */
     children: ReactNode;
     /** onClick handler */
-    onClick?: (e: React.MouseEvent<HTMLButtonElement>) => void;
+    onClick?: (e: React.MouseEvent<HTMLButtonElement | HTMLInputElement>) => void;
     /** Additional CSS class names */
     className?: string;
 }
