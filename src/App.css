@@ -41,7 +41,6 @@ body {
     flex-grow: 1;
     height: 100vh;
     max-width: 100vw;
-    background-color: light-dark(var(--color-form), var(--color-dark-form));
   }
 }
 

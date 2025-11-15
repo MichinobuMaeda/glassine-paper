@@ -390,8 +390,8 @@ ${variables
   --color-light-link: #1976D2;
   --color-dark-link: #64B5F6;
   --color-light-form: var(--color-light-surface-container-lowest);
-  --color-light-on-form: var(--color-dark-surface-container-lowest);
-  --color-dark-form: var(--color-light-on-surface);
+  --color-dark-form: var(--color-dark-surface-container-lowest);
+  --color-light-on-form: var(--color-light-on-surface);
   --color-dark-on-form: var(--color-dark-on-surface);
 }
 `;
