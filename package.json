@@ -35,7 +35,7 @@
     "build:sample": "sass scss/index.scss docs/sample/glassine-paper.css",
     "build:compressed": "sass scss/index.scss lib/glassine-paper.min.css --style compressed",
     "build:components": "tsc -p tsconfig.components.json",
-    "build:ui": "tsc -b && vite build && sed -e 's//assets//./assets//g' -i docs/theme/index.html",
+    "build:ui": "tsc -b && vite build && sed -e 's/\\/assets\\//.\\/assets\\//g' -i docs/theme/index.html",
     "build": "npm-run-all --parallel build:sample build:compressed build:components build:ui",
     "watch:sample": "sass --watch scss/index.scss:docs/sample/glassine-paper.css",
     "watch:compressed": "sass --watch scss/index.scss:lib/glassine-paper.min.css --style compressed",
