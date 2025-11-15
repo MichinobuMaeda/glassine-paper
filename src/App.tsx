@@ -379,6 +379,7 @@ function App(): JSX.Element {
               display: 'flex',
               flexDirection: 'column',
               gap: 0,
+              maxWidth: '100vw',
               overflowX: 'scroll',
             }}
           >
