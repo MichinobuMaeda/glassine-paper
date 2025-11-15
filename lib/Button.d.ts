@@ -35,6 +35,9 @@ export interface ButtonProps {
 /**
  * Material Design 3 Button component
  *
+ * @param props ButtonProps
+ * @returns JSX.Element
+ *
  * @example
  * // Regular button
  * <Button variant="filled" size="sm">

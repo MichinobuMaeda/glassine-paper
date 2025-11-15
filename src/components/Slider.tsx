@@ -10,6 +10,33 @@ export interface SliderOption {
 
 /**
  * Slider component props
+ *
+ * @param props SliderProps
+ * @returns JSX.Element
+ *
+ * @example
+ * // Basic slider
+ * const [value, setValue] = useState(50);
+ * <Slider value={value} onChange={(v) => setValue(v)} />
+ *
+ * @example
+ * // Slider with value indicator and options
+ * <Slider
+ *   value={50}
+ *   min={0}
+ *   max={100}
+ *   step={10}
+ *   showValueIndicator
+ *   options={[
+ *     { value: 0 },
+ *     { value: 50 },
+ *     { value: 100 }
+ *   ]}
+ * />
+ *
+ * @example
+ * // Vertical slider
+ * <Slider value={30} orientation="top-bottom" width="16em" />
  */
 export interface SliderProps {
   /** Input id attribute */
@@ -117,7 +144,7 @@ export const Slider: React.FC<SliderProps> = ({
         const sliderRect = sliderRef.current.getBoundingClientRect();
 
         // Position the indicator
-        indicator.style.left = `${inputRect.left - sliderRect.left + inputRect.width * valueRatio}px`;
+        indicator.style.left = `${(inputRect.left - sliderRect.left) * 3 + (inputRect.width - (inputRect.left - sliderRect.left) * 3) * valueRatio}px`;
       }
     }
   }, [value, min, max, options, showValueIndicator]);

@@ -11,13 +11,19 @@
 ## Constants
 
 <dl>
-<dt><a href="#Button">Button</a></dt>
+<dt><a href="#Button">Button</a> ⇒</dt>
 <dd><p>Material Design 3 Button component</p>
 </dd>
 <dt><a href="#Slider">Slider</a></dt>
 <dd><p>Material Design 3 Slider component</p>
 </dd>
-<dt><a href="#TextField">TextField</a></dt>
+<dt><a href="#TabItem">TabItem</a> ⇒</dt>
+<dd><p>Material Design 3 Tab item component</p>
+</dd>
+<dt><a href="#Tabs">Tabs</a> ⇒</dt>
+<dd><p>Material Design 3 Tabs component</p>
+</dd>
+<dt><a href="#TextField">TextField</a> ⇒</dt>
 <dd><p>Material Design 3 TextField component</p>
 </dd>
 </dl>
@@ -29,10 +35,16 @@ Glassine Paper - Material Design 3 React Components
 
 <a name="Button"></a>
 
-## Button
+## Button ⇒
 Material Design 3 Button component
 
 **Kind**: global constant  
+**Returns**: JSX.Element  
+
+| Param | Description |
+| --- | --- |
+| props | ButtonProps |
+
 **Example**  
 ```js
 // Regular button
@@ -103,12 +115,67 @@ Material Design 3 Slider component
   width="16em"
 />
 ```
+<a name="TabItem"></a>
+
+## TabItem ⇒
+Material Design 3 Tab item component
+
+**Kind**: global constant  
+**Returns**: JSX.Element  
+
+| Param | Description |
+| --- | --- |
+| props | TabItemProps |
+
+**Example**  
+```js
+<TabItem onClick={() => {}} active={true}>
+  <svg>...</svg>
+  Item 1
+</TabItem>
+```
+**Example**  
+```js
+<TabItem href="...">
+  Item 2
+</TabItem>
+```
+<a name="Tabs"></a>
+
+## Tabs ⇒
+Material Design 3 Tabs component
+
+**Kind**: global constant  
+**Returns**: JSX.Element  
+
+| Param | Description |
+| --- | --- |
+| props | TabsProps |
+
+**Example**  
+```js
+<Tabs id="example-tabs">
+  <TabItem onClick={() => {}} active={true}>
+    <svg>...</svg>
+    Item 1
+  </TabItem>
+  <TabItem href="...">
+    Item 2
+  </TabItem>
+</Tabs>
+```
 <a name="TextField"></a>
 
-## TextField
+## TextField ⇒
 Material Design 3 TextField component
 
 **Kind**: global constant  
+**Returns**: JSX.Element  
+
+| Param | Description |
+| --- | --- |
+| props | TextFieldProps |
+
 **Example**  
 ```js
 <TextField

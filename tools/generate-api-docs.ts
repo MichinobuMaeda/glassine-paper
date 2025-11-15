@@ -4,7 +4,7 @@ import path from 'path';
 import process from 'process';
 import jsdoc2md from 'jsdoc-to-markdown';
 
-export const absolutePath = (relativePath) => {
+export const absolutePath = (relativePath: string) => {
   // If path is already absolute, just normalize it
   if (path.isAbsolute && path.isAbsolute(relativePath)) {
     return path.normalize(relativePath);
@@ -18,6 +18,12 @@ export const generateApiDocs = async ({
   files,
   output,
   options,
+}: {
+  name: string;
+  version: string;
+  files: string[];
+  output: string;
+  options?: jsdoc2md.RenderOptions;
 }) => {
   const body = await jsdoc2md.render({ files, ...options });
   const md = `# API Documentation ${name} ${version}
@@ -27,22 +33,30 @@ ${body}`;
   await fs.writeFile(absolutePath(output), md);
 };
 
-export const apiDocsPlugin = (config) => {
-  const name = config.name;
-  const version = config.version;
-  const inputs = (config.inputs || []).map((input) => absolutePath(input));
-  const outputPath = absolutePath(config.output);
-  const options = config.options || {};
-
-  const files = [];
-  inputs.map(async (input) => {
+export const apiDocsPlugin = ({
+  name,
+  version,
+  inputs = [],
+  output,
+  options,
+}: {
+  name: string;
+  version: string;
+  inputs?: string[];
+  output: string;
+  options?: jsdoc2md.RenderOptions;
+}) => {
+  const absInputs = inputs.map((input) => absolutePath(input));
+  const outputPath = absolutePath(output);
+  const files: string[] = [];
+  absInputs.map(async (input) => {
     for (const file of globSync(input)) {
       files.push(file);
     }
   });
 
   console.info(`API Docs Plugin:
-  Inputs: ${path.relative(process.cwd(), inputs.join(', '))}
+  Inputs: ${path.relative(process.cwd(), absInputs.join(', '))}
   Output: ${path.relative(process.cwd(), outputPath)}
   Options: ${JSON.stringify(options, null, 2)}
   Files: ${JSON.stringify(
@@ -57,7 +71,7 @@ export const apiDocsPlugin = (config) => {
     async buildStart() {
       generateApiDocs({ name, version, files, output: outputPath, options });
     },
-    handleHotUpdate({ file }) {
+    handleHotUpdate({ file }: { file: string }) {
       const path = absolutePath(file);
       if (files.includes(path)) {
         console.log(`Regenerating API docs due to change in ${file}`);

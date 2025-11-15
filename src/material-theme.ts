@@ -42,18 +42,28 @@ import {
   sanitizeDegreesDouble,
 } from '@material/material-color-utilities';
 
-// @ts-expect-error: erasableSyntaxOnly compatibility
-export enum Variant {
-  MONOCHROME,
-  NEUTRAL,
-  TONAL_SPOT,
-  VIBRANT,
-  EXPRESSIVE,
-  FIDELITY,
-  CONTENT,
-  RAINBOW,
-  FRUIT_SALAD,
-}
+type Variant =
+  | 'MONOCHROME'
+  | 'NEUTRAL'
+  | 'TONAL_SPOT'
+  | 'VIBRANT'
+  | 'EXPRESSIVE'
+  | 'FIDELITY'
+  | 'CONTENT'
+  | 'RAINBOW'
+  | 'FRUIT_SALAD';
+
+export const Variant = {
+  MONOCHROME: 0,
+  NEUTRAL: 1,
+  TONAL_SPOT: 2,
+  VIBRANT: 3,
+  EXPRESSIVE: 4,
+  FIDELITY: 5,
+  CONTENT: 6,
+  RAINBOW: 7,
+  FRUIT_SALAD: 8,
+};
 
 /**
  * A color token pair representing a semantic color name and its hexadecimal value.
@@ -367,7 +377,9 @@ export function generateThemeCss(
  * Generated at: ${new Date().toISOString()}
  * Seed color  : ${seedColor}
  * Contrast    : ${Number(contrast).toFixed(2)}
- * Variant     : ${Variant[variant]}
+ * Variant     : ${Object.entries(Variant)
+   .filter(([, value]) => value === variant)
+   .map(([key]) => key)}
  */
 
 :root {

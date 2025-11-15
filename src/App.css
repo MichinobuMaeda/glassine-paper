@@ -41,6 +41,8 @@ body {
     flex-grow: 1;
     height: 100vh;
     overflow: auto;
+    padding-bottom: env(safe-area-inset-bottom);
+
   }
 }
 

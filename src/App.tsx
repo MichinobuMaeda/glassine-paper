@@ -1,4 +1,4 @@
-import { useState, useEffect, type JSX } from 'react';
+import React, { useState, useEffect, type JSX } from 'react';
 import convert from 'color-convert';
 import './App.css';
 import {
@@ -9,6 +9,9 @@ import {
   Variant,
 } from './material-theme';
 import Row from './Row';
+import AppBar, { AppBarItem, AppBarTitle } from './components/AppBar';
+import Tabs, { TabItem } from './components/Tabs';
+import Menu, { MenuItem } from './components/Menu';
 import TextField from './components/TextField';
 import Button from './components/Button';
 import Slider from './components/Slider';
@@ -21,6 +24,47 @@ import SvgDownload from './icons/SvgDownload';
 import SvgBrightnessAuto from './icons/SvgBrightnessAuto';
 import SvgLightMode from './icons/SvgLightMode';
 import SvgDarkMode from './icons/SvgDarkMode';
+
+type ColorModel = 'RGB' | 'HSV';
+
+const ColorModel = {
+  RGB: 'RGB' as const,
+  HSV: 'HSV' as const,
+};
+
+type LightDark = 'light' | 'dark' | 'light dark';
+
+const LightDark = {
+  LIGHT: 'light' as const,
+  DARK: 'dark' as const,
+  LIGHT_DARK: 'light dark' as const,
+};
+
+const LightDarkIcon = {
+  [LightDark.LIGHT]: SvgLightMode,
+  [LightDark.DARK]: SvgDarkMode,
+  [LightDark.LIGHT_DARK]: SvgBrightnessAuto,
+};
+
+const LightDarkLabel = {
+  [LightDark.LIGHT]: 'Light mode',
+  [LightDark.DARK]: 'Dark mode',
+  [LightDark.LIGHT_DARK]: 'Auto',
+};
+
+type ColorVariant = 0 | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8;
+
+const ColorVariant = {
+  MONOCHROME: 0 as ColorVariant,
+  NEUTRAL: 1 as ColorVariant,
+  TONAL_SPOT: 2 as ColorVariant,
+  VIBRANT: 3 as ColorVariant,
+  EXPRESSIVE: 4 as ColorVariant,
+  FIDELITY: 5 as ColorVariant,
+  CONTENT: 6 as ColorVariant,
+  RAINBOW: 7 as ColorVariant,
+  FRUIT_SALAD: 8 as ColorVariant,
+};
 
 const downloadFile = (filename: string, content: string) => {
   const data = new Blob([content]);
@@ -58,15 +102,14 @@ function App(): JSX.Element {
   const [hue, setHue] = useState(h);
   const [saturation, setSaturation] = useState(s);
   const [brightness, setBrightness] = useState(v);
-  const [colorModel, setColorModel] = useState<'RGB' | 'HSV'>('HSV');
+  const [colorModel, setColorModel] = useState<ColorModel>(ColorModel.HSV);
   const [rgbUpdating, setRgbUpdating] = useState(false);
   const [hsvUpdating, setHsvUpdating] = useState(false);
   const [contrast, setContrast] = useState(0);
   const [variant, setVariant] = useState(Number(Variant.TONAL_SPOT));
   const [variables, setVariables] = useState<Array<[string, string]>>([]);
-  const [darkMode, setDarkMode] = useState<'light dark' | 'light' | 'dark'>(
-    'light dark'
-  );
+  const [darkMode, setDarkMode] = useState<LightDark>(LightDark.LIGHT_DARK);
+  const [scrolled, setScrolled] = useState(false);
 
   useEffect(() => {
     document.documentElement.style.setProperty('color-scheme', darkMode);
@@ -119,68 +162,53 @@ function App(): JSX.Element {
 
   return (
     <div className="nav-drawer-layout">
-      <div className="content-area">
-        <header className="app-bar sticky">
-          <button>
+      <div
+        className="content-area"
+        onScroll={(e) => setScrolled(e.currentTarget.scrollTop > 0)}
+      >
+        <AppBar sticky scrolled={scrolled}>
+          <AppBarItem onClick={() => {}}>
             <SvgMenu />
-          </button>
+          </AppBarItem>
           <img src="./favicon.svg" alt="Glassine Paper" />
-          <div className="title-area">
-            <h1 className="title">Glassine Paper</h1>
-            <div className="subtitle">CSS for Material Design 3</div>
-          </div>
-          <button onClick={() => setMenuVisible(!menuVisible)}>
+          <AppBarTitle
+            title="Glassine Paper"
+            subtitle="CSS for Material Design 3"
+          />
+          <AppBarItem onClick={() => setMenuVisible(!menuVisible)}>
             <SvgMoreVert />
-          </button>
-        </header>
+          </AppBarItem>
+        </AppBar>
 
-        <div className="tabs">
-          <a href="../sample">Sample</a>
-          <div className="active">Theme</div>
-          <a href="#">
+        <Tabs>
+          <TabItem href="../sample">Sample</TabItem>
+          <TabItem active>Theme</TabItem>
+          <TabItem href="#">
             <SvgSquare />
             Tab item
-          </a>
-        </div>
+          </TabItem>
+        </Tabs>
 
         {menuVisible && (
-          <div className="menu" id="main-menu">
-            <button
-              onClick={() => {
-                setDarkMode('light');
-                setMenuVisible(false);
-              }}
-              className={darkMode === 'light' ? 'active' : ''}
-            >
-              <SvgLightMode />
-              Light mode
-            </button>
-            <button
-              onClick={() => {
-                setDarkMode('dark');
-                setMenuVisible(false);
-              }}
-              className={darkMode === 'dark' ? 'active' : ''}
-            >
-              <SvgDarkMode />
-              Dark mode
-            </button>
-            <button
-              onClick={() => {
-                setDarkMode('light dark');
-                setMenuVisible(false);
-              }}
-              className={darkMode === 'light dark' ? 'active' : ''}
-            >
-              <SvgBrightnessAuto />
-              Auto
-            </button>
+          <Menu id="main-menu">
+            {Object.values(LightDark).map((mode) => (
+              <MenuItem
+                onClick={() => {
+                  setDarkMode(mode);
+                  setMenuVisible(false);
+                }}
+                active={darkMode === mode}
+              >
+                {React.createElement(LightDarkIcon[mode])}
+                {LightDarkLabel[mode]}
+              </MenuItem>
+            ))}
             <hr />
-            <a href="https://github.com/MichinobuMaeda/glassine-paper">
+            <MenuItem href="https://github.com/MichinobuMaeda/glassine-paper">
               <SvgGitHub />
               GitHub
-            </a>
-          </div>
+            </MenuItem>
+          </Menu>
         )}
 
         <main>
@@ -216,33 +244,20 @@ function App(): JSX.Element {
               />
             </Row>
             <Row align="center" style={{ gap: '0.5rem' }}>
-              {Object.entries({
-                MONOCHROME: 0,
-                NEUTRAL: 1,
-                TONAL_SPOT: 2,
-                VIBRANT: 3,
-                EXPRESSIVE: 4,
-                FIDELITY: 5,
-                CONTENT: 6,
-                RAINBOW: 7,
-                FRUIT_SALAD: 8,
-              }).map(([key, value]) => (
-                <label
+              {Object.entries(ColorVariant).map(([key, value]) => (
+                <Button
                   key={key}
-                  className="button filled sm"
-                  style={{ marginRight: '0.5rem' }}
+                  variant="filled"
+                  size="sm"
+                  onClick={() => setVariant(value)}
+                  checked={variant === value}
+                  name="variant"
+                  type="select"
                 >
                   {(
                     key.charAt(0).toUpperCase() + key.slice(1).toLowerCase()
                   ).replace('_', ' ')}
-                  <input
-                    type="radio"
-                    name="variant"
-                    value={value}
-                    checked={variant === value}
-                    onChange={() => setVariant(value)}
-                  />
-                </label>
+                </Button>
               ))}
             </Row>
             <Row align="center">
@@ -274,21 +289,18 @@ function App(): JSX.Element {
             </Row>
           </Row>
 
-          <div className="tabs">
-            <button
-              className={colorModel === 'RGB' ? 'active' : ''}
-              onClick={() => setColorModel('RGB')}
-            >
-              RGB
-            </button>
-            <button
-              className={colorModel === 'HSV' ? 'active' : ''}
-              onClick={() => setColorModel('HSV')}
-            >
-              HSV
-            </button>
-          </div>
-          {colorModel === 'RGB' && (
+          <Tabs>
+            {Object.values(ColorModel).map((model) => (
+              <TabItem
+                active={colorModel === model}
+                onClick={() => setColorModel(model)}
+              >
+                {model}
+              </TabItem>
+            ))}
+          </Tabs>
+
+          {colorModel === ColorModel.RGB && (
             <Row align="center">
               <Slider
                 min={0}
@@ -325,7 +337,7 @@ function App(): JSX.Element {
               />
             </Row>
           )}
-          {colorModel === 'HSV' && (
+          {colorModel === ColorModel.HSV && (
             <Row align="center">
               <Slider
                 min={0}
@@ -410,6 +422,9 @@ function App(): JSX.Element {
                     margin: 0,
                     fontFamily: 'monospace',
                     padding: '0 0.25rem',
+                    overflow: 'hidden',
+                    textOverflow: 'ellipsis',
+                    whiteSpace: 'nowrap',
                   }}
                 >
                   {name}

@@ -36,13 +36,16 @@ export interface ButtonProps {
   /** Children elements */
   children: ReactNode;
   /** onClick handler */
-  onClick?: (e: React.MouseEvent<HTMLButtonElement>) => void;
+  onClick?: (e: React.MouseEvent<HTMLButtonElement | HTMLInputElement>) => void;
   /** Additional CSS class names */
   className?: string;
 }
 
 /**
  * Material Design 3 Button component
+ *
+ * @param props ButtonProps
+ * @returns JSX.Element
  *
  * @example
  * // Regular button
@@ -107,12 +110,24 @@ export const Button: React.FC<ButtonProps> = ({
 
   return type === 'toggle' ? (
     <label id={`${id}-label`} className={classes}>
-      <input id={id} name={name} type="checkbox" checked={checked} />
+      <input
+        id={id}
+        name={name}
+        type="checkbox"
+        checked={checked}
+        onClick={(event) => (onClick ? onClick(event) : undefined)}
+      />
       {children}
     </label>
   ) : type === 'select' ? (
     <label id={`${id}-label`} className={classes}>
-      <input id={id} name={name} type="radio" checked={checked} />
+      <input
+        id={id}
+        name={name}
+        type="radio"
+        checked={checked}
+        onClick={(event) => (onClick ? onClick(event) : undefined)}
+      />
       {children}
     </label>
   ) : href ? (

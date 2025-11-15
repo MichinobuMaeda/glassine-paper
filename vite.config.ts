@@ -1,8 +1,6 @@
 import path from 'path';
 import { defineConfig } from 'vite';
-// eslint-disable-next-line @typescript-eslint/ban-ts-comment
-// @ts-ignore
-import { apiDocsPlugin } from './tools/generate-api-docs.js';
+import { apiDocsPlugin } from './tools/generate-api-docs.ts';
 import react from '@vitejs/plugin-react';
 import { name, version } from './package.json';
 

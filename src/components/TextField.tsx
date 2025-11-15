@@ -45,6 +45,9 @@ export interface TextFieldProps {
 /**
  * Material Design 3 TextField component
  *
+ * @param props TextFieldProps
+ * @returns JSX.Element
+ *
  * @example
  * <TextField
  *   variant="filled"

@@ -5,4 +5,5 @@
 export { Button, type ButtonProps } from './Button';
 export { Slider, type SliderProps, type SliderOption } from './Slider';
 export { TextField, type TextFieldProps } from './TextField';
+export { Tabs, TabItem, type TabsProps, type TabItemProps } from './Tabs';
 //# sourceMappingURL=index.d.ts.map
