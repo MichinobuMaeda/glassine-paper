@@ -1,4 +1,4 @@
-import React, { type ReactNode } from 'react';
+import React, { type ReactNode, type CSSProperties } from 'react';
 
 /**
  * Button component props
@@ -25,6 +25,7 @@ export interface ButtonProps {
   disabled?: boolean;
   onClick?: (e: React.MouseEvent<HTMLButtonElement | HTMLInputElement>) => void;
   className?: string;
+  style?: CSSProperties;
 }
 
 /**
@@ -45,6 +46,7 @@ export interface ButtonProps {
  * @param props.disabled Disabled state
  * @param props.onClick Click handler
  * @param props.className Additional CSS class names
+ * @param props.style Custom inline styles
  * @returns JSX.Element
  *
  * @example
@@ -106,6 +108,7 @@ export const Button: React.FC<ButtonProps> = ({
   disabled = false,
   onClick,
   className = '',
+  style = {},
 }) => {
   const classes = [
     'button',
@@ -120,7 +123,7 @@ export const Button: React.FC<ButtonProps> = ({
     .join(' ');
 
   return type === 'toggle' ? (
-    <label id={`${id}-label`} className={classes}>
+    <label id={`${id}-label`} className={classes} style={style}>
       <input
         id={id}
         name={name}
@@ -132,7 +135,7 @@ export const Button: React.FC<ButtonProps> = ({
       {label}
     </label>
   ) : type === 'select' ? (
-    <label id={`${id}-label`} className={classes}>
+    <label id={`${id}-label`} className={classes} style={style}>
       <input
         id={id}
         name={name}
@@ -144,7 +147,7 @@ export const Button: React.FC<ButtonProps> = ({
       {label}
     </label>
   ) : href ? (
-    <a id={id} href={href} className={classes}>
+    <a id={id} href={href} className={classes} style={style}>
       {icon}
       {label}
     </a>
@@ -156,6 +159,7 @@ export const Button: React.FC<ButtonProps> = ({
       className={classes}
       disabled={disabled}
       onClick={onClick}
+      style={style}
     >
       {icon}
       {label}

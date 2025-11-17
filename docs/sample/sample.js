@@ -355,17 +355,14 @@ function bodyOnLoad() {
   }
 
   // Detect scroll on content area to update app-bar style
-  const contentArea = document.getElementsByClassName('content-area').item(0);
-  if (contentArea) {
-    contentArea.addEventListener('scroll', () => {
-      const appBar = document.getElementsByClassName('app-bar').item(0);
-      if (appBar) {
-        if (contentArea.scrollTop > 0) {
-          appBar.classList.add('on-scroll');
-        } else {
-          appBar.classList.remove('on-scroll');
-        }
+  window.onscroll = (event) => {
+    const appBar = document.getElementsByClassName('app-bar').item(0);
+    if (appBar) {
+      if (window.document.scrollingElement.scrollTop > 0) {
+        appBar.classList.add('on-scroll');
+      } else {
+        appBar.classList.remove('on-scroll');
       }
-    });
-  }
+    }
+  };
 }

@@ -1,4 +1,4 @@
-import React, { type ReactNode } from 'react';
+import React, { type ReactNode, type CSSProperties } from 'react';
 /**
  * Button component props
  */
@@ -17,6 +17,7 @@ export interface ButtonProps {
     disabled?: boolean;
     onClick?: (e: React.MouseEvent<HTMLButtonElement | HTMLInputElement>) => void;
     className?: string;
+    style?: CSSProperties;
 }
 /**
  * Material Design 3 Button component
@@ -36,6 +37,7 @@ export interface ButtonProps {
  * @param props.disabled Disabled state
  * @param props.onClick Click handler
  * @param props.className Additional CSS class names
+ * @param props.style Custom inline styles
  * @returns JSX.Element
  *
  * @example

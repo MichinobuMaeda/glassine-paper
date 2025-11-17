@@ -1,4 +1,4 @@
-import React, { type ReactNode } from 'react';
+import React, { type ReactNode, type CSSProperties } from 'react';
 
 export interface NavDrawerItemProps {
   key?: string | number;
@@ -18,6 +18,7 @@ export interface NavDrawerProps {
   id?: string;
   items: Iterable<NavDrawerItemProps>;
   className?: string;
+  style?: CSSProperties;
 }
 
 const NavDrawerItem: React.FC<NavDrawerItemProps> = ({
@@ -73,6 +74,7 @@ const NavDrawerItem: React.FC<NavDrawerItemProps> = ({
  * @param props.items[].onClick Click handler
  * @param props.items[].href Link URL (renders as anchor tag)
  * @param props.className Additional CSS class names
+ * @param props.style Custom inline styles
  * @returns JSX.Element
  *
  * @example
@@ -98,9 +100,10 @@ export const NavDrawer: React.FC<NavDrawerProps> = ({
   id,
   items = [],
   className,
+  style = {},
 }) => {
   return (
-    <div id={id} className={`nav-drawer ${className || ''}`}>
+    <div id={id} className={`nav-drawer ${className || ''}`} style={style}>
       {Array.from(items).map((item, index) => (
         <NavDrawerItem key={item.key || index} {...item} />
       ))}

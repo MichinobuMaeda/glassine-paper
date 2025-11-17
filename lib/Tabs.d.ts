@@ -1,4 +1,4 @@
-import React, { type ReactNode } from 'react';
+import React, { type ReactNode, type CSSProperties } from 'react';
 export interface TabItemProps {
     key?: string | number;
     id?: string;
@@ -12,6 +12,7 @@ export interface TabItemProps {
 export interface TabsProps {
     id?: string;
     items: Iterable<TabItemProps>;
+    style?: CSSProperties;
 }
 /**
  * Material Design 3 Tabs component
@@ -27,6 +28,7 @@ export interface TabsProps {
  * @param props.items[].disabled Disabled state
  * @param props.items[].onClick Click handler
  * @param props.items[].href Link URL (renders as anchor tag)
+ * @param props.style Custom inline styles
  * @returns JSX.Element
  *
  * @example

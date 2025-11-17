@@ -65,41 +65,43 @@ Material Design 3 App bar component
 | props.items[].href | Link URL (renders as anchor tag) |
 | props.sticky | Whether the app bar sticks to the top |
 | props.scrolled | Whether the content is scrolled (affects styling) |
+| props.style | Custom inline styles |
 
 **Example**  
 ```js
-const [scrolled, setScrolled] = useState(false);
+import useDetectScroll, { Axis } from '@smakss/react-scroll-direction';
 
-<div
-  className="content-area"
-  onScroll={(e) => setScrolled(e.currentTarget.scrollTop > 0)}
->
-  <AppBar
-    sticky
-    scrolled={scrolled}
-    items={[
-      {
-        icon: <svg>...</svg>,
-        onClick: () => {...},
-      },
-      {
-        type: "appLogo",
-        icon: <img src="./favicon.svg" alt="Glassine Paper" />,
-      },
-      {
-        type: "title",
-        title: "App name",
-        subtitle: "Description",
-      },
-      { type: "spacer" },
-      {
-        icon: <svg>...</svg>,
-        onClick: () => {...},
-      },
-    ]}
-  />
-  ... ...
-</div>
+const [scrolled, setScrolled] = useState(false);
+const { scrollPosition } = useDetectScroll({ axis: Axis.X });
+
+useEffect(() => {
+  setScrolled(scrollPosition.top > 0);
+}, [scrollPosition]);
+
+<AppBar
+  sticky
+  scrolled={scrolled}
+  items={[
+    {
+      icon: <svg>...</svg>,
+      onClick: () => {...},
+    },
+    {
+      type: "appLogo",
+      icon: <img src="./favicon.svg" alt="Glassine Paper" />,
+    },
+    {
+      type: "title",
+      title: "App name",
+      subtitle: "Description",
+    },
+    { type: "spacer" },
+    {
+      icon: <svg>...</svg>,
+      onClick: () => {...},
+    },
+  ]}
+/>
 ```
 <a name="Button"></a>
 
@@ -126,6 +128,7 @@ Material Design 3 Button component
 | props.disabled | Disabled state |
 | props.onClick | Click handler |
 | props.className | Additional CSS class names |
+| props.style | Custom inline styles |
 
 **Example**  
 ```js
@@ -245,6 +248,7 @@ Material Design 3 NavDrawer component
 | props.items[].onClick | Click handler |
 | props.items[].href | Link URL (renders as anchor tag) |
 | props.className | Additional CSS class names |
+| props.style | Custom inline styles |
 
 **Example**  
 ```js
@@ -289,9 +293,9 @@ Material Design 3 Slider component
 | props.options | Datalist options array |
 | props.options[].value | Option value |
 | props.options[].key | Optional unique key for the option |
-| props.width | Width or height (depending on orientation) |
 | props.onChange | Change handler function |
 | props.className | Additional CSS class names |
+| props.style | Custom inline styles |
 
 **Example**  
 ```js
@@ -309,6 +313,7 @@ Material Design 3 Slider component
     { value: 100 }
   ]}
   onChange={(value) => console.log(value)}
+  style={{ width: "16em"}}
 />
 ```
 **Example**  
@@ -317,7 +322,7 @@ Material Design 3 Slider component
   value={30}
   orientation="top-bottom"
   size="md"
-  width="16em"
+  style={{ height: "16em"}}
 />
 ```
 <a name="Tabs"></a>
@@ -341,6 +346,7 @@ Material Design 3 Tabs component
 | props.items[].disabled | Disabled state |
 | props.items[].onClick | Click handler |
 | props.items[].href | Link URL (renders as anchor tag) |
+| props.style | Custom inline styles |
 
 **Example**  
 ```js
@@ -380,7 +386,6 @@ Material Design 3 TextField component
 | props.supportingText | Supporting text or error message |
 | props.leadingIcon | Leading icon element |
 | props.trailingIcon | Trailing icon element |
-| props.width | Width style |
 | props.onChange | Change handler |
 | props.onBlur | Blur handler |
 | props.onFocus | Focus handler |

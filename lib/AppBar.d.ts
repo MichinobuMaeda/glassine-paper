@@ -1,4 +1,4 @@
-import React, { type ReactNode } from 'react';
+import React, { type ReactNode, type CSSProperties } from 'react';
 export interface AppBarItemProps {
     key?: string | number;
     id?: string;
@@ -17,6 +17,7 @@ export interface AppBarProps {
     items: Iterable<AppBarItemProps>;
     sticky?: boolean;
     scrolled?: boolean;
+    style?: CSSProperties;
 }
 /**
  * Material Design 3 App bar component
@@ -37,41 +38,43 @@ export interface AppBarProps {
  * @param props.items[].href Link URL (renders as anchor tag)
  * @param props.sticky Whether the app bar sticks to the top
  * @param props.scrolled Whether the content is scrolled (affects styling)
+ * @param props.style Custom inline styles
  * @returns JSX.Element
  *
  * @example
- * const [scrolled, setScrolled] = useState(false);
+ * import useDetectScroll, { Axis } from '@smakss/react-scroll-direction';
  *
- * <div
- *   className="content-area"
- *   onScroll={(e) => setScrolled(e.currentTarget.scrollTop > 0)}
- * >
- *   <AppBar
- *     sticky
- *     scrolled={scrolled}
- *     items={[
- *       {
- *         icon: <svg>...</svg>,
- *         onClick: () => {...},
- *       },
- *       {
- *         type: "appLogo",
- *         icon: <img src="./favicon.svg" alt="Glassine Paper" />,
- *       },
- *       {
- *         type: "title",
- *         title: "App name",
- *         subtitle: "Description",
- *       },
- *       { type: "spacer" },
- *       {
- *         icon: <svg>...</svg>,
- *         onClick: () => {...},
- *       },
- *     ]}
- *   />
- *   ... ...
- * </div>
+ * const [scrolled, setScrolled] = useState(false);
+ * const { scrollPosition } = useDetectScroll({ axis: Axis.X });
+ *
+ * useEffect(() => {
+ *   setScrolled(scrollPosition.top > 0);
+ * }, [scrollPosition]);
+ *
+ * <AppBar
+ *   sticky
+ *   scrolled={scrolled}
+ *   items={[
+ *     {
+ *       icon: <svg>...</svg>,
+ *       onClick: () => {...},
+ *     },
+ *     {
+ *       type: "appLogo",
+ *       icon: <img src="./favicon.svg" alt="Glassine Paper" />,
+ *     },
+ *     {
+ *       type: "title",
+ *       title: "App name",
+ *       subtitle: "Description",
+ *     },
+ *     { type: "spacer" },
+ *     {
+ *       icon: <svg>...</svg>,
+ *       onClick: () => {...},
+ *     },
+ *   ]}
+ * />
  */
 export declare const AppBar: React.FC<AppBarProps>;
 export default AppBar;

@@ -1,4 +1,4 @@
-import React, { type ReactNode } from 'react';
+import React, { type ReactNode, type CSSProperties } from 'react';
 export interface NavDrawerItemProps {
     key?: string | number;
     id?: string;
@@ -16,6 +16,7 @@ export interface NavDrawerProps {
     id?: string;
     items: Iterable<NavDrawerItemProps>;
     className?: string;
+    style?: CSSProperties;
 }
 /**
  * Material Design 3 NavDrawer component
@@ -35,6 +36,7 @@ export interface NavDrawerProps {
  * @param props.items[].onClick Click handler
  * @param props.items[].href Link URL (renders as anchor tag)
  * @param props.className Additional CSS class names
+ * @param props.style Custom inline styles
  * @returns JSX.Element
  *
  * @example

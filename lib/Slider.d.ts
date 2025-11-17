@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { type CSSProperties } from 'react';
 export interface SliderOption {
     value: number;
     key?: string;
@@ -14,9 +14,9 @@ export interface SliderProps {
     orientation?: 'horizontal' | 'top-bottom' | 'bottom-top';
     showValueIndicator?: boolean;
     options?: SliderOption[];
-    width?: string;
     onChange?: (value: number) => void;
     className?: string;
+    style?: CSSProperties;
 }
 /**
  * Material Design 3 Slider component
@@ -34,9 +34,9 @@ export interface SliderProps {
  * @param props.options Datalist options array
  * @param props.options[].value Option value
  * @param props.options[].key Optional unique key for the option
- * @param props.width Width or height (depending on orientation)
  * @param props.onChange Change handler function
  * @param props.className Additional CSS class names
+ * @param props.style Custom inline styles
  * @returns JSX.Element
  *
  * @example
@@ -54,6 +54,7 @@ export interface SliderProps {
  *     { value: 100 }
  *   ]}
  *   onChange={(value) => console.log(value)}
+ *   style={{ width: "16em"}}
  * />
  *
  * @example
@@ -61,7 +62,7 @@ export interface SliderProps {
  *   value={30}
  *   orientation="top-bottom"
  *   size="md"
- *   width="16em"
+ *   style={{ height: "16em"}}
  * />
  */
 export declare const Slider: React.FC<SliderProps>;

@@ -1,4 +1,5 @@
 import React, { useState, useEffect, type JSX } from 'react';
+import useDetectScroll, { Axis } from '@smakss/react-scroll-direction';
 import convert from 'color-convert';
 import './App.css';
 import {
@@ -126,6 +127,12 @@ function App(): JSX.Element {
     NavDrawerState.HIDDEN
   );
 
+  const { scrollPosition } = useDetectScroll({ axis: Axis.X });
+
+  useEffect(() => {
+    setScrolled(scrollPosition.top > 0);
+  }, [scrollPosition]);
+
   useEffect(() => {
     document.documentElement.style.setProperty('color-scheme', darkMode);
   }, [darkMode]);
@@ -236,10 +243,7 @@ function App(): JSX.Element {
         className={navDrawerState}
       />
 
-      <div
-        className="content-area"
-        onScroll={(e) => setScrolled(e.currentTarget.scrollTop > 0)}
-      >
+      <div className="content-area">
         <AppBar
           sticky
           scrolled={scrolled}
@@ -335,8 +339,7 @@ function App(): JSX.Element {
                 label="Seed Color"
                 value={seedColor}
                 onChange={(e) => setSeedColor(e.target.value)}
-                width="7rem"
-                style={{ fontFamily: 'monospace' }}
+                style={{ fontFamily: 'monospace', width: '7rem' }}
               />
               <div
                 style={{
@@ -356,7 +359,7 @@ function App(): JSX.Element {
                 step={0.01}
                 value={contrast}
                 onChange={(val) => setContrast(val)}
-                width={sliderWidth}
+                style={{ width: sliderWidth }}
                 showValueIndicator
               />
             </Row>
@@ -420,7 +423,7 @@ function App(): JSX.Element {
                   setRgbUpdating(true);
                   setRed(val);
                 }}
-                width={sliderWidth}
+                style={{ width: sliderWidth }}
                 showValueIndicator
               />
               <Slider
@@ -431,7 +434,7 @@ function App(): JSX.Element {
                   setRgbUpdating(true);
                   setGreen(val);
                 }}
-                width={sliderWidth}
+                style={{ width: sliderWidth }}
                 showValueIndicator
               />
               <Slider
@@ -442,7 +445,7 @@ function App(): JSX.Element {
                   setRgbUpdating(true);
                   setBlue(val);
                 }}
-                width={sliderWidth}
+                style={{ width: sliderWidth }}
                 showValueIndicator
               />
             </Row>
@@ -457,7 +460,7 @@ function App(): JSX.Element {
                   setHsvUpdating(true);
                   setHue(val);
                 }}
-                width={sliderWidth}
+                style={{ width: sliderWidth }}
                 showValueIndicator
               />
               <Slider
@@ -468,7 +471,7 @@ function App(): JSX.Element {
                   setHsvUpdating(true);
                   setSaturation(val);
                 }}
-                width={sliderWidth}
+                style={{ width: sliderWidth }}
                 showValueIndicator
               />
               <Slider
@@ -479,7 +482,7 @@ function App(): JSX.Element {
                   setHsvUpdating(true);
                   setBrightness(val);
                 }}
-                width={sliderWidth}
+                style={{ width: sliderWidth }}
                 showValueIndicator
               />
             </Row>

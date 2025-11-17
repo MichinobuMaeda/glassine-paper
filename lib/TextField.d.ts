@@ -15,7 +15,6 @@ export interface TextFieldProps {
     supportingText?: string;
     leadingIcon?: ReactNode;
     trailingIcon?: ReactNode;
-    width?: string;
     onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void;
     onBlur?: (e: React.FocusEvent<HTMLInputElement>) => void;
     onFocus?: (e: React.FocusEvent<HTMLInputElement>) => void;
@@ -38,7 +37,6 @@ export interface TextFieldProps {
  * @param props.supportingText Supporting text or error message
  * @param props.leadingIcon Leading icon element
  * @param props.trailingIcon Trailing icon element
- * @param props.width Width style
  * @param props.onChange Change handler
  * @param props.onBlur Blur handler
  * @param props.onFocus Focus handler

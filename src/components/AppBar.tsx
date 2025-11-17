@@ -1,4 +1,4 @@
-import React, { type ReactNode } from 'react';
+import React, { type ReactNode, type CSSProperties } from 'react';
 
 export interface AppBarItemProps {
   key?: string | number;
@@ -19,6 +19,7 @@ export interface AppBarProps {
   items: Iterable<AppBarItemProps>;
   sticky?: boolean;
   scrolled?: boolean;
+  style?: CSSProperties;
 }
 
 const AppBarItem: React.FC<AppBarItemProps> = ({
@@ -87,47 +88,50 @@ const AppBarItem: React.FC<AppBarItemProps> = ({
  * @param props.items[].href Link URL (renders as anchor tag)
  * @param props.sticky Whether the app bar sticks to the top
  * @param props.scrolled Whether the content is scrolled (affects styling)
+ * @param props.style Custom inline styles
  * @returns JSX.Element
  *
  * @example
- * const [scrolled, setScrolled] = useState(false);
+ * import useDetectScroll, { Axis } from '@smakss/react-scroll-direction';
  *
- * <div
- *   className="content-area"
- *   onScroll={(e) => setScrolled(e.currentTarget.scrollTop > 0)}
- * >
- *   <AppBar
- *     sticky
- *     scrolled={scrolled}
- *     items={[
- *       {
- *         icon: <svg>...</svg>,
- *         onClick: () => {...},
- *       },
- *       {
- *         type: "appLogo",
- *         icon: <img src="./favicon.svg" alt="Glassine Paper" />,
- *       },
- *       {
- *         type: "title",
- *         title: "App name",
- *         subtitle: "Description",
- *       },
- *       { type: "spacer" },
- *       {
- *         icon: <svg>...</svg>,
- *         onClick: () => {...},
- *       },
- *     ]}
- *   />
- *   ... ...
- * </div>
+ * const [scrolled, setScrolled] = useState(false);
+ * const { scrollPosition } = useDetectScroll({ axis: Axis.X });
+ *
+ * useEffect(() => {
+ *   setScrolled(scrollPosition.top > 0);
+ * }, [scrollPosition]);
+ *
+ * <AppBar
+ *   sticky
+ *   scrolled={scrolled}
+ *   items={[
+ *     {
+ *       icon: <svg>...</svg>,
+ *       onClick: () => {...},
+ *     },
+ *     {
+ *       type: "appLogo",
+ *       icon: <img src="./favicon.svg" alt="Glassine Paper" />,
+ *     },
+ *     {
+ *       type: "title",
+ *       title: "App name",
+ *       subtitle: "Description",
+ *     },
+ *     { type: "spacer" },
+ *     {
+ *       icon: <svg>...</svg>,
+ *       onClick: () => {...},
+ *     },
+ *   ]}
+ * />
  */
 export const AppBar: React.FC<AppBarProps> = ({
   id,
   items,
   sticky = false,
   scrolled = false,
+  style = {},
 }) => {
   const classes = [
     'app-bar',
@@ -135,7 +139,7 @@ export const AppBar: React.FC<AppBarProps> = ({
     scrolled ? 'on-scroll' : '',
   ].join(' ');
   return (
-    <div id={id} className={classes}>
+    <div id={id} className={classes} style={style}>
       {Array.from(items).map((item, index) => (
         <AppBarItem key={item.key || index} {...item} />
       ))}

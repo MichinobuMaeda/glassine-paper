@@ -16,9 +16,9 @@ export interface SliderProps {
   orientation?: 'horizontal' | 'top-bottom' | 'bottom-top';
   showValueIndicator?: boolean;
   options?: SliderOption[];
-  width?: string;
   onChange?: (value: number) => void;
   className?: string;
+  style?: CSSProperties;
 }
 
 /**
@@ -37,9 +37,9 @@ export interface SliderProps {
  * @param props.options Datalist options array
  * @param props.options[].value Option value
  * @param props.options[].key Optional unique key for the option
- * @param props.width Width or height (depending on orientation)
  * @param props.onChange Change handler function
  * @param props.className Additional CSS class names
+ * @param props.style Custom inline styles
  * @returns JSX.Element
  *
  * @example
@@ -57,6 +57,7 @@ export interface SliderProps {
  *     { value: 100 }
  *   ]}
  *   onChange={(value) => console.log(value)}
+ *   style={{ width: "16em"}}
  * />
  *
  * @example
@@ -64,7 +65,7 @@ export interface SliderProps {
  *   value={30}
  *   orientation="top-bottom"
  *   size="md"
- *   width="16em"
+ *   style={{ height: "16em"}}
  * />
  */
 export const Slider: React.FC<SliderProps> = ({
@@ -78,9 +79,9 @@ export const Slider: React.FC<SliderProps> = ({
   orientation = 'horizontal',
   showValueIndicator = false,
   options = [],
-  width,
   onChange,
   className = '',
+  style = {},
 }) => {
   const sliderRef = useRef<HTMLDivElement>(null);
   const inputRef = useRef<HTMLInputElement>(null);
@@ -93,6 +94,9 @@ export const Slider: React.FC<SliderProps> = ({
     const ratio = `${max > min ? valueRatio * 100 : 0}%`;
 
     sliderRef.current.style.setProperty('--slider-progress', ratio);
+    Object.entries(style).forEach(([key, value]) => {
+      sliderRef.current?.style.setProperty(key, value);
+    });
 
     // Update datalist options
     if (options.length > 0) {
@@ -119,7 +123,7 @@ export const Slider: React.FC<SliderProps> = ({
         indicator.style.left = `${(inputRect.left - sliderRect.left) * 3 + (inputRect.width - (inputRect.left - sliderRect.left) * 3) * valueRatio}px`;
       }
     }
-  }, [value, min, max, options, showValueIndicator]);
+  }, [value, min, max, options, style, showValueIndicator]);
 
   const handleInput = (e: React.ChangeEvent<HTMLInputElement>) => {
     const newValue = Number(e.target.value);
@@ -137,16 +141,10 @@ export const Slider: React.FC<SliderProps> = ({
     .filter(Boolean)
     .join(' ');
 
-  const containerStyle: CSSProperties = width
-    ? orientation === 'horizontal'
-      ? { width }
-      : { height: width }
-    : {};
-
   const datalistId = id ? `${id}-list` : undefined;
 
   return (
-    <div ref={sliderRef} className={classes} style={containerStyle}>
+    <div ref={sliderRef} className={classes}>
       {showValueIndicator && <div className="value-indicator">{value}</div>}
       <input
         ref={inputRef}

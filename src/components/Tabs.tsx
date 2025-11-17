@@ -1,4 +1,4 @@
-import React, { type ReactNode } from 'react';
+import React, { type ReactNode, type CSSProperties } from 'react';
 
 export interface TabItemProps {
   key?: string | number;
@@ -14,6 +14,7 @@ export interface TabItemProps {
 export interface TabsProps {
   id?: string;
   items: Iterable<TabItemProps>;
+  style?: CSSProperties;
 }
 
 const TabItem: React.FC<TabItemProps> = ({
@@ -53,6 +54,7 @@ const TabItem: React.FC<TabItemProps> = ({
  * @param props.items[].disabled Disabled state
  * @param props.items[].onClick Click handler
  * @param props.items[].href Link URL (renders as anchor tag)
+ * @param props.style Custom inline styles
  * @returns JSX.Element
  *
  * @example
@@ -69,9 +71,9 @@ const TabItem: React.FC<TabItemProps> = ({
  *   ]}
  * />
  */
-export const Tabs: React.FC<TabsProps> = ({ id, items = [] }) => {
+export const Tabs: React.FC<TabsProps> = ({ id, items = [], style = {} }) => {
   return (
-    <div id={id} className="tabs">
+    <div id={id} className="tabs" style={style}>
       {Array.from(items).map((item, index) => (
         <TabItem key={item.key || index} {...item} />
       ))}

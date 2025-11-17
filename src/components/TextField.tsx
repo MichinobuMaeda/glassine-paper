@@ -16,7 +16,6 @@ export interface TextFieldProps {
   supportingText?: string;
   leadingIcon?: ReactNode;
   trailingIcon?: ReactNode;
-  width?: string;
   onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void;
   onBlur?: (e: React.FocusEvent<HTMLInputElement>) => void;
   onFocus?: (e: React.FocusEvent<HTMLInputElement>) => void;
@@ -40,7 +39,6 @@ export interface TextFieldProps {
  * @param props.supportingText Supporting text or error message
  * @param props.leadingIcon Leading icon element
  * @param props.trailingIcon Trailing icon element
- * @param props.width Width style
  * @param props.onChange Change handler
  * @param props.onBlur Blur handler
  * @param props.onFocus Focus handler
@@ -79,19 +77,18 @@ export const TextField: React.FC<TextFieldProps> = ({
   supportingText,
   leadingIcon,
   trailingIcon,
-  width,
   onChange,
   onBlur,
   onFocus,
   className = '',
-  style,
+  style = {},
 }) => {
   const classes = ['textfield', variant, error ? 'error' : '', className]
     .filter(Boolean)
     .join(' ');
 
   return (
-    <div className={classes} style={width ? { width } : undefined}>
+    <div className={classes} style={style}>
       {leadingIcon && leadingIcon}
       <label>{label}</label>
       <input
@@ -104,7 +101,6 @@ export const TextField: React.FC<TextFieldProps> = ({
         onChange={onChange}
         onBlur={onBlur}
         onFocus={onFocus}
-        style={style}
       />
       {trailingIcon && trailingIcon}
       {supportingText && <div>{supportingText}</div>}
