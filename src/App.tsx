@@ -9,13 +9,17 @@ import {
   Variant,
 } from './material-theme';
 import Row from './Row';
-import AppBar, { AppBarItem, AppBarTitle } from './components/AppBar';
-import Tabs, { TabItem } from './components/Tabs';
-import Menu, { MenuItem } from './components/Menu';
+import AppBar from './components/AppBar';
+import NavDrawer from './components/NavDrawer';
+import Tabs from './components/Tabs';
+import Menu from './components/Menu';
 import TextField from './components/TextField';
 import Button from './components/Button';
 import Slider from './components/Slider';
 import SvgMenu from './icons/SvgMenu';
+import SvgMenuOpen from './icons/SvgMenuOpen';
+import SvgKeep from './icons/SvgKeep';
+import SvgKeepOff from './icons/SvgKeepOff';
 import SvgMoreVert from './icons/SvgMoreVert';
 import SvgSquare from './icons/SvgSquare';
 import SvgGitHub from './icons/SvgGitHub';
@@ -24,6 +28,14 @@ import SvgDownload from './icons/SvgDownload';
 import SvgBrightnessAuto from './icons/SvgBrightnessAuto';
 import SvgLightMode from './icons/SvgLightMode';
 import SvgDarkMode from './icons/SvgDarkMode';
+
+type NavDrawerState = 'hidden' | 'visible' | 'modal';
+
+const NavDrawerState = {
+  HIDDEN: 'hidden' as const,
+  VISIBLE: 'visible' as const,
+  MODAL: 'modal' as const,
+};
 
 type ColorModel = 'RGB' | 'HSV';
 
@@ -110,6 +122,9 @@ function App(): JSX.Element {
   const [variables, setVariables] = useState<Array<[string, string]>>([]);
   const [darkMode, setDarkMode] = useState<LightDark>(LightDark.LIGHT_DARK);
   const [scrolled, setScrolled] = useState(false);
+  const [navDrawerState, setNavDrawerState] = useState<NavDrawerState>(
+    NavDrawerState.HIDDEN
+  );
 
   useEffect(() => {
     document.documentElement.style.setProperty('color-scheme', darkMode);
@@ -162,53 +177,155 @@ function App(): JSX.Element {
 
   return (
     <div className="nav-drawer-layout">
+      <NavDrawer
+        items={[
+          {
+            id: 'nav-drawer-hide-button',
+            onClick: () => setNavDrawerState(NavDrawerState.HIDDEN),
+            leadingIcon: <SvgMenuOpen />,
+            label: 'Close',
+          },
+          {
+            id: 'nav-drawer-modal-button',
+            hidden: navDrawerState === NavDrawerState.MODAL,
+            onClick: () => setNavDrawerState(NavDrawerState.MODAL),
+            leadingIcon: <SvgKeepOff />,
+            label: 'Keep off',
+          },
+          {
+            id: 'nav-drawer-fix-button',
+            hidden: navDrawerState === NavDrawerState.VISIBLE,
+            onClick: () => setNavDrawerState(NavDrawerState.VISIBLE),
+            leadingIcon: <SvgKeep />,
+            label: 'Keep',
+          },
+          { divider: true },
+          { label: 'Item 1' },
+          {
+            leadingIcon: (
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 -960 960 960"
+                fill="currentColor"
+              >
+                <path d="M120-120v-720h720v720H120Zm80-80h560v-560H200v560Zm0 0v-560 560Z" />
+              </svg>
+            ),
+            label: 'Item 2',
+            active: true,
+          },
+          {
+            leadingIcon: (
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 -960 960 960"
+                fill="currentColor"
+              >
+                <path d="M120-120v-720h720v720H120Zm80-80h560v-560H200v560Zm0 0v-560 560Z" />
+              </svg>
+            ),
+            label: 'Item 3',
+          },
+          { label: 'Item 4' },
+          { label: 'Item 5' },
+          { label: 'Item 6' },
+          { label: 'Item 7' },
+          { label: 'Item 8' },
+          { label: 'Item 9' },
+        ]}
+        className={navDrawerState}
+      />
+
       <div
         className="content-area"
         onScroll={(e) => setScrolled(e.currentTarget.scrollTop > 0)}
       >
-        <AppBar sticky scrolled={scrolled}>
-          <AppBarItem onClick={() => {}}>
-            <SvgMenu />
-          </AppBarItem>
-          <img src="./favicon.svg" alt="Glassine Paper" />
-          <AppBarTitle
-            title="Glassine Paper"
-            subtitle="CSS for Material Design 3"
-          />
-          <AppBarItem onClick={() => setMenuVisible(!menuVisible)}>
-            <SvgMoreVert />
-          </AppBarItem>
-        </AppBar>
+        <AppBar
+          sticky
+          scrolled={scrolled}
+          items={[
+            {
+              icon: <SvgMenu />,
+              onClick: () => setNavDrawerState(NavDrawerState.MODAL),
+              hidden: navDrawerState === NavDrawerState.VISIBLE,
+            },
+            {
+              type: 'appLogo',
+              icon: <img src="./favicon.svg" alt="Glassine Paper" />,
+            },
+            {
+              type: 'title',
+              title: 'Glassine Paper',
+              subtitle: 'CSS for Material Design 3',
+            },
+            { type: 'spacer' },
+            {
+              icon: <SvgMoreVert />,
+              onClick: () => setMenuVisible(!menuVisible),
+            },
+          ]}
+        />
 
-        <Tabs>
-          <TabItem href="../sample">Sample</TabItem>
-          <TabItem active>Theme</TabItem>
-          <TabItem href="#">
-            <SvgSquare />
-            Tab item
-          </TabItem>
-        </Tabs>
+        <Tabs
+          items={[
+            {
+              label: 'Sample',
+              href: '../sample',
+            },
+            {
+              label: 'Theme',
+              active: true,
+            },
+            {
+              leadingIcon: <SvgSquare />,
+              label: 'Tab item',
+              href: '#',
+            },
+          ]}
+        />
 
         {menuVisible && (
-          <Menu id="main-menu">
-            {Object.values(LightDark).map((mode) => (
-              <MenuItem
-                onClick={() => {
+          <Menu
+            id="main-menu"
+            items={[
+              ...Object.values(LightDark).map((mode) => ({
+                key: mode,
+                leadingIcon: React.createElement(LightDarkIcon[mode]),
+                label: LightDarkLabel[mode],
+                onClick: () => {
                   setDarkMode(mode);
                   setMenuVisible(false);
-                }}
-                active={darkMode === mode}
-              >
-                {React.createElement(LightDarkIcon[mode])}
-                {LightDarkLabel[mode]}
-              </MenuItem>
-            ))}
-            <hr />
-            <MenuItem href="https://github.com/MichinobuMaeda/glassine-paper">
-              <SvgGitHub />
-              GitHub
-            </MenuItem>
-          </Menu>
+                },
+                active: darkMode === mode,
+              })),
+              { divider: true },
+              {
+                key: 'github',
+                leadingIcon: <SvgGitHub />,
+                label: 'GitHub',
+                href: 'https://github.com/MichinobuMaeda/glassine-paper',
+              },
+              {
+                key: 'menu-item',
+                leadingIcon: <SvgSquare />,
+                label: 'Menu Item',
+                trailingIcon: <SvgSquare />,
+              },
+              { key: 'text-only', label: 'Text only' },
+              {
+                key: 'disabled-icon',
+                leadingIcon: <SvgSquare />,
+                label: 'Disabled icon',
+                disabled: true,
+              },
+            ]}
+            style={{
+              position: 'fixed',
+              top: 'calc(env(safe-area-inset-top) + 64px + 0.5rem)',
+              right: '0.5rem',
+              zIndex: 3,
+            }}
+          />
         )}
 
         <main>
@@ -249,56 +366,49 @@ function App(): JSX.Element {
                   key={key}
                   variant="filled"
                   size="sm"
+                  label={(
+                    key.charAt(0).toUpperCase() + key.slice(1).toLowerCase()
+                  ).replace('_', ' ')}
                   onClick={() => setVariant(value)}
                   checked={variant === value}
                   name="variant"
                   type="select"
-                >
-                  {(
-                    key.charAt(0).toUpperCase() + key.slice(1).toLowerCase()
-                  ).replace('_', ' ')}
-                </Button>
+                />
               ))}
             </Row>
             <Row align="center">
               <Button
                 variant="outlined"
                 size="sm"
-                icon
+                icon={<SvgResetSettings />}
                 onClick={() => {
                   setSeedColor(defaultSeedColor);
                   setContrast(0);
                   setVariant(2);
                 }}
-              >
-                <SvgResetSettings />
-              </Button>
+              />
               <Button
                 variant="filled"
                 size="sm"
-                icon
+                icon={<SvgDownload />}
                 onClick={() =>
                   downloadFile(
                     'theme.css',
                     generateThemeCss(variables, seedColor, contrast, variant)
                   )
                 }
-              >
-                <SvgDownload />
-              </Button>
+              />
             </Row>
           </Row>
 
-          <Tabs>
-            {Object.values(ColorModel).map((model) => (
-              <TabItem
-                active={colorModel === model}
-                onClick={() => setColorModel(model)}
-              >
-                {model}
-              </TabItem>
-            ))}
-          </Tabs>
+          <Tabs
+            items={Object.values(ColorModel).map((model) => ({
+              key: model,
+              label: model,
+              active: colorModel === model,
+              onClick: () => setColorModel(model),
+            }))}
+          />
 
           {colorModel === ColorModel.RGB && (
             <Row align="center">

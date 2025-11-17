@@ -70,14 +70,13 @@ $app-bar-padding-vertical: calc(($app-bar-height - $spacing-48px) / 2);
   & > img,
   & > svg {
     display: inline-block;
-    @include square-size($spacing-48px);
+    height: $spacing-48px;
     margin: 0 $spacing-4px;
   }
 
   .title-area {
     display: flex;
     flex-direction: column;
-    flex-grow: 1;
     justify-content: start;
     padding: 0 $spacing-2px;
     gap: $spacing-2px;

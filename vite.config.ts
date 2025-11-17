@@ -13,13 +13,13 @@ export default defineConfig({
     outDir: 'docs/theme',
   },
   plugins: [
+    react(),
     apiDocsPlugin({
       name,
       version,
-      inputs: ['lib/*.{js,jsx}'],
+      inputs: ['lib/*.js'],
       output: path.join('docs', 'api.md'),
       options: {},
     }),
-    react(),
   ],
 });

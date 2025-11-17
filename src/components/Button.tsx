@@ -4,11 +4,8 @@ import React, { type ReactNode } from 'react';
  * Button component props
  */
 export interface ButtonProps {
-  /** Input id attribute */
   id?: string;
-  /** Input name attribute */
   name?: string;
-  /** Button variant */
   variant?:
     | 'filled'
     | 'tonal'
@@ -17,27 +14,16 @@ export interface ButtonProps {
     | 'outlined'
     | 'elevated'
     | 'text';
-  /** Button size */
   size?: 'xs' | 'sm' | 'md';
-  /** Button radius */
   radius?: 'default' | 'square';
-  /** Icon button mode */
-  icon?: boolean;
-  /** Icon button width */
+  label?: string;
+  icon?: ReactNode;
   width?: 'narrow' | 'default' | 'wide';
-  /** Button type */
   type?: 'button' | 'submit' | 'reset' | 'toggle' | 'select';
-  /** Link URL */
   href?: string;
-  /** Checked state */
   checked?: boolean;
-  /** Disabled state */
   disabled?: boolean;
-  /** Children elements */
-  children: ReactNode;
-  /** onClick handler */
   onClick?: (e: React.MouseEvent<HTMLButtonElement | HTMLInputElement>) => void;
-  /** Additional CSS class names */
   className?: string;
 }
 
@@ -45,6 +31,20 @@ export interface ButtonProps {
  * Material Design 3 Button component
  *
  * @param props ButtonProps
+ * @param props.id Input id attribute
+ * @param props.name Input name attribute
+ * @param props.variant Button variant: 'filled', 'tonal', 'danger', 'error', 'outlined', 'elevated', or 'text'
+ * @param props.size Button size: 'xs', 'sm', or 'md'
+ * @param props.radius Button radius: 'default' or 'square'
+ * @param props.label Label text
+ * @param props.icon Leading icon element
+ * @param props.width Icon button width: 'narrow', 'default', or 'wide'
+ * @param props.type Button type: 'button', 'submit', 'reset', 'toggle', or 'select'
+ * @param props.href Link URL (renders as anchor tag)
+ * @param props.checked Checked state (for toggle/select types)
+ * @param props.disabled Disabled state
+ * @param props.onClick Click handler
+ * @param props.className Additional CSS class names
  * @returns JSX.Element
  *
  * @example
@@ -55,29 +55,40 @@ export interface ButtonProps {
  *
  * @example
  * // Button with leading icon and text
- * <Button variant="tonal" size="md" radius="square">
- *   <svg>...</svg>
- *   Label
- * </Button>
+ * <Button
+ *   variant="tonal"
+ *   size="md"
+ *   radius="square"
+ *   icon={<svg>...</svg>}
+ *   label="Label"
+ * />
  *
  * @example
  * // Icon button
- * <Button variant="outlined" icon width="wide">
- *   <svg>...</svg>
- * </Button>
+ * <Button
+ *   variant="outlined"
+ *   icon
+ *   width="wide"
+ *   icon={<svg>...</svg>}
+ *  />
  *
  * @example
  * // Link button
- * <Button variant="elevated" href="https://example.com">
- *   Go to Example
- * </Button>
+ * <Button
+ *   variant="elevated"
+ *   href="https://example.com"
+ *   label="Go to Example"
+ * />
  *
  * @example
  * // Toggle button (checkbox)
- * <Button variant="filled" type="toggle" checked={isToggled}>
- *   <svg>...</svg>
- *   Toggle
- * </Button>
+ * <Button
+ *   variant="filled"
+ *   type="toggle"
+ *   checked={isToggled}
+ *   icon={<svg>...</svg>}
+ *   label="Toggle"
+ * />
  *
  */
 export const Button: React.FC<ButtonProps> = ({
@@ -85,20 +96,20 @@ export const Button: React.FC<ButtonProps> = ({
   name,
   variant = 'filled',
   size = 'md',
-  icon = false,
+  label,
+  icon,
   width = 'default',
   radius = 'default',
   type = 'button',
   href,
   checked = false,
   disabled = false,
-  children,
   onClick,
   className = '',
 }) => {
   const classes = [
     'button',
-    icon ? 'icon' : '',
+    label ? '' : 'icon',
     variant,
     size,
     icon && width !== 'default' ? width : '',
@@ -117,7 +128,8 @@ export const Button: React.FC<ButtonProps> = ({
         checked={checked}
         onClick={(event) => (onClick ? onClick(event) : undefined)}
       />
-      {children}
+      {icon}
+      {label}
     </label>
   ) : type === 'select' ? (
     <label id={`${id}-label`} className={classes}>
@@ -128,11 +140,13 @@ export const Button: React.FC<ButtonProps> = ({
         checked={checked}
         onClick={(event) => (onClick ? onClick(event) : undefined)}
       />
-      {children}
+      {icon}
+      {label}
     </label>
   ) : href ? (
     <a id={id} href={href} className={classes}>
-      {children}
+      {icon}
+      {label}
     </a>
   ) : (
     <button
@@ -143,7 +157,8 @@ export const Button: React.FC<ButtonProps> = ({
       disabled={disabled}
       onClick={onClick}
     >
-      {children}
+      {icon}
+      {label}
     </button>
   );
 };

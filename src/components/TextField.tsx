@@ -4,41 +4,23 @@ import React, { type ReactNode, type CSSProperties } from 'react';
  * TextField component props
  */
 export interface TextFieldProps {
-  /** Input id attribute */
   id?: string;
-  /** Input name attribute */
   name?: string;
-  /** Variant of the text field */
   variant?: 'filled' | 'outlined';
-  /** Input type */
   type?: 'text' | 'email' | 'number' | 'password' | 'tel' | 'url';
-  /** Label text */
   label: string;
-  /** Placeholder text (should match label) */
   placeholder?: string;
-  /** Current value */
   value?: string | number;
-  /** Error state */
   error?: boolean;
-  /** Disabled state */
   disabled?: boolean;
-  /** Supporting text or error message */
   supportingText?: string;
-  /** Leading icon */
   leadingIcon?: ReactNode;
-  /** Trailing icon */
   trailingIcon?: ReactNode;
-  /** Width style */
   width?: string;
-  /** onChange handler */
   onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void;
-  /** onBlur handler */
   onBlur?: (e: React.FocusEvent<HTMLInputElement>) => void;
-  /** onFocus handler */
   onFocus?: (e: React.FocusEvent<HTMLInputElement>) => void;
-  /** Additional CSS class names */
   className?: string;
-  /** Custom inline styles */
   style?: CSSProperties;
 }
 
@@ -46,6 +28,24 @@ export interface TextFieldProps {
  * Material Design 3 TextField component
  *
  * @param props TextFieldProps
+ * @param props.id Input id attribute
+ * @param props.name Input name attribute
+ * @param props.variant Variant of the text field: 'filled' or 'outlined'
+ * @param props.type Input type: 'text', 'email', 'number', 'password', 'tel', or 'url'
+ * @param props.label Label text
+ * @param props.placeholder Placeholder text (should match label)
+ * @param props.value Current value
+ * @param props.error Error state
+ * @param props.disabled Disabled state
+ * @param props.supportingText Supporting text or error message
+ * @param props.leadingIcon Leading icon element
+ * @param props.trailingIcon Trailing icon element
+ * @param props.width Width style
+ * @param props.onChange Change handler
+ * @param props.onBlur Blur handler
+ * @param props.onFocus Focus handler
+ * @param props.className Additional CSS class names
+ * @param props.style Custom inline styles
  * @returns JSX.Element
  *
  * @example

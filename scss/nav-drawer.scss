@@ -17,10 +17,8 @@ $nav-button-icon-size: $spacing-24px;
 $nav-button-gap: $spacing-12px;
 
 .nav-drawer {
-  position: fixed;
-  top: 0;
-  left: 0;
-  height: 100%;
+  position: static;
+  height: 100vh;
   width: $nav-drawer-width;
   min-width: $nav-drawer-width;
   z-index: $nav-drawer-z-index;
@@ -39,15 +37,24 @@ $nav-button-gap: $spacing-12px;
     display: none;
   }
 
-  &.modal::before {
+  body:has(&:not(.hidden).modal)::after {
     content: '';
     position: fixed;
     top: 0;
-    left: $nav-drawer-width;
-    right: calc($nav-drawer-width - 100vw);
-    bottom: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
     @include bg-color(shadow);
     opacity: 0.38;
+    z-index: calc($nav-drawer-z-index - 1);
+  }
+
+  &.modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    border-top-right-radius: $spacing-16px;
+    border-bottom-right-radius: $spacing-16px;
   }
 
   hr {

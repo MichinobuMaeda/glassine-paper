@@ -25,7 +25,10 @@ export const generateApiDocs = async ({
   output: string;
   options?: jsdoc2md.RenderOptions;
 }) => {
-  const body = await jsdoc2md.render({ files, ...options });
+  const body = await jsdoc2md.render({
+    files,
+    ...options,
+  });
   const md = `# API Documentation ${name} ${version}
 
 ${body}`;

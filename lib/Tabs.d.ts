@@ -1,64 +1,47 @@
 import React, { type ReactNode } from 'react';
-/**
- * Tab item component props
- */
 export interface TabItemProps {
-    /** Element id */
+    key?: string | number;
     id?: string;
-    /** Active state */
+    label: string;
+    leadingIcon?: ReactNode;
     active?: boolean;
-    /** Disabled state */
     disabled?: boolean;
-    /** Children elements */
-    children: ReactNode;
-    /** Click handler */
     onClick?: () => void;
-    /** Link URL */
     href?: string;
 }
-/**
- * Tabs component props
- */
 export interface TabsProps {
-    /** Element id */
     id?: string;
-    /** Children TabItem elements */
-    children: ReactNode;
+    items: Iterable<TabItemProps>;
 }
-/**
- * Material Design 3 Tab item component
- *
- * @param props TabItemProps
- * @returns JSX.Element
- *
- * @example
- * <TabItem onClick={() => {}} active={true}>
- *   <svg>...</svg>
- *   Item 1
- * </TabItem>
- *
- * @example
- * <TabItem href="...">
- *   Item 2
- * </TabItem>
- */
-export declare const TabItem: React.FC<TabItemProps>;
 /**
  * Material Design 3 Tabs component
  *
  * @param props TabsProps
+ * @param props.id Element id
+ * @param props.items Array of TabItem configurations
+ * @param props.items[].key Unique key for the item
+ * @param props.items[].id Element id for the item
+ * @param props.items[].label Label text
+ * @param props.items[].leadingIcon Leading icon element
+ * @param props.items[].active Active state
+ * @param props.items[].disabled Disabled state
+ * @param props.items[].onClick Click handler
+ * @param props.items[].href Link URL (renders as anchor tag)
  * @returns JSX.Element
  *
  * @example
- * <Tabs id="example-tabs">
- *   <TabItem onClick={() => {}} active={true}>
- *     <svg>...</svg>
- *     Item 1
- *   </TabItem>
- *   <TabItem href="...">
- *     Item 2
- *   </TabItem>
- * </Tabs>
+ * <Tabs
+ *   id="example-tabs"
+ *   items={[
+ *     {
+ *       leadingIcon: {<svg>...</svg>},
+ *       label: "Item 1",
+ *     },
+ *     {
+ *       label: "Item 2",
+ *     },
+ *   ]}
+ * />
  */
 export declare const Tabs: React.FC<TabsProps>;
 export default Tabs;

@@ -298,6 +298,28 @@ function tabItemOnClick(event) {
   tabItem.classList.add('active');
 }
 
+function setDarkMode(e) {
+  const lightModeButton = document.getElementById('light-mode-button');
+  const darkModeButton = document.getElementById('dark-mode-button');
+  const autoModeButton = document.getElementById('auto-mode-button');
+
+  lightModeButton.classList.remove('active');
+  darkModeButton.classList.remove('active');
+  autoModeButton.classList.remove('active');
+
+  const target = e.currentTarget;
+  target.classList.add('active');
+
+  document.documentElement.style.setProperty(
+    'color-scheme',
+    target.id === 'light-mode-button'
+      ? 'light'
+      : target.id === 'dark-mode-button'
+        ? 'dark'
+        : 'light dark'
+  );
+}
+
 /**
  * Initializes all Material Design 3 slider components on the page.
  * Should be called when the DOM is fully loaded (typically on body onload).

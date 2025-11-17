@@ -1,71 +1,43 @@
 import React from 'react';
-/**
- * Datalist option
- */
 export interface SliderOption {
     value: number;
     key?: string;
 }
-/**
- * Slider component props
- *
- * @param props SliderProps
- * @returns JSX.Element
- *
- * @example
- * // Basic slider
- * const [value, setValue] = useState(50);
- * <Slider value={value} onChange={(v) => setValue(v)} />
- *
- * @example
- * // Slider with value indicator and options
- * <Slider
- *   value={50}
- *   min={0}
- *   max={100}
- *   step={10}
- *   showValueIndicator
- *   options={[
- *     { value: 0 },
- *     { value: 50 },
- *     { value: 100 }
- *   ]}
- * />
- *
- * @example
- * // Vertical slider
- * <Slider value={30} orientation="top-bottom" width="16em" />
- */
 export interface SliderProps {
-    /** Input id attribute */
     id?: string;
-    /** Input name attribute */
     name?: string;
-    /** Minimum value */
     min?: number;
-    /** Maximum value */
     max?: number;
-    /** Step increment */
     step?: number;
-    /** Current value */
     value: number;
-    /** Size variant */
     size?: 'xs' | 'sm' | 'md';
-    /** Orientation */
     orientation?: 'horizontal' | 'top-bottom' | 'bottom-top';
-    /** Show value indicator */
     showValueIndicator?: boolean;
-    /** Datalist options */
     options?: SliderOption[];
-    /** Width or height (depending on orientation) */
     width?: string;
-    /** onChange handler */
     onChange?: (value: number) => void;
-    /** Additional CSS class names */
     className?: string;
 }
 /**
  * Material Design 3 Slider component
+ *
+ * @param props SliderProps
+ * @param props.id Input id attribute
+ * @param props.name Input name attribute
+ * @param props.min Minimum value
+ * @param props.max Maximum value
+ * @param props.step Step increment
+ * @param props.value Current value
+ * @param props.size Size variant: 'xs', 'sm', or 'md'
+ * @param props.orientation Orientation: 'horizontal', 'top-bottom', or 'bottom-top'
+ * @param props.showValueIndicator Show value indicator
+ * @param props.options Datalist options array
+ * @param props.options[].value Option value
+ * @param props.options[].key Optional unique key for the option
+ * @param props.width Width or height (depending on orientation)
+ * @param props.onChange Change handler function
+ * @param props.className Additional CSS class names
+ * @returns JSX.Element
  *
  * @example
  * <Slider

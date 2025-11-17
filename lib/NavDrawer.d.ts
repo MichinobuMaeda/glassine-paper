@@ -1,5 +1,5 @@
-import React, { type ReactNode, type CSSProperties } from 'react';
-export interface MenuItemProps {
+import React, { type ReactNode } from 'react';
+export interface NavDrawerItemProps {
     key?: string | number;
     id?: string;
     label?: string;
@@ -7,21 +7,22 @@ export interface MenuItemProps {
     trailingIcon?: ReactNode;
     divider?: boolean;
     active?: boolean;
+    hidden?: boolean;
     disabled?: boolean;
     onClick?: () => void;
     href?: string;
 }
-export interface MenuProps {
+export interface NavDrawerProps {
     id?: string;
-    items: Iterable<MenuItemProps>;
-    style?: CSSProperties;
+    items: Iterable<NavDrawerItemProps>;
+    className?: string;
 }
 /**
- * Material Design 3 Menu component
+ * Material Design 3 NavDrawer component
  *
- * @param props MenuProps
+ * @param props NavDrawerProps
  * @param props.id Element id
- * @param props.items Array of MenuItem configurations
+ * @param props.items Array of NavDrawerItem configurations
  * @param props.items[].key Unique key for the item
  * @param props.items[].id Element id for the item
  * @param props.items[].label Label text
@@ -29,15 +30,16 @@ export interface MenuProps {
  * @param props.items[].trailingIcon Trailing icon element
  * @param props.items[].divider Show as divider (renders hr element)
  * @param props.items[].active Active state
+ * @param props.items[].hidden Hidden state
  * @param props.items[].disabled Disabled state
  * @param props.items[].onClick Click handler
  * @param props.items[].href Link URL (renders as anchor tag)
- * @param props.style Custom inline styles
+ * @param props.className Additional CSS class names
  * @returns JSX.Element
  *
  * @example
- * <Menu
- *   id="example-menu"
+ * <NavDrawer
+ *   id="example-nav-drawer"
  *   items={[
  *     {
  *       leadingIcon: {<svg>...</svg>},
@@ -54,6 +56,6 @@ export interface MenuProps {
  *   ]}
  * />
  */
-export declare const Menu: React.FC<MenuProps>;
-export default Menu;
-//# sourceMappingURL=Menu.d.ts.map
+export declare const NavDrawer: React.FC<NavDrawerProps>;
+export default NavDrawer;
+//# sourceMappingURL=NavDrawer.d.ts.map

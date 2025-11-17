@@ -28,8 +28,6 @@ body {
   flex-direction: row;
   flex-wrap: nowrap;
   justify-content: flex-start;
-  align-items: stretch;
-  height: 100vh;
   width: 100vw;
 
   .content-area {
@@ -39,16 +37,8 @@ body {
     justify-content: flex-start;
     align-items: stretch;
     flex-grow: 1;
-    height: 100vh;
     max-width: 100vw;
   }
-}
-
-#main-menu {
-  position: fixed;
-  top: calc(env(safe-area-inset-top) + 64px + 0.5rem);
-  right: 0.5rem;
-  z-index: 3;
 }
 
 main {
