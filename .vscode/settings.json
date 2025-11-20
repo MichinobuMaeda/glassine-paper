@@ -27,6 +27,7 @@
     "Nuxt",
     "nvmrc",
     "pids",
+    "pkgs",
     "precaching",
     "replstate",
     "RRGGBB",

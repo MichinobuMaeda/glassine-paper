@@ -42,6 +42,11 @@ $icon-height: $spacing-24px;
     @include one-line-truncate;
   }
 
+  input {
+    height: 0;
+    width: 0;
+  }
+
   a,
   button,
   label,

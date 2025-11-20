@@ -2177,6 +2177,10 @@ body:has(.nav-drawer:not(.hidden).modal)::after {
   text-overflow: ellipsis;
   white-space: nowrap;
 }
+.toolbar input {
+  height: 0;
+  width: 0;
+}
 .toolbar a,
 .toolbar button,
 .toolbar label,
