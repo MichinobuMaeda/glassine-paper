@@ -47,7 +47,7 @@ main {
   flex-wrap: wrap;
   justify-content: flex-start;
   align-items: flex-center;
-  padding: 1rem 0;
+  padding: 3.5rem 0;
   gap: 1rem;
   background-color: light-dark(var(--color-light-form), var(--color-dark-form));
   color: light-dark(var(--color-light-on-form), var(--color-dark-on-form));

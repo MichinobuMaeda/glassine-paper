@@ -1,0 +1,213 @@
+// Toolbar Component - SCSS
+// Material Design 3 toolbar
+
+@use 'variables' as *;
+@use 'mixins' as *;
+
+$toolbar-height: $spacing-64px;
+$content-height: $spacing-44px;
+$icon-height: $spacing-24px;
+
+.toolbar {
+  @include bg-color(surface-container);
+  @include fg-color(on-surface-variant);
+
+  height: $toolbar-height;
+  box-shadow: none;
+  border-radius: none;
+  padding: 0 $spacing-16px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  gap: $spacing-4px;
+
+  &.docked {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    padding-bottom: env(safe-area-inset-bottom);
+  }
+
+  &.hidden {
+    display: none;
+  }
+
+  a,
+  button,
+  input,
+  div {
+    @include reset-control-appearance;
+    @include one-line-truncate;
+  }
+
+  a,
+  button,
+  label,
+  div {
+    @include bg-color(surface-container);
+    @include fg-color(on-surface-variant);
+
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    height: $content-height;
+    padding: 0 calc(($content-height - $icon-height) / 2);
+    margin: 0;
+    border-radius: calc($content-height / 4);
+
+    position: relative;
+
+    img,
+    svg {
+      @include square-size($icon-height);
+      @include fg-color(on-surface-variant);
+    }
+
+    &.primary {
+      @include bg-color(primary);
+      @include fg-color(on-primary);
+
+      img,
+      svg {
+        @include fg-color(on-primary);
+      }
+    }
+  }
+
+  label:has(input:checked) {
+    @include bg-color(secondary-container);
+    @include fg-color(on-secondary-container);
+
+    & img,
+    & svg {
+      @include fg-color(on-secondary-container);
+    }
+  }
+
+  a:not(.disabled),
+  button:enabled:not(.disabled),
+  label:has(input:enabled),
+  div:not(.disabled) {
+    @include fg-color(on-surface);
+    cursor: pointer;
+
+    &:hover::after {
+      @include state-overlay(on-surface-variant, $opacity-hovered);
+    }
+
+    &:focus::after {
+      @include state-overlay(on-surface-variant, $opacity-focused);
+    }
+
+    &.primary:hover::after {
+      @include state-overlay(on-primary, $opacity-hovered);
+    }
+
+    &.primary:focus::after {
+      @include state-overlay(on-primary, $opacity-focused);
+    }
+  }
+
+  &.floating {
+    padding: 0 $spacing-8px;
+    box-shadow: $spacing-2px $spacing-2px $spacing-2px $spacing-2px
+      color(
+        from light-dark(var(--color-light-shadow), var(--color-dark-shadow))
+          srgb r g b / #{$opacity-shadow}
+      );
+    border-radius: calc($toolbar-height / 2);
+
+    button,
+    a,
+    label,
+    div {
+      border-radius: calc($content-height / 2);
+    }
+  }
+
+  &.vibrant {
+    @include bg-color(primary-container);
+    @include fg-color(on-primary-container);
+
+    a,
+    button,
+    label,
+    div {
+      @include bg-color(primary-container);
+      @include fg-color(on-primary-container);
+
+      & img,
+      & svg {
+        @include fg-color(on-primary-container);
+      }
+
+      &.primary {
+        @include bg-color(primary);
+        @include fg-color(on-primary);
+
+        img,
+        svg {
+          @include fg-color(on-primary);
+        }
+      }
+    }
+
+    label:has(input:checked) {
+      @include bg-color(surface-container);
+      @include fg-color(on-surface-variant);
+    }
+  }
+
+  a.disabled,
+  button.disabled,
+  button:disabled,
+  label:has(input:disabled),
+  div.disabled {
+    background-color: color(
+      from
+        light-dark(var(--color-light-on-surface), var(--color-dark-on-surface))
+        srgb r g b / #{$opacity-disabled-bg}
+    );
+    color: color(
+      from
+        light-dark(var(--color-light-on-surface), var(--color-dark-on-surface))
+        srgb r g b / #{$opacity-disabled-content}
+    );
+    cursor: default;
+  }
+}
+
+.toolbar-container:has(.toolbar.floating) {
+  position: fixed;
+  bottom: env(safe-area-inset-bottom);
+  left: 0;
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  gap: $spacing-8px;
+  padding: 0 $spacing-16px $spacing-16px $spacing-16px;
+  margin: 0;
+  background: transparent;
+
+  .fab {
+    margin: 0;
+  }
+
+  &:has(.toolbar.standard) {
+    .fab {
+      @include bg-color(primary-container);
+      @include fg-color(on-primary-container);
+    }
+  }
+
+  &:has(.toolbar.vibrant) {
+    .fab {
+      @include bg-color(tertiary-container);
+      @include fg-color(on-tertiary-container);
+    }
+  }
+}

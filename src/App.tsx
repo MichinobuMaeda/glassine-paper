@@ -14,6 +14,7 @@ import AppBar from './components/AppBar';
 import NavDrawer from './components/NavDrawer';
 import Tabs from './components/Tabs';
 import Menu from './components/Menu';
+import Toolbar from './components/Toolbar';
 import TextField from './components/TextField';
 import Button from './components/Button';
 import Slider from './components/Slider';
@@ -29,6 +30,9 @@ import SvgDownload from './icons/SvgDownload';
 import SvgBrightnessAuto from './icons/SvgBrightnessAuto';
 import SvgLightMode from './icons/SvgLightMode';
 import SvgDarkMode from './icons/SvgDarkMode';
+import SvgAdd from './icons/SvgAdd';
+import SvgDockToBottom from './icons/SvgDockToBottom';
+import SvgColors from './icons/SvgColors';
 
 type NavDrawerState = 'hidden' | 'visible' | 'modal';
 
@@ -125,6 +129,12 @@ function App(): JSX.Element {
   const [scrolled, setScrolled] = useState(false);
   const [navDrawerState, setNavDrawerState] = useState<NavDrawerState>(
     NavDrawerState.HIDDEN
+  );
+  const [toolbarVariant, setToolbarVariant] = useState<'docked' | 'floating'>(
+    'docked'
+  );
+  const [toolbarColor, setToolbarColor] = useState<'standard' | 'vibrant'>(
+    'standard'
   );
 
   const { scrollPosition } = useDetectScroll({ axis: Axis.X });
@@ -544,6 +554,33 @@ function App(): JSX.Element {
               </div>
             ))}
           </div>
+          <Toolbar
+            variant={toolbarVariant}
+            color={toolbarColor}
+            items={[
+              {
+                icon: <SvgDockToBottom />,
+                toggle: true,
+                checked: toolbarVariant === 'floating',
+                onClick: () =>
+                  setToolbarVariant(
+                    toolbarVariant === 'docked' ? 'floating' : 'docked'
+                  ),
+              },
+              {
+                icon: <SvgColors />,
+                toggle: true,
+                checked: toolbarColor === 'standard',
+                onClick: () =>
+                  setToolbarColor(
+                    toolbarColor === 'standard' ? 'vibrant' : 'standard'
+                  ),
+              },
+              { icon: <SvgAdd />, primary: true, fab: true },
+              { icon: <SvgSquare /> },
+              { icon: <SvgSquare />, href: '#' },
+            ]}
+          />
         </main>
       </div>
     </div>

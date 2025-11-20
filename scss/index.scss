@@ -14,9 +14,10 @@
 @use './nav-bar.scss';
 @use './nav-rail.scss';
 @use './menu.scss';
+@use './toolbar.scss';
 @use './tabs.scss';
 @use './slider.scss';
 
 :root {
-  color-scheme: light dark;
+  color-scheme: var(--color-scheme, light dark);
 }

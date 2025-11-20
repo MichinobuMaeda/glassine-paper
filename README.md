@@ -19,6 +19,8 @@ CSS and some React components for Material Design 3
 
 ```css
 :root {
+  --color-scheme: light dark;
+
   --root-font-family: Roboto, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
   --root-font-size: 16px;
   --root-font-weight: 400;

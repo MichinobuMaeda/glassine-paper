@@ -2137,6 +2137,257 @@ body:has(.nav-drawer:not(.hidden).modal)::after {
   margin: 0.5rem 0;
 }
 
+.toolbar {
+  background-color: light-dark(var(--color-light-surface-container), var(--color-dark-surface-container));
+  color: light-dark(var(--color-light-on-surface-variant), var(--color-dark-on-surface-variant));
+  height: 4rem;
+  box-shadow: none;
+  border-radius: none;
+  padding: 0 1rem;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.25rem;
+}
+.toolbar.docked {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  padding-bottom: env(safe-area-inset-bottom);
+}
+.toolbar.hidden {
+  display: none;
+}
+.toolbar a,
+.toolbar button,
+.toolbar input,
+.toolbar div {
+  appearance: none;
+  background: none;
+  border: none;
+  outline: none;
+  box-shadow: none;
+  margin: 0;
+  padding: 0;
+  user-select: none;
+  text-decoration: none;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.toolbar a,
+.toolbar button,
+.toolbar label,
+.toolbar div {
+  background-color: light-dark(var(--color-light-surface-container), var(--color-dark-surface-container));
+  color: light-dark(var(--color-light-on-surface-variant), var(--color-dark-on-surface-variant));
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  height: 2.75rem;
+  padding: 0 0.625rem;
+  margin: 0;
+  border-radius: 0.6875rem;
+  position: relative;
+}
+.toolbar a img,
+.toolbar a svg,
+.toolbar button img,
+.toolbar button svg,
+.toolbar label img,
+.toolbar label svg,
+.toolbar div img,
+.toolbar div svg {
+  width: 1.5rem;
+  min-width: 1.5rem;
+  max-width: 1.5rem;
+  height: 1.5rem;
+  min-height: 1.5rem;
+  min-height: 1.5rem;
+  max-height: 1.5rem;
+  color: light-dark(var(--color-light-on-surface-variant), var(--color-dark-on-surface-variant));
+}
+.toolbar a.primary,
+.toolbar button.primary,
+.toolbar label.primary,
+.toolbar div.primary {
+  background-color: light-dark(var(--color-light-primary), var(--color-dark-primary));
+  color: light-dark(var(--color-light-on-primary), var(--color-dark-on-primary));
+}
+.toolbar a.primary img,
+.toolbar a.primary svg,
+.toolbar button.primary img,
+.toolbar button.primary svg,
+.toolbar label.primary img,
+.toolbar label.primary svg,
+.toolbar div.primary img,
+.toolbar div.primary svg {
+  color: light-dark(var(--color-light-on-primary), var(--color-dark-on-primary));
+}
+.toolbar label:has(input:checked) {
+  background-color: light-dark(var(--color-light-secondary-container), var(--color-dark-secondary-container));
+  color: light-dark(var(--color-light-on-secondary-container), var(--color-dark-on-secondary-container));
+}
+.toolbar label:has(input:checked) img, .toolbar label:has(input:checked) svg {
+  color: light-dark(var(--color-light-on-secondary-container), var(--color-dark-on-secondary-container));
+}
+.toolbar a:not(.disabled),
+.toolbar button:enabled:not(.disabled),
+.toolbar label:has(input:enabled),
+.toolbar div:not(.disabled) {
+  color: light-dark(var(--color-light-on-surface), var(--color-dark-on-surface));
+  cursor: pointer;
+}
+.toolbar a:not(.disabled):hover::after,
+.toolbar button:enabled:not(.disabled):hover::after,
+.toolbar label:has(input:enabled):hover::after,
+.toolbar div:not(.disabled):hover::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  border-radius: inherit;
+  pointer-events: none;
+  background-color: light-dark(var(--color-light-on-surface-variant), var(--color-dark-on-surface-variant));
+  opacity: 0.08;
+}
+.toolbar a:not(.disabled):focus::after,
+.toolbar button:enabled:not(.disabled):focus::after,
+.toolbar label:has(input:enabled):focus::after,
+.toolbar div:not(.disabled):focus::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  border-radius: inherit;
+  pointer-events: none;
+  background-color: light-dark(var(--color-light-on-surface-variant), var(--color-dark-on-surface-variant));
+  opacity: 0.1;
+}
+.toolbar a:not(.disabled).primary:hover::after,
+.toolbar button:enabled:not(.disabled).primary:hover::after,
+.toolbar label:has(input:enabled).primary:hover::after,
+.toolbar div:not(.disabled).primary:hover::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  border-radius: inherit;
+  pointer-events: none;
+  background-color: light-dark(var(--color-light-on-primary), var(--color-dark-on-primary));
+  opacity: 0.08;
+}
+.toolbar a:not(.disabled).primary:focus::after,
+.toolbar button:enabled:not(.disabled).primary:focus::after,
+.toolbar label:has(input:enabled).primary:focus::after,
+.toolbar div:not(.disabled).primary:focus::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  border-radius: inherit;
+  pointer-events: none;
+  background-color: light-dark(var(--color-light-on-primary), var(--color-dark-on-primary));
+  opacity: 0.1;
+}
+.toolbar.floating {
+  padding: 0 0.5rem;
+  box-shadow: 0.125rem 0.125rem 0.125rem 0.125rem color(from light-dark(var(--color-light-shadow), var(--color-dark-shadow)) srgb r g b/0.15);
+  border-radius: 2rem;
+}
+.toolbar.floating button,
+.toolbar.floating a,
+.toolbar.floating label,
+.toolbar.floating div {
+  border-radius: 1.375rem;
+}
+.toolbar.vibrant {
+  background-color: light-dark(var(--color-light-primary-container), var(--color-dark-primary-container));
+  color: light-dark(var(--color-light-on-primary-container), var(--color-dark-on-primary-container));
+}
+.toolbar.vibrant a,
+.toolbar.vibrant button,
+.toolbar.vibrant label,
+.toolbar.vibrant div {
+  background-color: light-dark(var(--color-light-primary-container), var(--color-dark-primary-container));
+  color: light-dark(var(--color-light-on-primary-container), var(--color-dark-on-primary-container));
+}
+.toolbar.vibrant a img, .toolbar.vibrant a svg,
+.toolbar.vibrant button img,
+.toolbar.vibrant button svg,
+.toolbar.vibrant label img,
+.toolbar.vibrant label svg,
+.toolbar.vibrant div img,
+.toolbar.vibrant div svg {
+  color: light-dark(var(--color-light-on-primary-container), var(--color-dark-on-primary-container));
+}
+.toolbar.vibrant a.primary,
+.toolbar.vibrant button.primary,
+.toolbar.vibrant label.primary,
+.toolbar.vibrant div.primary {
+  background-color: light-dark(var(--color-light-primary), var(--color-dark-primary));
+  color: light-dark(var(--color-light-on-primary), var(--color-dark-on-primary));
+}
+.toolbar.vibrant a.primary img,
+.toolbar.vibrant a.primary svg,
+.toolbar.vibrant button.primary img,
+.toolbar.vibrant button.primary svg,
+.toolbar.vibrant label.primary img,
+.toolbar.vibrant label.primary svg,
+.toolbar.vibrant div.primary img,
+.toolbar.vibrant div.primary svg {
+  color: light-dark(var(--color-light-on-primary), var(--color-dark-on-primary));
+}
+.toolbar.vibrant label:has(input:checked) {
+  background-color: light-dark(var(--color-light-surface-container), var(--color-dark-surface-container));
+  color: light-dark(var(--color-light-on-surface-variant), var(--color-dark-on-surface-variant));
+}
+.toolbar a.disabled,
+.toolbar button.disabled,
+.toolbar button:disabled,
+.toolbar label:has(input:disabled),
+.toolbar div.disabled {
+  background-color: color(from light-dark(var(--color-light-on-surface), var(--color-dark-on-surface)) srgb r g b/0.1);
+  color: color(from light-dark(var(--color-light-on-surface), var(--color-dark-on-surface)) srgb r g b/0.38);
+  cursor: default;
+}
+
+.toolbar-container:has(.toolbar.floating) {
+  position: fixed;
+  bottom: env(safe-area-inset-bottom);
+  left: 0;
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0 1rem 1rem 1rem;
+  margin: 0;
+  background: transparent;
+}
+.toolbar-container:has(.toolbar.floating) .fab {
+  margin: 0;
+}
+.toolbar-container:has(.toolbar.floating):has(.toolbar.standard) .fab {
+  background-color: light-dark(var(--color-light-primary-container), var(--color-dark-primary-container));
+  color: light-dark(var(--color-light-on-primary-container), var(--color-dark-on-primary-container));
+}
+.toolbar-container:has(.toolbar.floating):has(.toolbar.vibrant) .fab {
+  background-color: light-dark(var(--color-light-tertiary-container), var(--color-dark-tertiary-container));
+  color: light-dark(var(--color-light-on-tertiary-container), var(--color-dark-on-tertiary-container));
+}
+
 .tabs {
   display: flex;
   flex-direction: row;
@@ -2533,7 +2784,7 @@ body:has(.nav-drawer:not(.hidden).modal)::after {
 }
 
 :root {
-  color-scheme: light dark;
+  color-scheme: var(--color-scheme, light dark);
 }
 
 /*# sourceMappingURL=glassine-paper.css.map */
