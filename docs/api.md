@@ -32,6 +32,9 @@
 <dt><a href="#TextField">TextField</a> ⇒</dt>
 <dd><p>Material Design 3 TextField component</p>
 </dd>
+<dt><a href="#Toolbar">Toolbar</a> ⇒</dt>
+<dd><p>Material Design 3 Toolbar component</p>
+</dd>
 </dl>
 
 <a name="module_glassine-paper"></a>
@@ -411,5 +414,50 @@ Material Design 3 TextField component
   type="password"
   error={true}
   supportingText="Password is required"
+/>
+```
+<a name="Toolbar"></a>
+
+## Toolbar ⇒
+Material Design 3 Toolbar component
+
+**Kind**: global constant  
+**Returns**: JSX.Element  
+
+| Param | Description |
+| --- | --- |
+| props | ToolbarProps |
+| props.id | Element id |
+| props.items | Array of ToolbarItem configurations |
+| props.items[].key | Unique key for the item |
+| props.items[].id | Element id for the item |
+| props.items[].label | Label text |
+| props.items[].icon | Icon element |
+| props.items[].disabled | Disabled state |
+| props.items[].onClick | Click handler |
+| props.items[].href | Link URL (renders as anchor tag) |
+| props.items[].toggle | Renders as toggle button if true |
+| props.items[].checked | Toggle button checked state |
+| props.items[].primary | Primary button styling if true |
+| props.items[].fab | Renders as floating action button if true on floating toolbars |
+| props.variant | Toolbar variant: 'docked' or 'floating' |
+| props.color | Toolbar color scheme: 'standard' or 'vibrant' |
+| props.style | Custom inline styles |
+
+**Example**  
+```js
+<Toolbar
+  id="example-toolbar"
+  items={[
+    {
+      icon: {<svg>...</svg>},
+      onClick: () => {},
+    },
+    { divider: true },
+    {
+      icon: {<svg>...</svg>},
+      href: "...",
+    },
+  ]}
 />
 ```
