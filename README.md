@@ -15,6 +15,7 @@ CSS and some React components for Material Design 3
 | Menu         |  o  |   o   |
 | Tabs         |  o  |   o   |
 | Button       |  o  |   o   |
+| Slider       |  o  |   o   |
 | Text Field   |  o  |   o   |
 | Nav Drawer   |  o  |   o   |
 | Nav Bar      |  o  |   x   |

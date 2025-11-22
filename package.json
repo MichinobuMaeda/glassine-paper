@@ -1,6 +1,6 @@
 {
   "name": "glassine-paper",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "CSS and some React components for Material Design 3",
   "type": "module",
   "main": "lib/index.js",
@@ -57,20 +57,20 @@
   "author": "Michinobu Maeda",
   "license": "MIT",
   "dependencies": {
-    "@material/material-color-utilities": "^0.3.0",
-    "@smakss/react-scroll-direction": "^4.2.0",
-    "color-convert": "^3.1.2",
     "react": "^18.0.0 || ^19.0.0",
     "react-dom": "^18.0.0 || ^19.0.0"
   },
   "devDependencies": {
     "@eslint/js": "^9.37.0",
+    "@material/material-color-utilities": "^0.3.0",
+    "@smakss/react-scroll-direction": "^4.2.0",
     "@types/jsdoc-to-markdown": "^7.0.6",
     "@types/node": "^24.6.2",
     "@types/react": "^19.2.0",
     "@types/react-dom": "^19.2.0",
     "@vite-pwa/assets-generator": "^1.0.2",
     "@vitejs/plugin-react": "^5.0.4",
+    "color-convert": "^3.1.2",
     "eslint": "^9.37.0",
     "eslint-plugin-react-hooks": "^5.2.0",
     "eslint-plugin-react-refresh": "^0.4.23",
