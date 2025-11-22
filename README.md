@@ -2,7 +2,7 @@
 
 CSS and some React components for Material Design 3
 
-- [API Documentation](docs/api.md)
+- [API Documentation](https://github.com/MichinobuMaeda/glassine-paper/blob/main/docs/api.md)
 - [Sample](https://pages.michinobu.jp/glassine-paper/sample)
 - [Theme color generator](https://pages.michinobu.jp/glassine-paper/theme)
 
