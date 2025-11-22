@@ -6,6 +6,34 @@ CSS and some React components for Material Design 3
 - [Sample](https://pages.michinobu.jp/glassine-paper/sample)
 - [Theme color generator](https://pages.michinobu.jp/glassine-paper/theme)
 
+## Components
+
+| Component    | CSS | React |
+|--------------|:---:|:-----:|
+| App Bar      |  o  |   o   |
+| Toolbar      |  o  |   o   |
+| Menu         |  o  |   o   |
+| Tabs         |  o  |   o   |
+| Button       |  o  |   o   |
+| Text Field   |  o  |   o   |
+| Nav Drawer   |  o  |   o   |
+| Nav Bar      |  o  |   x   |
+| Nav Rail     |  o  |   x   |
+| Fab          |  o  |   x   |
+| Checkbox     |  o  |   x   |
+| Switch       |  o  |   x   |
+| Radio Button |  o  |   x   |
+| Divider      |  o  |   x   |
+| Search       |  x  |   x   |
+| Card         |  x  |   x   |
+| List         |  x  |   x   |
+| Chips        |  x  |   x   |
+| Badges       |  x  |   x   |
+| Sheets       |  x  |   x   |
+| Dialogs      |  x  |   x   |
+| Snackbar     |  x  |   x   |
+| ... ...      |  x  |   x   |
+
 ## Usage
 
 ```css
