@@ -36,22 +36,9 @@ import convert from 'color-convert';
 import {
   argbFromHex,
   DynamicScheme,
-  Hct,
   hexFromArgb,
-  TonalPalette,
-  sanitizeDegreesDouble,
+  themeFromSourceColor,
 } from '@material/material-color-utilities';
-
-type Variant =
-  | 'MONOCHROME'
-  | 'NEUTRAL'
-  | 'TONAL_SPOT'
-  | 'VIBRANT'
-  | 'EXPRESSIVE'
-  | 'FIDELITY'
-  | 'CONTENT'
-  | 'RAINBOW'
-  | 'FRUIT_SALAD';
 
 export const Variant = {
   MONOCHROME: 0,
@@ -63,7 +50,9 @@ export const Variant = {
   CONTENT: 6,
   RAINBOW: 7,
   FRUIT_SALAD: 8,
-};
+} as const;
+
+export type Variant = (typeof Variant)[keyof typeof Variant];
 
 /**
  * A color token pair representing a semantic color name and its hexadecimal value.
@@ -161,7 +150,8 @@ export async function generateScheme(
   variant: number = Variant.TONAL_SPOT,
   contrast: number
 ): Promise<Array<ThemeObject>> {
-  const sourceColorHct = Hct.fromInt(argbFromHex(seedColor));
+  const theme = themeFromSourceColor(argbFromHex(seedColor));
+  console.log(JSON.stringify(theme, null, 2));
 
   return [
     { key: 'light', value: false },
@@ -172,17 +162,11 @@ export async function generateScheme(
       variant: variant,
       contrastLevel: contrast,
       isDark: brightness.value,
-      primaryPalette: TonalPalette.fromHueAndChroma(sourceColorHct.hue, 36.0),
-      secondaryPalette: TonalPalette.fromHueAndChroma(sourceColorHct.hue, 16.0),
-      tertiaryPalette: TonalPalette.fromHueAndChroma(
-        sanitizeDegreesDouble(sourceColorHct.hue + 60.0),
-        24.0
-      ),
-      neutralPalette: TonalPalette.fromHueAndChroma(sourceColorHct.hue, 6.0),
-      neutralVariantPalette: TonalPalette.fromHueAndChroma(
-        sourceColorHct.hue,
-        8.0
-      ),
+      primaryPalette: theme.palettes.primary,
+      secondaryPalette: theme.palettes.secondary,
+      tertiaryPalette: theme.palettes.tertiary,
+      neutralPalette: theme.palettes.neutral,
+      neutralVariantPalette: theme.palettes.neutralVariant,
     });
 
     return {

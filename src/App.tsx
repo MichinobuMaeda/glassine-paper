@@ -69,20 +69,6 @@ const LightDarkLabel = {
   [LightDark.LIGHT_DARK]: 'Auto',
 };
 
-type ColorVariant = 0 | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8;
-
-const ColorVariant = {
-  MONOCHROME: 0 as ColorVariant,
-  NEUTRAL: 1 as ColorVariant,
-  TONAL_SPOT: 2 as ColorVariant,
-  VIBRANT: 3 as ColorVariant,
-  EXPRESSIVE: 4 as ColorVariant,
-  FIDELITY: 5 as ColorVariant,
-  CONTENT: 6 as ColorVariant,
-  RAINBOW: 7 as ColorVariant,
-  FRUIT_SALAD: 8 as ColorVariant,
-};
-
 const downloadFile = (filename: string, content: string) => {
   const data = new Blob([content]);
   const url = URL.createObjectURL(data);
@@ -107,7 +93,7 @@ const variablesToLightDarkName = (
 };
 
 function App(): JSX.Element {
-  const defaultSeedColor = '#0000FF';
+  const defaultSeedColor = '#404080';
   const sliderWidth = '20rem';
   const [menuVisible, setMenuVisible] = useState(false);
   const [seedColor, setSeedColor] = useState(defaultSeedColor);
@@ -374,7 +360,7 @@ function App(): JSX.Element {
               />
             </Row>
             <Row align="center" style={{ gap: '0.5rem' }}>
-              {Object.entries(ColorVariant).map(([key, value]) => (
+              {Object.entries(Variant).map(([key, value]) => (
                 <Button
                   key={key}
                   variant="filled"
