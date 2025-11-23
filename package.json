@@ -51,8 +51,8 @@
     "lint": "eslint .",
     "preview": "vite preview",
     "dev:static": "npx http-server docs -o sample -a localhost -p 8000",
-    "dev": "vite",
-    "start": "npm-run-all --parallel watch:sample watch:compressed dev:static"
+    "dev": "vite --host localhost --port ${PORT:-4000}",
+    "start": "npm-run-all --parallel watch:sample watch:compressed dev:static dev"
   },
   "author": "Michinobu Maeda",
   "license": "MIT",

@@ -151,7 +151,6 @@ export async function generateScheme(
   contrast: number
 ): Promise<Array<ThemeObject>> {
   const theme = themeFromSourceColor(argbFromHex(seedColor));
-  console.log(JSON.stringify(theme, null, 2));
 
   return [
     { key: 'light', value: false },
