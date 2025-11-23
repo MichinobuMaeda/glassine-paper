@@ -2,17 +2,23 @@
 
 All notable changes to this project will be documented in this file.
 
+## [1.1.4] - 2025-11-24
+
+### Fixed
+
+- React component: Button props 'disabled' didn't affect input elements
+
 ## [1.1.3] - 2025-11-24
 
 ### Added
 
-- React component: Text Field 'innerStyle', 'readonly'
+- React component: Text Field props 'innerStyle' and 'readonly'
 
 ## [1.1.2] - 2025-11-24
 
 ### Added
 
-- React component: Slider 'displayValue'
+- React component: Slider props 'displayValue'
 
 ### Fixed
 

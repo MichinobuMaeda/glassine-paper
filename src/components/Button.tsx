@@ -129,6 +129,7 @@ export const Button: React.FC<ButtonProps> = ({
         name={name}
         type="checkbox"
         checked={checked}
+        disabled={disabled}
         onClick={(event) => (onClick ? onClick(event) : undefined)}
       />
       {icon}
@@ -141,6 +142,7 @@ export const Button: React.FC<ButtonProps> = ({
         name={name}
         type="radio"
         checked={checked}
+        disabled={disabled}
         onClick={(event) => (onClick ? onClick(event) : undefined)}
       />
       {icon}

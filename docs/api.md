@@ -1,4 +1,4 @@
-# API Documentation glassine-paper 1.1.3
+# API Documentation glassine-paper 1.1.4
 
 ## Modules
 
