@@ -17,13 +17,13 @@ CSS and some React components for Material Design 3
 | Button       |  o  |   o   |
 | Slider       |  o  |   o   |
 | Text Field   |  o  |   o   |
+| Checkbox     |  o  |   o   |
+| Switch       |  o  |   o   |
+| Radio        |  o  |   o   |
 | Nav Drawer   |  o  |   o   |
 | Nav Bar      |  o  |   x   |
 | Nav Rail     |  o  |   x   |
 | Fab          |  o  |   x   |
-| Checkbox     |  o  |   x   |
-| Switch       |  o  |   x   |
-| Radio Button |  o  |   x   |
 | Divider      |  o  |   x   |
 | Search       |  x  |   x   |
 | Card         |  x  |   x   |

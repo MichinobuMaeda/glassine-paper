@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file.
 
+## [unreleased]
+
+### Added
+
+- React component: Checkbox
+- React component: Radio
+- React component: Switch
+
 ## [1.0.1] - 2025-11-22
 
 ### Fixed
