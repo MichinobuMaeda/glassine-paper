@@ -8,7 +8,7 @@ export interface TextFieldProps {
   name?: string;
   variant?: 'filled' | 'outlined';
   type?: 'text' | 'email' | 'number' | 'password' | 'tel' | 'url';
-  label: string;
+  label?: string;
   placeholder?: string;
   value?: string | number;
   error?: boolean;
@@ -70,7 +70,7 @@ export const TextField: React.FC<TextFieldProps> = ({
   name,
   variant = 'outlined',
   type = 'text',
-  label,
+  label = '',
   value,
   error = false,
   disabled = false,

@@ -2,6 +2,16 @@
 
 All notable changes to this project will be documented in this file.
 
+## [1.1.2] - 2025-11-24
+
+### Added
+
+- React component: Slider 'displayValue'
+
+### Fixed
+
+- React component: The type of Text Field 'label' from {string} to {string?}
+
 ## [1.1.1] - 2025-11-23
 
 ### Fixed

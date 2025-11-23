@@ -354,6 +354,7 @@ Material Design 3 Slider component
 | [props.max] | <code>number</code> | Maximum value |
 | [props.step] | <code>number</code> | Step increment |
 | props.value | <code>number</code> | Current value |
+| [props.displayValue] | <code>string</code> | Display value at indicator |
 | [props.size] | <code>&#x27;xs&#x27;</code> \| <code>&#x27;sm&#x27;</code> \| <code>&#x27;md&#x27;</code> | Size variant: 'xs', 'sm', or 'md' |
 | [props.orientation] | <code>&#x27;horizontal&#x27;</code> \| <code>&#x27;top-bottom&#x27;</code> \| <code>&#x27;bottom-top&#x27;</code> | Orientation: 'horizontal', 'top-bottom', or 'bottom-top' |
 | [props.showValueIndicator] | <code>boolean</code> | Show value indicator |

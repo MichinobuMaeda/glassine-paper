@@ -12,6 +12,7 @@ export interface SliderProps {
   max?: number;
   step?: number;
   value: number;
+  displayValue?: string;
   size?: 'xs' | 'sm' | 'md';
   orientation?: 'horizontal' | 'top-bottom' | 'bottom-top';
   showValueIndicator?: boolean;
@@ -31,6 +32,7 @@ export interface SliderProps {
  * @param {number} [props.max] Maximum value
  * @param {number} [props.step] Step increment
  * @param {number} props.value Current value
+ * @param {string} [props.displayValue] Display value at indicator
  * @param {('xs' | 'sm' | 'md')} [props.size] Size variant: 'xs', 'sm', or 'md'
  * @param {('horizontal' | 'top-bottom' | 'bottom-top')} [props.orientation] Orientation: 'horizontal', 'top-bottom', or 'bottom-top'
  * @param {boolean} [props.showValueIndicator] Show value indicator
@@ -75,6 +77,7 @@ export const Slider: React.FC<SliderProps> = ({
   max = 100,
   step = 1,
   value,
+  displayValue,
   size = 'sm',
   orientation = 'horizontal',
   showValueIndicator = false,
@@ -145,7 +148,9 @@ export const Slider: React.FC<SliderProps> = ({
 
   return (
     <div ref={sliderRef} className={classes}>
-      {showValueIndicator && <div className="value-indicator">{value}</div>}
+      {showValueIndicator && (
+        <div className="value-indicator">{displayValue ?? value}</div>
+      )}
       <input
         ref={inputRef}
         id={id}
