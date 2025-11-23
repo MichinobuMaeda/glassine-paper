@@ -1,19 +1,17 @@
 import React, { type CSSProperties } from 'react';
-
 /**
  * Radio component props
  */
 export interface RadioProps {
-  id?: string;
-  name?: string;
-  disabled?: boolean;
-  value?: string;
-  checked?: boolean;
-  onClick?: (e: React.MouseEvent<HTMLInputElement>) => void;
-  className?: string;
-  style?: CSSProperties;
+    id?: string;
+    name?: string;
+    disabled?: boolean;
+    value?: string;
+    checked?: boolean;
+    onClick?: (e: React.MouseEvent<HTMLInputElement>) => void;
+    className?: string;
+    style?: CSSProperties;
 }
-
 /**
  * Material Design 3 Radio button component.
  *
@@ -37,31 +35,6 @@ export interface RadioProps {
  *  onClick={() => setSelectedValue('option1')}
  * />
  */
-export const Radio: React.FC<RadioProps> = ({
-  id,
-  name,
-  disabled = false,
-  value,
-  checked,
-  onClick,
-  className = '',
-  style = {},
-}) => {
-  const classes = ['radio', className];
-
-  return (
-    <input
-      id={id}
-      name={name}
-      className={classes.join(' ')}
-      type="radio"
-      style={style}
-      disabled={disabled}
-      value={value}
-      checked={checked}
-      onClick={(event) => (onClick ? onClick(event) : undefined)}
-    />
-  );
-};
-
+export declare const Radio: React.FC<RadioProps>;
 export default Radio;
+//# sourceMappingURL=Radio.d.ts.map

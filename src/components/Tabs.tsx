@@ -52,7 +52,7 @@ const TabItem: React.FC<TabItemProps> = ({
  * @param {React.ReactNode} [props.items[].leadingIcon] Leading icon element
  * @param {boolean} [props.items[].active] Active state
  * @param {boolean} [props.items[].disabled] Disabled state
- * @param {() => void} [props.items[].onClick] Click handler
+ * @param {Function} [props.items[].onClick] Click handler
  * @param {string} [props.items[].href] Link URL (renders as anchor tag)
  * @param {React.CSSProperties} [props.style] Custom inline styles
  * @returns {JSX.Element}

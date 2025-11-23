@@ -1,20 +1,18 @@
 import React, { type CSSProperties } from 'react';
-
 /**
  * Checkbox component props
  */
 export interface CheckboxProps {
-  id?: string;
-  name?: string;
-  error?: boolean;
-  disabled?: boolean;
-  value?: string;
-  checked?: boolean;
-  onClick?: (e: React.MouseEvent<HTMLInputElement>) => void;
-  className?: string;
-  style?: CSSProperties;
+    id?: string;
+    name?: string;
+    error?: boolean;
+    disabled?: boolean;
+    value?: string;
+    checked?: boolean;
+    onClick?: (e: React.MouseEvent<HTMLInputElement>) => void;
+    className?: string;
+    style?: CSSProperties;
 }
-
 /**
  * Material Design 3 Checkbox component.
  *
@@ -38,32 +36,6 @@ export interface CheckboxProps {
  *  onClick={() => setIsChecked(!isChecked)}
  * />
  */
-export const Checkbox: React.FC<CheckboxProps> = ({
-  id,
-  name,
-  error = false,
-  disabled = false,
-  value,
-  checked,
-  onClick,
-  className = '',
-  style = {},
-}) => {
-  const classes = ['checkbox', error ? 'error' : '', className];
-
-  return (
-    <input
-      id={id}
-      name={name}
-      className={classes.join(' ')}
-      type="checkbox"
-      style={style}
-      disabled={disabled}
-      value={value}
-      checked={checked}
-      onClick={(event) => (onClick ? onClick(event) : undefined)}
-    />
-  );
-};
-
+export declare const Checkbox: React.FC<CheckboxProps>;
 export default Checkbox;
+//# sourceMappingURL=Checkbox.d.ts.map

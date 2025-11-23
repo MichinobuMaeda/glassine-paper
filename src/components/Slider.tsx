@@ -37,7 +37,7 @@ export interface SliderProps {
  * @param {SliderOption[]} [props.options] Datalist options array
  * @param {number} props.options[].value Option value
  * @param {string} [props.options[].key] Optional unique key for the option
- * @param {(value: number) => void} [props.onChange] Change handler function
+ * @param {Function} [props.onChange] Change handler function
  * @param {string} [props.className] Additional CSS class names
  * @param {React.CSSProperties} [props.style] Custom inline styles
  * @returns {JSX.Element}

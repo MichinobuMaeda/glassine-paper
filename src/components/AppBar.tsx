@@ -84,7 +84,7 @@ const AppBarItem: React.FC<AppBarItemProps> = ({
  * @param {boolean} [props.items[].active] Active state
  * @param {boolean} [props.items[].hidden] Hidden state
  * @param {boolean} [props.items[].disabled] Disabled state
- * @param {() => void} [props.items[].onClick] Click handler
+ * @param {Function} [props.items[].onClick] Click handler
  * @param {string} [props.items[].href] Link URL (renders as anchor tag)
  * @param {boolean} [props.sticky] Whether the app bar sticks to the top
  * @param {boolean} [props.scrolled] Whether the content is scrolled (affects styling)

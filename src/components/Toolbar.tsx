@@ -83,7 +83,7 @@ const ToolbarItem: React.FC<ToolbarItemProps> = ({
  * @param {string} [props.items[].label] Label text
  * @param {React.ReactNode} [props.items[].icon] Icon element
  * @param {boolean} [props.items[].disabled] Disabled state
- * @param {() => void} [props.items[].onClick] Click handler
+ * @param {Function} [props.items[].onClick] Click handler
  * @param {string} [props.items[].href] Link URL (renders as anchor tag)
  * @param {boolean} [props.items[].toggle] Renders as toggle button if true
  * @param {boolean} [props.items[].checked] Toggle button checked state

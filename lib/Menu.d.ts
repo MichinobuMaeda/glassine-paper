@@ -19,21 +19,21 @@ export interface MenuProps {
 /**
  * Material Design 3 Menu component
  *
- * @param props MenuProps
- * @param props.id Element id
- * @param props.items Array of MenuItem configurations
- * @param props.items[].key Unique key for the item
- * @param props.items[].id Element id for the item
- * @param props.items[].label Label text
- * @param props.items[].leadingIcon Leading icon element
- * @param props.items[].trailingIcon Trailing icon element
- * @param props.items[].divider Show as divider (renders hr element)
- * @param props.items[].active Active state
- * @param props.items[].disabled Disabled state
- * @param props.items[].onClick Click handler
- * @param props.items[].href Link URL (renders as anchor tag)
- * @param props.style Custom inline styles
- * @returns JSX.Element
+ * @param {MenuProps} props MenuProps
+ * @param {string} [props.id] Element id
+ * @param {Iterable<MenuItemProps>} props.items Array of MenuItem configurations
+ * @param {(string | number)} [props.items[].key] Unique key for the item
+ * @param {string} [props.items[].id] Element id for the item
+ * @param {string} [props.items[].label] Label text
+ * @param {React.ReactNode} [props.items[].leadingIcon] Leading icon element
+ * @param {React.ReactNode} [props.items[].trailingIcon] Trailing icon element
+ * @param {boolean} [props.items[].divider] Show as divider (renders hr element)
+ * @param {boolean} [props.items[].active] Active state
+ * @param {boolean} [props.items[].disabled] Disabled state
+ * @param {Function} [props.items[].onClick] Click handler
+ * @param {string} [props.items[].href] Link URL (renders as anchor tag)
+ * @param {React.CSSProperties} [props.style] Custom inline styles
+ * @returns {JSX.Element}
  *
  * @example
  * <Menu

@@ -39,9 +39,9 @@ export interface TextFieldProps {
  * @param {string} [props.supportingText] Supporting text or error message
  * @param {React.ReactNode} [props.leadingIcon] Leading icon element
  * @param {React.ReactNode} [props.trailingIcon] Trailing icon element
- * @param {(e: React.ChangeEvent<HTMLInputElement>) => void} [props.onChange] Change handler
- * @param {(e: React.FocusEvent<HTMLInputElement>) => void} [props.onBlur] Blur handler
- * @param {(e: React.FocusEvent<HTMLInputElement>) => void} [props.onFocus] Focus handler
+ * @param {Function} [props.onChange] Change handler
+ * @param {Function} [props.onBlur] Blur handler
+ * @param {Function} [props.onFocus] Focus handler
  * @param {string} [props.className] Additional CSS class names
  * @param {React.CSSProperties} [props.style] Custom inline styles
  * @returns {JSX.Element}

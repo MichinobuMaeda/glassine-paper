@@ -1,19 +1,17 @@
 import React, { type CSSProperties } from 'react';
-
 /**
  * Switch component props
  */
 export interface SwitchProps {
-  id?: string;
-  name?: string;
-  disabled?: boolean;
-  value?: string;
-  checked?: boolean;
-  onClick?: (e: React.MouseEvent<HTMLInputElement>) => void;
-  className?: string;
-  style?: CSSProperties;
+    id?: string;
+    name?: string;
+    disabled?: boolean;
+    value?: string;
+    checked?: boolean;
+    onClick?: (e: React.MouseEvent<HTMLInputElement>) => void;
+    className?: string;
+    style?: CSSProperties;
 }
-
 /**
  * Material Design 3 Switch component.
  *
@@ -36,31 +34,6 @@ export interface SwitchProps {
  *  onClick={() => setIsChecked(!isChecked)}
  * />
  */
-export const Switch: React.FC<SwitchProps> = ({
-  id,
-  name,
-  disabled = false,
-  value,
-  checked,
-  onClick,
-  className = '',
-  style = {},
-}) => {
-  const classes = ['switch', className];
-
-  return (
-    <input
-      id={id}
-      name={name}
-      className={classes.join(' ')}
-      type="checkbox"
-      style={style}
-      disabled={disabled}
-      value={value}
-      checked={checked}
-      onClick={(event) => (onClick ? onClick(event) : undefined)}
-    />
-  );
-};
-
+export declare const Switch: React.FC<SwitchProps>;
 export default Switch;
+//# sourceMappingURL=Switch.d.ts.map

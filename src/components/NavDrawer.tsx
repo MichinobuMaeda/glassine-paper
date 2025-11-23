@@ -71,7 +71,7 @@ const NavDrawerItem: React.FC<NavDrawerItemProps> = ({
  * @param {boolean} [props.items[].active] Active state
  * @param {boolean} [props.items[].hidden] Hidden state
  * @param {boolean} [props.items[].disabled] Disabled state
- * @param {() => void} [props.items[].onClick] Click handler
+ * @param {Function} [props.items[].onClick] Click handler
  * @param {string} [props.items[].href] Link URL (renders as anchor tag)
  * @param {string} [props.className] Additional CSS class names
  * @param {React.CSSProperties} [props.style] Custom inline styles
