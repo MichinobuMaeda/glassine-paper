@@ -37,14 +37,11 @@ CSS and some React components for Material Design 3
 
 ## Usage
 
-```css
-@import url('https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,500,500i,700,700i,900,900i');
-@import './glassine-paper-variables.css';
-@import './theme.css';
-@import './glassine-paper.min.css';
-```
+Download [glassine-paper.min.css](https://github.com/MichinobuMaeda/glassine-paper/blob/main/glassine-paper.min.css)
 
-`glassine-paper-variables.css` with default values
+Get [theme.css](https://pages.michinobu.jp/glassine-paper/theme/)
+
+Create `glassine-paper-variables.css`
 
 ```css
 :root {
@@ -66,12 +63,21 @@ CSS and some React components for Material Design 3
 }
 ```
 
+Import CSS files
+
+```css
+@import url('https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,500,500i,700,700i,900,900i');
+@import './glassine-paper-variables.css';
+@import './theme.css';
+@import './glassine-paper.min.css';
+```
+
 ### Installation
 
 Install from GitHub repository:
 
 ```bash
-npm install github:MichinobuMaeda/glassine-paper
+npm i glassine-paper
 ```
 
 ### Import CSS
