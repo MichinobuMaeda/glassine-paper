@@ -12,6 +12,7 @@ export interface TextFieldProps {
   placeholder?: string;
   value?: string | number;
   error?: boolean;
+  readonly?: boolean;
   disabled?: boolean;
   supportingText?: string;
   leadingIcon?: ReactNode;
@@ -21,6 +22,7 @@ export interface TextFieldProps {
   onFocus?: (e: React.FocusEvent<HTMLInputElement>) => void;
   className?: string;
   style?: CSSProperties;
+  innerStyle?: CSSProperties;
 }
 
 /**
@@ -35,6 +37,7 @@ export interface TextFieldProps {
  * @param {string} [props.placeholder] Placeholder text (should match label)
  * @param {(string | number)} [props.value] Current value
  * @param {boolean} [props.error] Error state
+ * @param {boolean} [props.readonly] Readonly state
  * @param {boolean} [props.disabled] Disabled state
  * @param {string} [props.supportingText] Supporting text or error message
  * @param {React.ReactNode} [props.leadingIcon] Leading icon element
@@ -44,6 +47,7 @@ export interface TextFieldProps {
  * @param {Function} [props.onFocus] Focus handler
  * @param {string} [props.className] Additional CSS class names
  * @param {React.CSSProperties} [props.style] Custom inline styles
+ * @param {React.CSSProperties} [props.innerStyle] Custom inline styles for input element
  * @returns {JSX.Element}
  *
  * @example
@@ -73,6 +77,7 @@ export const TextField: React.FC<TextFieldProps> = ({
   label = '',
   value,
   error = false,
+  readonly = false,
   disabled = false,
   supportingText,
   leadingIcon,
@@ -82,6 +87,7 @@ export const TextField: React.FC<TextFieldProps> = ({
   onFocus,
   className = '',
   style = {},
+  innerStyle = {},
 }) => {
   const classes = ['textfield', variant, error ? 'error' : '', className]
     .filter(Boolean)
@@ -97,10 +103,12 @@ export const TextField: React.FC<TextFieldProps> = ({
         type={type}
         value={value}
         placeholder={label}
+        readOnly={readonly}
         disabled={disabled}
         onChange={onChange}
         onBlur={onBlur}
         onFocus={onFocus}
+        style={innerStyle}
       />
       {trailingIcon && trailingIcon}
       {supportingText && <div>{supportingText}</div>}

@@ -1,4 +1,4 @@
-# API Documentation glassine-paper 1.1.2
+# API Documentation glassine-paper 1.1.3
 
 ## Modules
 
@@ -477,6 +477,7 @@ Material Design 3 TextField component
 | [props.placeholder] | <code>string</code> | Placeholder text (should match label) |
 | [props.value] | <code>string</code> \| <code>number</code> | Current value |
 | [props.error] | <code>boolean</code> | Error state |
+| [props.readonly] | <code>boolean</code> | Readonly state |
 | [props.disabled] | <code>boolean</code> | Disabled state |
 | [props.supportingText] | <code>string</code> | Supporting text or error message |
 | [props.leadingIcon] | <code>React.ReactNode</code> | Leading icon element |
@@ -486,6 +487,7 @@ Material Design 3 TextField component
 | [props.onFocus] | <code>function</code> | Focus handler |
 | [props.className] | <code>string</code> | Additional CSS class names |
 | [props.style] | <code>React.CSSProperties</code> | Custom inline styles |
+| [props.innerStyle] | <code>React.CSSProperties</code> | Custom inline styles for input element |
 
 **Example**  
 ```js

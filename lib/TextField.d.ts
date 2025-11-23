@@ -11,6 +11,7 @@ export interface TextFieldProps {
     placeholder?: string;
     value?: string | number;
     error?: boolean;
+    readonly?: boolean;
     disabled?: boolean;
     supportingText?: string;
     leadingIcon?: ReactNode;
@@ -20,6 +21,7 @@ export interface TextFieldProps {
     onFocus?: (e: React.FocusEvent<HTMLInputElement>) => void;
     className?: string;
     style?: CSSProperties;
+    innerStyle?: CSSProperties;
 }
 /**
  * Material Design 3 TextField component
@@ -33,6 +35,7 @@ export interface TextFieldProps {
  * @param {string} [props.placeholder] Placeholder text (should match label)
  * @param {(string | number)} [props.value] Current value
  * @param {boolean} [props.error] Error state
+ * @param {boolean} [props.readonly] Readonly state
  * @param {boolean} [props.disabled] Disabled state
  * @param {string} [props.supportingText] Supporting text or error message
  * @param {React.ReactNode} [props.leadingIcon] Leading icon element
@@ -42,6 +45,7 @@ export interface TextFieldProps {
  * @param {Function} [props.onFocus] Focus handler
  * @param {string} [props.className] Additional CSS class names
  * @param {React.CSSProperties} [props.style] Custom inline styles
+ * @param {React.CSSProperties} [props.innerStyle] Custom inline styles for input element
  * @returns {JSX.Element}
  *
  * @example
