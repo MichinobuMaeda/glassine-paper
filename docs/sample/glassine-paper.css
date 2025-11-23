@@ -1855,7 +1855,7 @@ body:has(.nav-drawer:not(.hidden).modal)::after {
   justify-content: flex-start;
   top: 0;
   left: 0;
-  height: 100%;
+  height: 100vh;
   position: sticky;
   background-color: light-dark(var(--color-light-surface-container), var(--color-dark-surface-container));
   color: light-dark(var(--color-light-on-surface), var(--color-dark-on-surface));

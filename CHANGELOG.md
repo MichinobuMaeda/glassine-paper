@@ -2,6 +2,12 @@
 
 All notable changes to this project will be documented in this file.
 
+## [1.1.1] - 2025-11-23
+
+### Fixed
+
+- CSS: 'height' of Navigation rail from '100%' to '100vh'
+
 ## [1.1.0] - 2025-11-23
 
 ### Added

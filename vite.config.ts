@@ -8,6 +8,9 @@ import { name, version } from './package.json';
 export default defineConfig({
   server: {
     port: 4000,
+    proxy: {
+      '/sample': 'http://localhost:8000/',
+    },
   },
   build: {
     outDir: 'docs/theme',
