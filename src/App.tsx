@@ -379,6 +379,7 @@ function App(): JSX.Element {
               <Button
                 variant="outlined"
                 size="sm"
+                label="Reset"
                 icon={<SvgResetSettings />}
                 onClick={() => {
                   setSeedColor(defaultSeedColor);
@@ -389,6 +390,7 @@ function App(): JSX.Element {
               <Button
                 variant="filled"
                 size="sm"
+                label="Theme.css"
                 icon={<SvgDownload />}
                 onClick={() =>
                   downloadFile(
