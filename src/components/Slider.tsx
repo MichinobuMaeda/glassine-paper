@@ -101,19 +101,6 @@ export const Slider: React.FC<SliderProps> = ({
       sliderRef.current?.style.setProperty(key, value);
     });
 
-    // Update datalist options
-    if (options.length > 0) {
-      const datalistOptions = sliderRef.current.querySelectorAll('.option');
-      datalistOptions.forEach((option) => {
-        const optionValue = Number(option.getAttribute('value'));
-        if (optionValue < value) {
-          option.classList.add('lower');
-        } else {
-          option.classList.remove('lower');
-        }
-      });
-    }
-
     if (showValueIndicator) {
       const indicator = sliderRef.current.querySelector(
         '.value-indicator'
@@ -168,7 +155,7 @@ export const Slider: React.FC<SliderProps> = ({
           {options.map((option) => (
             <div
               key={option.key ?? option.value}
-              className="option"
+              className={`option ${Number(option.value < value) ? 'lower' : ''}`}
               data-key={option.key ?? option.value}
               data-value={option.value}
             />

@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file.
 
+## [1.1.5] - 2025-11-24
+
+### Fixed
+
+- CSS: add element types button, a, checkbox and radio to leading icon and trailing icon of Text Field
+- React component: Slider props interface
+
 ## [1.1.4] - 2025-11-24
 
 ### Fixed

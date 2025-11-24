@@ -1346,22 +1346,17 @@ input.radio:not([disabled]):active:hover::before {
 .textfield:has(input:not(:focus):placeholder-shown) label {
   display: none;
 }
-.textfield:has(input:focus) label, .textfield:has(input:not(:placeholder-shown)) label {
+.textfield:has(input:not([type=checkbox]):not([type=radio]):focus) label, .textfield:has(input:not([type=checkbox]):not([type=radio]):not(:placeholder-shown)) label {
   display: inline-block;
   color: light-dark(var(--color-light-on-surface-variant), var(--color-dark-on-surface-variant));
 }
-.textfield:has(input:focus).error label, .textfield:has(input:not(:placeholder-shown)).error label {
+.textfield:has(input:not([type=checkbox]):not([type=radio]):focus).error label, .textfield:has(input:not([type=checkbox]):not([type=radio]):not(:placeholder-shown)).error label {
   color: light-dark(var(--color-light-error), var(--color-dark-error));
 }
-.textfield input:focus::placeholder,
-.textfield input:not(:placeholder-shown)::placeholder {
+.textfield input:not([type=checkbox]):not([type=radio]):focus::placeholder, .textfield input:not([type=checkbox]):not([type=radio]):not(:placeholder-shown)::placeholder {
   color: transparent;
 }
-.textfield input,
-.textfield input:focus,
-.textfield input:focus-visible,
-.textfield input:hover,
-.textfield input:active {
+.textfield input:not([type=checkbox]):not([type=radio]), .textfield input:not([type=checkbox]):not([type=radio]):focus, .textfield input:not([type=checkbox]):not([type=radio]):focus-visible, .textfield input:not([type=checkbox]):not([type=radio]):hover, .textfield input:not([type=checkbox]):not([type=radio]):active {
   border: none;
   outline: none;
   padding: 0;
@@ -1371,17 +1366,21 @@ input.radio:not([disabled]):active:hover::before {
   width: 100%;
   z-index: 1;
 }
-.textfield input::placeholder {
+.textfield input:not([type=checkbox]):not([type=radio])::placeholder {
   color: light-dark(var(--color-light-on-surface-variant), var(--color-dark-on-surface-variant));
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
 }
-.textfield:has(input:not(:focus):placeholder-shown).error input::placeholder {
+.textfield:has(input:not([type=checkbox]):not([type=radio]):not(:focus):placeholder-shown).error input:not([type=checkbox]):not([type=radio])::placeholder {
   color: light-dark(var(--color-light-error), var(--color-dark-error));
 }
 .textfield svg,
-.textfield img {
+.textfield img,
+.textfield button,
+.textfield a,
+.textfield input[type=checkbox],
+.textfield input[type=radio] {
   width: 1.5rem;
   min-width: 1.5rem;
   max-width: 1.5rem;
@@ -1416,7 +1415,7 @@ input.radio:not([disabled]):active:hover::before {
   background-color: light-dark(var(--color-light-surface-container-highest), var(--color-dark-surface-container-highest));
   border-bottom: 0.0625rem solid light-dark(var(--color-light-on-surface-variant), var(--color-dark-on-surface-variant));
 }
-.textfield.filled:has(input:focus)::after {
+.textfield.filled:has(input:not([type=checkbox]):not([type=radio]):focus)::after {
   content: "";
   position: absolute;
   bottom: 0;
@@ -1424,7 +1423,7 @@ input.radio:not([disabled]):active:hover::before {
   width: 100%;
   border-bottom: 0.1875rem solid light-dark(var(--color-light-primary), var(--color-dark-primary));
 }
-.textfield.filled:has(input:focus) input, .textfield.filled:has(input:not(:placeholder-shown)) input {
+.textfield.filled:has(input:not([type=checkbox]):not([type=radio]):focus) input:not([type=checkbox]):not([type=radio]), .textfield.filled:has(input:not([type=checkbox]):not([type=radio]):not(:placeholder-shown)) input:not([type=checkbox]):not([type=radio]) {
   margin-top: 1rem;
 }
 .textfield.filled label {
@@ -1435,22 +1434,30 @@ input.radio:not([disabled]):active:hover::before {
   max-width: calc(100% - 1.5rem);
 }
 .textfield.filled svg + label,
-.textfield.filled img + label {
+.textfield.filled img + label,
+.textfield.filled button + label,
+.textfield.filled a + label,
+.textfield.filled input[type=checkbox] + label,
+.textfield.filled input[type=radio] + label {
   left: 2.75rem;
   max-width: calc(100% - 2.75rem);
 }
-.textfield.filled:has(input + svg) label, .textfield.filled:has(input + img) label {
+.textfield.filled:has(input + svg) label, .textfield.filled:has(input + img) label, .textfield.filled:has(input + button) label, .textfield.filled:has(input + a) label, .textfield.filled:has(input + input[type=checkbox]) label, .textfield.filled:has(input + input[type=radio]) label {
   max-width: calc(100% - 2.75rem);
 }
 .textfield.filled:has(input + svg) svg + label,
 .textfield.filled:has(input + svg) img + label, .textfield.filled:has(input + img) svg + label,
-.textfield.filled:has(input + img) img + label {
+.textfield.filled:has(input + img) img + label, .textfield.filled:has(input + button) svg + label,
+.textfield.filled:has(input + button) img + label, .textfield.filled:has(input + a) svg + label,
+.textfield.filled:has(input + a) img + label, .textfield.filled:has(input + input[type=checkbox]) svg + label,
+.textfield.filled:has(input + input[type=checkbox]) img + label, .textfield.filled:has(input + input[type=radio]) svg + label,
+.textfield.filled:has(input + input[type=radio]) img + label {
   max-width: calc(100% - 2.75rem - 2.75rem);
 }
 .textfield.filled.error {
   border-color: light-dark(var(--color-light-error), var(--color-dark-error));
 }
-.textfield.filled.error:has(input:focus)::after, .textfield.filled.error:has(input:not(:placeholder-shown))::after {
+.textfield.filled.error:has(input:not([type=checkbox]):not([type=radio]):focus)::after, .textfield.filled.error:has(input:not([type=checkbox]):not([type=radio]):not(:placeholder-shown))::after {
   border-color: light-dark(var(--color-light-error), var(--color-dark-error));
 }
 .textfield.outlined {
@@ -1458,7 +1465,7 @@ input.radio:not([disabled]):active:hover::before {
   outline: 0.0625rem solid light-dark(var(--color-light-outline), var(--color-dark-outline));
   outline-offset: -0.0625rem;
 }
-.textfield.outlined:has(input:focus) {
+.textfield.outlined:has(input:not([type=checkbox]):not([type=radio]):focus) {
   outline: 0.1875rem solid light-dark(var(--color-light-primary), var(--color-dark-primary));
   outline-offset: -0.1875rem;
 }
@@ -1473,7 +1480,7 @@ input.radio:not([disabled]):active:hover::before {
 .textfield.outlined.error {
   outline-color: light-dark(var(--color-light-error), var(--color-dark-error));
 }
-.textfield.outlined.error:has(input:focus), .textfield.outlined.error:has(input:not([value=""])) {
+.textfield.outlined.error:has(input:not([type=checkbox]):not([type=radio]):focus), .textfield.outlined.error:has(input:not([type=checkbox]):not([type=radio]):not([value=""])) {
   outline-color: light-dark(var(--color-light-error), var(--color-dark-error));
 }
 
