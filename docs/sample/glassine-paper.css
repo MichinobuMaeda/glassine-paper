@@ -1393,6 +1393,7 @@ input.radio:not([disabled]):active:hover::before {
   outline: none;
   box-shadow: none;
   background-color: transparent;
+  color: light-dark(var(--color-light-on-surface-variant), var(--color-dark-on-surface-variant));
 }
 .textfield label input {
   height: 0;
