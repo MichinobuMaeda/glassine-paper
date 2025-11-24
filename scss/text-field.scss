@@ -40,7 +40,7 @@
   gap: $spacing-12px;
   background-color: transparent;
 
-  label {
+  label:not(:has(input)) {
     line-height: $spacing-16px;
     max-height: $spacing-16px;
     font-size: $spacing-12px;
@@ -48,7 +48,7 @@
   }
 
   &:has(input:not(:focus):placeholder-shown) {
-    label {
+    label:not(:has(input)) {
       display: none;
     }
   }
@@ -57,13 +57,13 @@
   &:has(
     input:not([type='checkbox']):not([type='radio']):not(:placeholder-shown)
   ) {
-    label {
+    label:not(:has(input)) {
       display: inline-block;
       @include fg-color(on-surface-variant);
     }
 
     &.error {
-      label {
+      label:not(:has(input)) {
         @include error-color;
       }
     }
@@ -114,9 +114,28 @@
   img,
   button,
   a,
-  input[type='checkbox'],
-  input[type='radio'] {
+  label:has(input) {
     @include square-size($spacing-24px);
+    padding: 0;
+    margin: 0;
+    border: none;
+    outline: none;
+    box-shadow: none;
+    background-color: transparent;
+  }
+
+  label {
+    input {
+      height: 0;
+      width: 0;
+      padding: 0;
+      margin: 0;
+      border: none;
+      outline: none;
+      box-shadow: none;
+      appearance: none;
+      position: absolute;
+    }
   }
 
   // Supporting text
@@ -132,6 +151,11 @@
     max-width: calc(100% - $spacing-32px);
 
     @include one-line-truncate;
+  }
+
+  &:has(> div),
+  &:has(> span) {
+    margin-bottom: $spacing-16px;
   }
 
   // Error states
@@ -178,7 +202,7 @@
       }
     }
 
-    label {
+    label:not(:has(input)) {
       position: absolute;
       top: $spacing-8px;
       left: $spacing-12px;
@@ -186,12 +210,11 @@
       max-width: calc(100% - $spacing-24px);
     }
 
-    svg + label,
-    img + label,
-    button + label,
-    a + label,
-    input[type='checkbox'] + label,
-    input[type='radio'] + label {
+    svg + label:not(:has(input)),
+    img + label:not(:has(input)),
+    button + label:not(:has(input)),
+    a + label:not(:has(input)),
+    label:has(input) + label:not(:has(input)) {
       left: $spacing-44px;
       max-width: calc(100% - $spacing-44px);
     }
@@ -200,14 +223,16 @@
     &:has(input + img),
     &:has(input + button),
     &:has(input + a),
-    &:has(input + input[type='checkbox']),
-    &:has(input + input[type='radio']) {
-      label {
+    &:has(input + label:has(input)) {
+      label:not(:has(input)) {
         max-width: calc(100% - $spacing-44px);
       }
 
-      svg + label,
-      img + label {
+      svg + label:not(:has(input)),
+      img + label:not(:has(input)),
+      button + label:not(:has(input)),
+      a + label:not(:has(input)),
+      label:has(input) + label:not(:has(input)) {
         max-width: calc(100% - $spacing-44px - $spacing-44px);
       }
     }
@@ -239,7 +264,7 @@
       outline-offset: -$spacing-3px;
     }
 
-    label {
+    label:not(:has(input)) {
       position: absolute;
       top: -$spacing-8px;
       left: $spacing-12px;

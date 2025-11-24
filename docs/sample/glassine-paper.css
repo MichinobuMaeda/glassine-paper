@@ -1335,7 +1335,7 @@ input.radio:not([disabled]):active:hover::before {
   gap: 0.75rem;
   background-color: transparent;
 }
-.textfield label {
+.textfield label:not(:has(input)) {
   line-height: 1rem;
   max-height: 1rem;
   font-size: 0.75rem;
@@ -1343,14 +1343,14 @@ input.radio:not([disabled]):active:hover::before {
   text-overflow: ellipsis;
   white-space: nowrap;
 }
-.textfield:has(input:not(:focus):placeholder-shown) label {
+.textfield:has(input:not(:focus):placeholder-shown) label:not(:has(input)) {
   display: none;
 }
-.textfield:has(input:not([type=checkbox]):not([type=radio]):focus) label, .textfield:has(input:not([type=checkbox]):not([type=radio]):not(:placeholder-shown)) label {
+.textfield:has(input:not([type=checkbox]):not([type=radio]):focus) label:not(:has(input)), .textfield:has(input:not([type=checkbox]):not([type=radio]):not(:placeholder-shown)) label:not(:has(input)) {
   display: inline-block;
   color: light-dark(var(--color-light-on-surface-variant), var(--color-dark-on-surface-variant));
 }
-.textfield:has(input:not([type=checkbox]):not([type=radio]):focus).error label, .textfield:has(input:not([type=checkbox]):not([type=radio]):not(:placeholder-shown)).error label {
+.textfield:has(input:not([type=checkbox]):not([type=radio]):focus).error label:not(:has(input)), .textfield:has(input:not([type=checkbox]):not([type=radio]):not(:placeholder-shown)).error label:not(:has(input)) {
   color: light-dark(var(--color-light-error), var(--color-dark-error));
 }
 .textfield input:not([type=checkbox]):not([type=radio]):focus::placeholder, .textfield input:not([type=checkbox]):not([type=radio]):not(:placeholder-shown)::placeholder {
@@ -1379,8 +1379,7 @@ input.radio:not([disabled]):active:hover::before {
 .textfield img,
 .textfield button,
 .textfield a,
-.textfield input[type=checkbox],
-.textfield input[type=radio] {
+.textfield label:has(input) {
   width: 1.5rem;
   min-width: 1.5rem;
   max-width: 1.5rem;
@@ -1388,6 +1387,23 @@ input.radio:not([disabled]):active:hover::before {
   min-height: 1.5rem;
   min-height: 1.5rem;
   max-height: 1.5rem;
+  padding: 0;
+  margin: 0;
+  border: none;
+  outline: none;
+  box-shadow: none;
+  background-color: transparent;
+}
+.textfield label input {
+  height: 0;
+  width: 0;
+  padding: 0;
+  margin: 0;
+  border: none;
+  outline: none;
+  box-shadow: none;
+  appearance: none;
+  position: absolute;
 }
 .textfield > div, .textfield > span {
   position: absolute;
@@ -1401,6 +1417,9 @@ input.radio:not([disabled]):active:hover::before {
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
+}
+.textfield:has(> div), .textfield:has(> span) {
+  margin-bottom: 1rem;
 }
 .textfield.error > div, .textfield.error > span {
   color: light-dark(var(--color-light-error), var(--color-dark-error));
@@ -1426,32 +1445,45 @@ input.radio:not([disabled]):active:hover::before {
 .textfield.filled:has(input:not([type=checkbox]):not([type=radio]):focus) input:not([type=checkbox]):not([type=radio]), .textfield.filled:has(input:not([type=checkbox]):not([type=radio]):not(:placeholder-shown)) input:not([type=checkbox]):not([type=radio]) {
   margin-top: 1rem;
 }
-.textfield.filled label {
+.textfield.filled label:not(:has(input)) {
   position: absolute;
   top: 0.5rem;
   left: 0.75rem;
   padding: 0 0.25rem;
   max-width: calc(100% - 1.5rem);
 }
-.textfield.filled svg + label,
-.textfield.filled img + label,
-.textfield.filled button + label,
-.textfield.filled a + label,
-.textfield.filled input[type=checkbox] + label,
-.textfield.filled input[type=radio] + label {
+.textfield.filled svg + label:not(:has(input)),
+.textfield.filled img + label:not(:has(input)),
+.textfield.filled button + label:not(:has(input)),
+.textfield.filled a + label:not(:has(input)),
+.textfield.filled label:has(input) + label:not(:has(input)) {
   left: 2.75rem;
   max-width: calc(100% - 2.75rem);
 }
-.textfield.filled:has(input + svg) label, .textfield.filled:has(input + img) label, .textfield.filled:has(input + button) label, .textfield.filled:has(input + a) label, .textfield.filled:has(input + input[type=checkbox]) label, .textfield.filled:has(input + input[type=radio]) label {
+.textfield.filled:has(input + svg) label:not(:has(input)), .textfield.filled:has(input + img) label:not(:has(input)), .textfield.filled:has(input + button) label:not(:has(input)), .textfield.filled:has(input + a) label:not(:has(input)), .textfield.filled:has(input + label:has(input)) label:not(:has(input)) {
   max-width: calc(100% - 2.75rem);
 }
-.textfield.filled:has(input + svg) svg + label,
-.textfield.filled:has(input + svg) img + label, .textfield.filled:has(input + img) svg + label,
-.textfield.filled:has(input + img) img + label, .textfield.filled:has(input + button) svg + label,
-.textfield.filled:has(input + button) img + label, .textfield.filled:has(input + a) svg + label,
-.textfield.filled:has(input + a) img + label, .textfield.filled:has(input + input[type=checkbox]) svg + label,
-.textfield.filled:has(input + input[type=checkbox]) img + label, .textfield.filled:has(input + input[type=radio]) svg + label,
-.textfield.filled:has(input + input[type=radio]) img + label {
+.textfield.filled:has(input + svg) svg + label:not(:has(input)),
+.textfield.filled:has(input + svg) img + label:not(:has(input)),
+.textfield.filled:has(input + svg) button + label:not(:has(input)),
+.textfield.filled:has(input + svg) a + label:not(:has(input)),
+.textfield.filled:has(input + svg) label:has(input) + label:not(:has(input)), .textfield.filled:has(input + img) svg + label:not(:has(input)),
+.textfield.filled:has(input + img) img + label:not(:has(input)),
+.textfield.filled:has(input + img) button + label:not(:has(input)),
+.textfield.filled:has(input + img) a + label:not(:has(input)),
+.textfield.filled:has(input + img) label:has(input) + label:not(:has(input)), .textfield.filled:has(input + button) svg + label:not(:has(input)),
+.textfield.filled:has(input + button) img + label:not(:has(input)),
+.textfield.filled:has(input + button) button + label:not(:has(input)),
+.textfield.filled:has(input + button) a + label:not(:has(input)),
+.textfield.filled:has(input + button) label:has(input) + label:not(:has(input)), .textfield.filled:has(input + a) svg + label:not(:has(input)),
+.textfield.filled:has(input + a) img + label:not(:has(input)),
+.textfield.filled:has(input + a) button + label:not(:has(input)),
+.textfield.filled:has(input + a) a + label:not(:has(input)),
+.textfield.filled:has(input + a) label:has(input) + label:not(:has(input)), .textfield.filled:has(input + label:has(input)) svg + label:not(:has(input)),
+.textfield.filled:has(input + label:has(input)) img + label:not(:has(input)),
+.textfield.filled:has(input + label:has(input)) button + label:not(:has(input)),
+.textfield.filled:has(input + label:has(input)) a + label:not(:has(input)),
+.textfield.filled:has(input + label:has(input)) label:has(input) + label:not(:has(input)) {
   max-width: calc(100% - 2.75rem - 2.75rem);
 }
 .textfield.filled.error {
@@ -1469,7 +1501,7 @@ input.radio:not([disabled]):active:hover::before {
   outline: 0.1875rem solid light-dark(var(--color-light-primary), var(--color-dark-primary));
   outline-offset: -0.1875rem;
 }
-.textfield.outlined label {
+.textfield.outlined label:not(:has(input)) {
   position: absolute;
   top: -0.5rem;
   left: 0.75rem;

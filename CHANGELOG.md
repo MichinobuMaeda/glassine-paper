@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file.
 
+## [1.1.6] - 2025-11-24
+
+### Fixed
+
+- CSS: Text Field layout
+- React component: Slider layout
+
 ## [1.1.5] - 2025-11-24
 
 ### Fixed

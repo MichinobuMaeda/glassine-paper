@@ -155,7 +155,7 @@ export const Slider: React.FC<SliderProps> = ({
           {options.map((option) => (
             <div
               key={option.key ?? option.value}
-              className={`option ${Number(option.value < value) ? 'lower' : ''}`}
+              className={`option ${option.value < value ? 'lower' : ''}`}
               data-key={option.key ?? option.value}
               data-value={option.value}
             />
