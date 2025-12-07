@@ -10,15 +10,16 @@ export interface TextFieldProps {
     label?: string;
     placeholder?: string;
     value?: string | number;
+    lineCount?: number;
     error?: boolean;
     readonly?: boolean;
     disabled?: boolean;
     supportingText?: string;
     leadingIcon?: ReactNode;
     trailingIcon?: ReactNode;
-    onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void;
-    onBlur?: (e: React.FocusEvent<HTMLInputElement>) => void;
-    onFocus?: (e: React.FocusEvent<HTMLInputElement>) => void;
+    onChange?: (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => void;
+    onBlur?: (e: React.FocusEvent<HTMLInputElement | HTMLTextAreaElement>) => void;
+    onFocus?: (e: React.FocusEvent<HTMLInputElement | HTMLTextAreaElement>) => void;
     className?: string;
     style?: CSSProperties;
     innerStyle?: CSSProperties;
@@ -34,6 +35,7 @@ export interface TextFieldProps {
  * @param {string} props.label Label text
  * @param {string} [props.placeholder] Placeholder text (should match label)
  * @param {(string | number)} [props.value] Current value
+ * @param {number} [props.lineCount] Number of lines for multiline input
  * @param {boolean} [props.error] Error state
  * @param {boolean} [props.readonly] Readonly state
  * @param {boolean} [props.disabled] Disabled state

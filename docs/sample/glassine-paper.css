@@ -1329,13 +1329,13 @@ input.radio:not([disabled]):active:hover::before {
   flex-direction: row;
   justify-items: start;
   align-items: center;
-  height: 3.5rem;
+  min-height: 3.5rem;
   margin: 0;
   padding: 0 0.75rem;
   gap: 0.75rem;
   background-color: transparent;
 }
-.textfield label:not(:has(input)) {
+.textfield label:not(:has(input)):not(:has(textarea)) {
   line-height: 1rem;
   max-height: 1rem;
   font-size: 0.75rem;
@@ -1343,43 +1343,54 @@ input.radio:not([disabled]):active:hover::before {
   text-overflow: ellipsis;
   white-space: nowrap;
 }
-.textfield:has(input:not(:focus):placeholder-shown) label:not(:has(input)) {
+.textfield:has(input:not(:focus):placeholder-shown) label:not(:has(input)):not(:has(textarea)), .textfield:has(textarea:not(:focus):placeholder-shown) label:not(:has(input)):not(:has(textarea)) {
   display: none;
 }
-.textfield:has(input:not([type=checkbox]):not([type=radio]):focus) label:not(:has(input)), .textfield:has(input:not([type=checkbox]):not([type=radio]):not(:placeholder-shown)) label:not(:has(input)) {
+.textfield:has(input:not([type=checkbox]):not([type=radio]):focus) label:not(:has(input)):not(:has(textarea)), .textfield:has(input:not([type=checkbox]):not([type=radio]):not(:placeholder-shown)) label:not(:has(input)):not(:has(textarea)), .textfield:has(textarea:not(:placeholder-shown)) label:not(:has(input)):not(:has(textarea)) {
   display: inline-block;
   color: light-dark(var(--color-light-on-surface-variant), var(--color-dark-on-surface-variant));
 }
-.textfield:has(input:not([type=checkbox]):not([type=radio]):focus).error label:not(:has(input)), .textfield:has(input:not([type=checkbox]):not([type=radio]):not(:placeholder-shown)).error label:not(:has(input)) {
+.textfield:has(input:not([type=checkbox]):not([type=radio]):focus).error label:not(:has(input)):not(:has(textarea)), .textfield:has(input:not([type=checkbox]):not([type=radio]):not(:placeholder-shown)).error label:not(:has(input)):not(:has(textarea)), .textfield:has(textarea:not(:placeholder-shown)).error label:not(:has(input)):not(:has(textarea)) {
   color: light-dark(var(--color-light-error), var(--color-dark-error));
 }
-.textfield input:not([type=checkbox]):not([type=radio]):focus::placeholder, .textfield input:not([type=checkbox]):not([type=radio]):not(:placeholder-shown)::placeholder {
+.textfield input:not([type=checkbox]):not([type=radio]):focus::placeholder, .textfield input:not([type=checkbox]):not([type=radio]):not(:placeholder-shown)::placeholder,
+.textfield textarea:focus::placeholder,
+.textfield textarea:not(:placeholder-shown)::placeholder {
   color: transparent;
 }
-.textfield input:not([type=checkbox]):not([type=radio]), .textfield input:not([type=checkbox]):not([type=radio]):focus, .textfield input:not([type=checkbox]):not([type=radio]):focus-visible, .textfield input:not([type=checkbox]):not([type=radio]):hover, .textfield input:not([type=checkbox]):not([type=radio]):active {
+.textfield input:not([type=checkbox]):not([type=radio]), .textfield input:not([type=checkbox]):not([type=radio]):focus, .textfield input:not([type=checkbox]):not([type=radio]):focus-visible, .textfield input:not([type=checkbox]):not([type=radio]):hover, .textfield input:not([type=checkbox]):not([type=radio]):active,
+.textfield textarea,
+.textfield textarea:focus,
+.textfield textarea:focus-visible,
+.textfield textarea:hover,
+.textfield textarea:active {
   border: none;
   outline: none;
   padding: 0;
   margin: 0;
   background-color: transparent;
-  height: 1.5rem;
-  width: 100%;
   z-index: 1;
 }
-.textfield input:not([type=checkbox]):not([type=radio])::placeholder {
+.textfield input:not([type=checkbox]):not([type=radio])::placeholder,
+.textfield textarea::placeholder {
   color: light-dark(var(--color-light-on-surface-variant), var(--color-dark-on-surface-variant));
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
 }
-.textfield:has(input:not([type=checkbox]):not([type=radio]):not(:focus):placeholder-shown).error input:not([type=checkbox]):not([type=radio])::placeholder {
+.textfield input:not([type=checkbox]):not([type=radio]) {
+  height: 1.5rem;
+  width: 100%;
+}
+.textfield:has(input:not([type=checkbox]):not([type=radio]):not(:focus):placeholder-shown).error input:not([type=checkbox]):not([type=radio])::placeholder, .textfield:has(textarea:not(:focus):placeholder-shown).error input:not([type=checkbox]):not([type=radio])::placeholder {
   color: light-dark(var(--color-light-error), var(--color-dark-error));
 }
 .textfield svg,
 .textfield img,
 .textfield button,
 .textfield a,
-.textfield label:has(input) {
+.textfield label:has(input),
+.textfield label:has(textarea) {
   width: 1.5rem;
   min-width: 1.5rem;
   max-width: 1.5rem;
@@ -1395,7 +1406,8 @@ input.radio:not([disabled]):active:hover::before {
   background-color: transparent;
   color: light-dark(var(--color-light-on-surface-variant), var(--color-dark-on-surface-variant));
 }
-.textfield label input {
+.textfield label input,
+.textfield label textarea {
   height: 0;
   width: 0;
   padding: 0;
@@ -1408,7 +1420,7 @@ input.radio:not([disabled]):active:hover::before {
 }
 .textfield > div, .textfield > span {
   position: absolute;
-  top: 3.5rem;
+  bottom: -1.125rem;
   left: 0.75rem;
   font-size: 0.75rem;
   display: block;
@@ -1443,54 +1455,88 @@ input.radio:not([disabled]):active:hover::before {
   width: 100%;
   border-bottom: 0.1875rem solid light-dark(var(--color-light-primary), var(--color-dark-primary));
 }
-.textfield.filled:has(input:not([type=checkbox]):not([type=radio]):focus) input:not([type=checkbox]):not([type=radio]), .textfield.filled:has(input:not([type=checkbox]):not([type=radio]):not(:placeholder-shown)) input:not([type=checkbox]):not([type=radio]) {
+.textfield.filled:has(input:not([type=checkbox]):not([type=radio]):focus) input:not([type=checkbox]):not([type=radio]),
+.textfield.filled:has(input:not([type=checkbox]):not([type=radio]):focus) textarea, .textfield.filled:has(input:not([type=checkbox]):not([type=radio]):not(:placeholder-shown)) input:not([type=checkbox]):not([type=radio]),
+.textfield.filled:has(input:not([type=checkbox]):not([type=radio]):not(:placeholder-shown)) textarea, .textfield.filled:has(textarea:focus) input:not([type=checkbox]):not([type=radio]),
+.textfield.filled:has(textarea:focus) textarea, .textfield.filled:has(textarea:not(:placeholder-shown)) input:not([type=checkbox]):not([type=radio]),
+.textfield.filled:has(textarea:not(:placeholder-shown)) textarea {
   margin-top: 1rem;
 }
-.textfield.filled label:not(:has(input)) {
+.textfield.filled textarea {
+  height: auto;
+  width: 100%;
+}
+.textfield.filled textarea, .textfield.filled textarea:hover, .textfield.filled textarea:active {
+  padding-top: 1.5rem;
+}
+.textfield.filled textarea:focus, .textfield.filled textarea:focus-visible, .textfield.filled textarea:not(:placeholder-shown) {
+  padding-top: 0.5rem;
+}
+.textfield.filled label:not(:has(input)):not(:has(textarea)) {
   position: absolute;
   top: 0.5rem;
   left: 0.75rem;
   padding: 0 0.25rem;
   max-width: calc(100% - 1.5rem);
 }
-.textfield.filled svg + label:not(:has(input)),
-.textfield.filled img + label:not(:has(input)),
-.textfield.filled button + label:not(:has(input)),
-.textfield.filled a + label:not(:has(input)),
-.textfield.filled label:has(input) + label:not(:has(input)) {
+.textfield.filled svg + label:not(:has(input)):not(:has(textarea)),
+.textfield.filled img + label:not(:has(input)):not(:has(textarea)),
+.textfield.filled button + label:not(:has(input)):not(:has(textarea)),
+.textfield.filled a + label:not(:has(input)):not(:has(textarea)),
+.textfield.filled label:has(input) + label:not(:has(input)):not(:has(textarea)) {
   left: 2.75rem;
   max-width: calc(100% - 2.75rem);
 }
-.textfield.filled:has(input + svg) label:not(:has(input)), .textfield.filled:has(input + img) label:not(:has(input)), .textfield.filled:has(input + button) label:not(:has(input)), .textfield.filled:has(input + a) label:not(:has(input)), .textfield.filled:has(input + label:has(input)) label:not(:has(input)) {
+.textfield.filled:has(input + svg) label:not(:has(input)):not(:has(textarea)), .textfield.filled:has(input + img) label:not(:has(input)):not(:has(textarea)), .textfield.filled:has(input + button) label:not(:has(input)):not(:has(textarea)), .textfield.filled:has(input + a) label:not(:has(input)):not(:has(textarea)), .textfield.filled:has(input + label:has(input)) label:not(:has(input)):not(:has(textarea)), .textfield.filled:has(textarea + svg) label:not(:has(input)):not(:has(textarea)), .textfield.filled:has(textarea + img) label:not(:has(input)):not(:has(textarea)), .textfield.filled:has(textarea + button) label:not(:has(input)):not(:has(textarea)), .textfield.filled:has(textarea + a) label:not(:has(input)):not(:has(textarea)), .textfield.filled:has(textarea + label:has(textarea)) label:not(:has(input)):not(:has(textarea)) {
   max-width: calc(100% - 2.75rem);
 }
-.textfield.filled:has(input + svg) svg + label:not(:has(input)),
-.textfield.filled:has(input + svg) img + label:not(:has(input)),
-.textfield.filled:has(input + svg) button + label:not(:has(input)),
-.textfield.filled:has(input + svg) a + label:not(:has(input)),
-.textfield.filled:has(input + svg) label:has(input) + label:not(:has(input)), .textfield.filled:has(input + img) svg + label:not(:has(input)),
-.textfield.filled:has(input + img) img + label:not(:has(input)),
-.textfield.filled:has(input + img) button + label:not(:has(input)),
-.textfield.filled:has(input + img) a + label:not(:has(input)),
-.textfield.filled:has(input + img) label:has(input) + label:not(:has(input)), .textfield.filled:has(input + button) svg + label:not(:has(input)),
-.textfield.filled:has(input + button) img + label:not(:has(input)),
-.textfield.filled:has(input + button) button + label:not(:has(input)),
-.textfield.filled:has(input + button) a + label:not(:has(input)),
-.textfield.filled:has(input + button) label:has(input) + label:not(:has(input)), .textfield.filled:has(input + a) svg + label:not(:has(input)),
-.textfield.filled:has(input + a) img + label:not(:has(input)),
-.textfield.filled:has(input + a) button + label:not(:has(input)),
-.textfield.filled:has(input + a) a + label:not(:has(input)),
-.textfield.filled:has(input + a) label:has(input) + label:not(:has(input)), .textfield.filled:has(input + label:has(input)) svg + label:not(:has(input)),
-.textfield.filled:has(input + label:has(input)) img + label:not(:has(input)),
-.textfield.filled:has(input + label:has(input)) button + label:not(:has(input)),
-.textfield.filled:has(input + label:has(input)) a + label:not(:has(input)),
-.textfield.filled:has(input + label:has(input)) label:has(input) + label:not(:has(input)) {
+.textfield.filled:has(input + svg) svg + label:not(:has(input)):not(:has(textarea)),
+.textfield.filled:has(input + svg) img + label:not(:has(input)):not(:has(textarea)),
+.textfield.filled:has(input + svg) button + label:not(:has(input)):not(:has(textarea)),
+.textfield.filled:has(input + svg) a + label:not(:has(input)):not(:has(textarea)),
+.textfield.filled:has(input + svg) label:has(input) + label:not(:has(input)):not(:has(textarea)), .textfield.filled:has(input + img) svg + label:not(:has(input)):not(:has(textarea)),
+.textfield.filled:has(input + img) img + label:not(:has(input)):not(:has(textarea)),
+.textfield.filled:has(input + img) button + label:not(:has(input)):not(:has(textarea)),
+.textfield.filled:has(input + img) a + label:not(:has(input)):not(:has(textarea)),
+.textfield.filled:has(input + img) label:has(input) + label:not(:has(input)):not(:has(textarea)), .textfield.filled:has(input + button) svg + label:not(:has(input)):not(:has(textarea)),
+.textfield.filled:has(input + button) img + label:not(:has(input)):not(:has(textarea)),
+.textfield.filled:has(input + button) button + label:not(:has(input)):not(:has(textarea)),
+.textfield.filled:has(input + button) a + label:not(:has(input)):not(:has(textarea)),
+.textfield.filled:has(input + button) label:has(input) + label:not(:has(input)):not(:has(textarea)), .textfield.filled:has(input + a) svg + label:not(:has(input)):not(:has(textarea)),
+.textfield.filled:has(input + a) img + label:not(:has(input)):not(:has(textarea)),
+.textfield.filled:has(input + a) button + label:not(:has(input)):not(:has(textarea)),
+.textfield.filled:has(input + a) a + label:not(:has(input)):not(:has(textarea)),
+.textfield.filled:has(input + a) label:has(input) + label:not(:has(input)):not(:has(textarea)), .textfield.filled:has(input + label:has(input)) svg + label:not(:has(input)):not(:has(textarea)),
+.textfield.filled:has(input + label:has(input)) img + label:not(:has(input)):not(:has(textarea)),
+.textfield.filled:has(input + label:has(input)) button + label:not(:has(input)):not(:has(textarea)),
+.textfield.filled:has(input + label:has(input)) a + label:not(:has(input)):not(:has(textarea)),
+.textfield.filled:has(input + label:has(input)) label:has(input) + label:not(:has(input)):not(:has(textarea)), .textfield.filled:has(textarea + svg) svg + label:not(:has(input)):not(:has(textarea)),
+.textfield.filled:has(textarea + svg) img + label:not(:has(input)):not(:has(textarea)),
+.textfield.filled:has(textarea + svg) button + label:not(:has(input)):not(:has(textarea)),
+.textfield.filled:has(textarea + svg) a + label:not(:has(input)):not(:has(textarea)),
+.textfield.filled:has(textarea + svg) label:has(input) + label:not(:has(input)):not(:has(textarea)), .textfield.filled:has(textarea + img) svg + label:not(:has(input)):not(:has(textarea)),
+.textfield.filled:has(textarea + img) img + label:not(:has(input)):not(:has(textarea)),
+.textfield.filled:has(textarea + img) button + label:not(:has(input)):not(:has(textarea)),
+.textfield.filled:has(textarea + img) a + label:not(:has(input)):not(:has(textarea)),
+.textfield.filled:has(textarea + img) label:has(input) + label:not(:has(input)):not(:has(textarea)), .textfield.filled:has(textarea + button) svg + label:not(:has(input)):not(:has(textarea)),
+.textfield.filled:has(textarea + button) img + label:not(:has(input)):not(:has(textarea)),
+.textfield.filled:has(textarea + button) button + label:not(:has(input)):not(:has(textarea)),
+.textfield.filled:has(textarea + button) a + label:not(:has(input)):not(:has(textarea)),
+.textfield.filled:has(textarea + button) label:has(input) + label:not(:has(input)):not(:has(textarea)), .textfield.filled:has(textarea + a) svg + label:not(:has(input)):not(:has(textarea)),
+.textfield.filled:has(textarea + a) img + label:not(:has(input)):not(:has(textarea)),
+.textfield.filled:has(textarea + a) button + label:not(:has(input)):not(:has(textarea)),
+.textfield.filled:has(textarea + a) a + label:not(:has(input)):not(:has(textarea)),
+.textfield.filled:has(textarea + a) label:has(input) + label:not(:has(input)):not(:has(textarea)), .textfield.filled:has(textarea + label:has(textarea)) svg + label:not(:has(input)):not(:has(textarea)),
+.textfield.filled:has(textarea + label:has(textarea)) img + label:not(:has(input)):not(:has(textarea)),
+.textfield.filled:has(textarea + label:has(textarea)) button + label:not(:has(input)):not(:has(textarea)),
+.textfield.filled:has(textarea + label:has(textarea)) a + label:not(:has(input)):not(:has(textarea)),
+.textfield.filled:has(textarea + label:has(textarea)) label:has(input) + label:not(:has(input)):not(:has(textarea)) {
   max-width: calc(100% - 2.75rem - 2.75rem);
 }
 .textfield.filled.error {
   border-color: light-dark(var(--color-light-error), var(--color-dark-error));
 }
-.textfield.filled.error:has(input:not([type=checkbox]):not([type=radio]):focus)::after, .textfield.filled.error:has(input:not([type=checkbox]):not([type=radio]):not(:placeholder-shown))::after {
+.textfield.filled.error:has(input:not([type=checkbox]):not([type=radio]):focus)::after, .textfield.filled.error:has(input:not([type=checkbox]):not([type=radio]):not(:placeholder-shown))::after, .textfield.filled.error:has(textarea:focus)::after, .textfield.filled.error:has(textarea:not(:placeholder-shown))::after {
   border-color: light-dark(var(--color-light-error), var(--color-dark-error));
 }
 .textfield.outlined {
@@ -1498,11 +1544,22 @@ input.radio:not([disabled]):active:hover::before {
   outline: 0.0625rem solid light-dark(var(--color-light-outline), var(--color-dark-outline));
   outline-offset: -0.0625rem;
 }
-.textfield.outlined:has(input:not([type=checkbox]):not([type=radio]):focus) {
+.textfield.outlined:has(input:not([type=checkbox]):not([type=radio]):focus), .textfield.outlined:has(textarea:focus) {
   outline: 0.1875rem solid light-dark(var(--color-light-primary), var(--color-dark-primary));
   outline-offset: -0.1875rem;
 }
-.textfield.outlined label:not(:has(input)) {
+.textfield.outlined textarea {
+  height: auto;
+  width: 100%;
+}
+.textfield.outlined textarea, .textfield.outlined textarea:hover, .textfield.outlined textarea:active {
+  padding-top: 1.5rem;
+}
+.textfield.outlined textarea:focus, .textfield.outlined textarea:focus-visible, .textfield.outlined textarea:not(:placeholder-shown) {
+  padding-top: 0.75rem;
+  padding-bottom: 0.75rem;
+}
+.textfield.outlined label:not(:has(input)):not(:has(textarea)) {
   position: absolute;
   top: -0.5rem;
   left: 0.75rem;
@@ -1513,7 +1570,7 @@ input.radio:not([disabled]):active:hover::before {
 .textfield.outlined.error {
   outline-color: light-dark(var(--color-light-error), var(--color-dark-error));
 }
-.textfield.outlined.error:has(input:not([type=checkbox]):not([type=radio]):focus), .textfield.outlined.error:has(input:not([type=checkbox]):not([type=radio]):not([value=""])) {
+.textfield.outlined.error:has(input:not([type=checkbox]):not([type=radio]):focus), .textfield.outlined.error:has(input:not([type=checkbox]):not([type=radio]):not([value=""])), .textfield.outlined.error:has(textarea:focus), .textfield.outlined.error:has(textarea:not([value=""])) {
   outline-color: light-dark(var(--color-light-error), var(--color-dark-error));
 }
 

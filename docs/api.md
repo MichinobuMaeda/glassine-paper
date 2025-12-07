@@ -1,4 +1,4 @@
-# API Documentation glassine-paper 1.1.7
+# API Documentation glassine-paper 1.2.0
 
 ## Modules
 
@@ -74,9 +74,12 @@ Material Design 3 App bar component
 | [props.items[].disabled] | <code>boolean</code> | Disabled state |
 | [props.items[].onClick] | <code>function</code> | Click handler |
 | [props.items[].href] | <code>string</code> | Link URL (renders as anchor tag) |
+| [props.items[].style] | <code>React.CSSProperties</code> | Custom inline styles for the item |
+| [props.items[].className] | <code>string</code> | Additional CSS classes for the item |
 | [props.sticky] | <code>boolean</code> | Whether the app bar sticks to the top |
 | [props.scrolled] | <code>boolean</code> | Whether the content is scrolled (affects styling) |
 | [props.style] | <code>React.CSSProperties</code> | Custom inline styles |
+| [props.className] | <code>string</code> | Additional CSS classes |
 
 **Example**  
 ```js
@@ -476,6 +479,7 @@ Material Design 3 TextField component
 | props.label | <code>string</code> | Label text |
 | [props.placeholder] | <code>string</code> | Placeholder text (should match label) |
 | [props.value] | <code>string</code> \| <code>number</code> | Current value |
+| [props.lineCount] | <code>number</code> | Number of lines for multiline input |
 | [props.error] | <code>boolean</code> | Error state |
 | [props.readonly] | <code>boolean</code> | Readonly state |
 | [props.disabled] | <code>boolean</code> | Disabled state |

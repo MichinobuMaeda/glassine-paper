@@ -4,6 +4,8 @@
 @use 'variables' as *;
 @use 'mixins' as *;
 
+$textfield-height: $spacing-56px;
+
 // Mixins
 @mixin placeholder-small {
   font-size: $spacing-12px;
@@ -34,21 +36,22 @@
   flex-direction: row;
   justify-items: start;
   align-items: center;
-  height: $spacing-56px;
+  min-height: $textfield-height;
   margin: 0;
   padding: 0 $spacing-12px;
   gap: $spacing-12px;
   background-color: transparent;
 
-  label:not(:has(input)) {
+  label:not(:has(input)):not(:has(textarea)) {
     line-height: $spacing-16px;
     max-height: $spacing-16px;
     font-size: $spacing-12px;
     @include one-line-truncate;
   }
 
-  &:has(input:not(:focus):placeholder-shown) {
-    label:not(:has(input)) {
+  &:has(input:not(:focus):placeholder-shown),
+  &:has(textarea:not(:focus):placeholder-shown) {
+    label:not(:has(input)):not(:has(textarea)) {
       display: none;
     }
   }
@@ -56,20 +59,22 @@
   &:has(input:not([type='checkbox']):not([type='radio']):focus),
   &:has(
     input:not([type='checkbox']):not([type='radio']):not(:placeholder-shown)
-  ) {
-    label:not(:has(input)) {
+  ),
+  &:has(textarea:not(:placeholder-shown)) {
+    label:not(:has(input)):not(:has(textarea)) {
       display: inline-block;
       @include fg-color(on-surface-variant);
     }
 
     &.error {
-      label:not(:has(input)) {
+      label:not(:has(input)):not(:has(textarea)) {
         @include error-color;
       }
     }
   }
 
-  input:not([type='checkbox']):not([type='radio']) {
+  input:not([type='checkbox']):not([type='radio']),
+  textarea {
     &:focus,
     &:not(:placeholder-shown) {
       &::placeholder {
@@ -87,10 +92,6 @@
       padding: 0;
       margin: 0;
       background-color: transparent;
-
-      height: $spacing-24px;
-      width: 100%;
-
       z-index: 1;
     }
 
@@ -100,11 +101,17 @@
     }
   }
 
+  input:not([type='checkbox']):not([type='radio']) {
+    height: $spacing-24px;
+    width: 100%;
+  }
+
   &:has(
       input:not([type='checkbox']):not([type='radio']):not(
           :focus
         ):placeholder-shown
-    ).error {
+    ).error,
+  &:has(textarea:not(:focus):placeholder-shown).error {
     input:not([type='checkbox']):not([type='radio'])::placeholder {
       @include error-color;
     }
@@ -114,7 +121,8 @@
   img,
   button,
   a,
-  label:has(input) {
+  label:has(input),
+  label:has(textarea) {
     @include square-size($spacing-24px);
     padding: 0;
     margin: 0;
@@ -129,7 +137,8 @@
   }
 
   label {
-    input {
+    input,
+    textarea {
       height: 0;
       width: 0;
       padding: 0;
@@ -146,7 +155,7 @@
   & > div,
   & > span {
     position: absolute;
-    top: $spacing-56px;
+    bottom: -$spacing-18px;
     left: $spacing-12px;
     font-size: $spacing-12px;
     display: block;
@@ -200,13 +209,33 @@
     &:has(input:not([type='checkbox']):not([type='radio']):focus),
     &:has(
       input:not([type='checkbox']):not([type='radio']):not(:placeholder-shown)
-    ) {
-      input:not([type='checkbox']):not([type='radio']) {
+    ),
+    &:has(textarea:focus),
+    &:has(textarea:not(:placeholder-shown)) {
+      input:not([type='checkbox']):not([type='radio']),
+      textarea {
         margin-top: $spacing-16px;
       }
     }
 
-    label:not(:has(input)) {
+    textarea {
+      height: auto;
+      width: 100%;
+
+      &,
+      &:hover,
+      &:active {
+        padding-top: $spacing-24px;
+      }
+
+      &:focus,
+      &:focus-visible,
+      &:not(:placeholder-shown) {
+        padding-top: $spacing-8px;
+      }
+    }
+
+    label:not(:has(input)):not(:has(textarea)) {
       position: absolute;
       top: $spacing-8px;
       left: $spacing-12px;
@@ -214,11 +243,11 @@
       max-width: calc(100% - $spacing-24px);
     }
 
-    svg + label:not(:has(input)),
-    img + label:not(:has(input)),
-    button + label:not(:has(input)),
-    a + label:not(:has(input)),
-    label:has(input) + label:not(:has(input)) {
+    svg + label:not(:has(input)):not(:has(textarea)),
+    img + label:not(:has(input)):not(:has(textarea)),
+    button + label:not(:has(input)):not(:has(textarea)),
+    a + label:not(:has(input)):not(:has(textarea)),
+    label:has(input) + label:not(:has(input)):not(:has(textarea)) {
       left: $spacing-44px;
       max-width: calc(100% - $spacing-44px);
     }
@@ -227,16 +256,21 @@
     &:has(input + img),
     &:has(input + button),
     &:has(input + a),
-    &:has(input + label:has(input)) {
-      label:not(:has(input)) {
+    &:has(input + label:has(input)),
+    &:has(textarea + svg),
+    &:has(textarea + img),
+    &:has(textarea + button),
+    &:has(textarea + a),
+    &:has(textarea + label:has(textarea)) {
+      label:not(:has(input)):not(:has(textarea)) {
         max-width: calc(100% - $spacing-44px);
       }
 
-      svg + label:not(:has(input)),
-      img + label:not(:has(input)),
-      button + label:not(:has(input)),
-      a + label:not(:has(input)),
-      label:has(input) + label:not(:has(input)) {
+      svg + label:not(:has(input)):not(:has(textarea)),
+      img + label:not(:has(input)):not(:has(textarea)),
+      button + label:not(:has(input)):not(:has(textarea)),
+      a + label:not(:has(input)):not(:has(textarea)),
+      label:has(input) + label:not(:has(input)):not(:has(textarea)) {
         max-width: calc(100% - $spacing-44px - $spacing-44px);
       }
     }
@@ -249,7 +283,9 @@
           input:not([type='checkbox']):not([type='radio']):not(
               :placeholder-shown
             )
-        )::after {
+        )::after,
+      &:has(textarea:focus)::after,
+      &:has(textarea:not(:placeholder-shown))::after {
         @include error-border;
       }
     }
@@ -262,13 +298,32 @@
       light-dark(var(--color-light-outline), var(--color-dark-outline));
     outline-offset: -$spacing-1px;
 
-    &:has(input:not([type='checkbox']):not([type='radio']):focus) {
+    &:has(input:not([type='checkbox']):not([type='radio']):focus),
+    &:has(textarea:focus) {
       outline: $spacing-3px solid
         light-dark(var(--color-light-primary), var(--color-dark-primary));
       outline-offset: -$spacing-3px;
     }
 
-    label:not(:has(input)) {
+    textarea {
+      height: auto;
+      width: 100%;
+
+      &,
+      &:hover,
+      &:active {
+        padding-top: $spacing-24px;
+      }
+
+      &:focus,
+      &:focus-visible,
+      &:not(:placeholder-shown) {
+        padding-top: $spacing-12px;
+        padding-bottom: $spacing-12px;
+      }
+    }
+
+    label:not(:has(input)):not(:has(textarea)) {
       position: absolute;
       top: -$spacing-8px;
       left: $spacing-12px;
@@ -281,7 +336,9 @@
       @include error-outline;
 
       &:has(input:not([type='checkbox']):not([type='radio']):focus),
-      &:has(input:not([type='checkbox']):not([type='radio']):not([value=''])) {
+      &:has(input:not([type='checkbox']):not([type='radio']):not([value=''])),
+      &:has(textarea:focus),
+      &:has(textarea:not([value=''])) {
         @include error-outline;
       }
     }

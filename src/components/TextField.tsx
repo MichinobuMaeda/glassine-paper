@@ -11,15 +11,22 @@ export interface TextFieldProps {
   label?: string;
   placeholder?: string;
   value?: string | number;
+  lineCount?: number;
   error?: boolean;
   readonly?: boolean;
   disabled?: boolean;
   supportingText?: string;
   leadingIcon?: ReactNode;
   trailingIcon?: ReactNode;
-  onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void;
-  onBlur?: (e: React.FocusEvent<HTMLInputElement>) => void;
-  onFocus?: (e: React.FocusEvent<HTMLInputElement>) => void;
+  onChange?: (
+    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+  ) => void;
+  onBlur?: (
+    e: React.FocusEvent<HTMLInputElement | HTMLTextAreaElement>
+  ) => void;
+  onFocus?: (
+    e: React.FocusEvent<HTMLInputElement | HTMLTextAreaElement>
+  ) => void;
   className?: string;
   style?: CSSProperties;
   innerStyle?: CSSProperties;
@@ -36,6 +43,7 @@ export interface TextFieldProps {
  * @param {string} props.label Label text
  * @param {string} [props.placeholder] Placeholder text (should match label)
  * @param {(string | number)} [props.value] Current value
+ * @param {number} [props.lineCount] Number of lines for multiline input
  * @param {boolean} [props.error] Error state
  * @param {boolean} [props.readonly] Readonly state
  * @param {boolean} [props.disabled] Disabled state
@@ -76,6 +84,7 @@ export const TextField: React.FC<TextFieldProps> = ({
   type = 'text',
   label = '',
   value,
+  lineCount = 1,
   error = false,
   readonly = false,
   disabled = false,
@@ -97,19 +106,35 @@ export const TextField: React.FC<TextFieldProps> = ({
     <div className={classes} style={style}>
       {leadingIcon && leadingIcon}
       <label>{label}</label>
-      <input
-        id={id}
-        name={name}
-        type={type}
-        value={value}
-        placeholder={label}
-        readOnly={readonly}
-        disabled={disabled}
-        onChange={onChange}
-        onBlur={onBlur}
-        onFocus={onFocus}
-        style={innerStyle}
-      />
+      {lineCount > 1 ? (
+        <textarea
+          id={id}
+          name={name}
+          value={value}
+          placeholder={label}
+          readOnly={readonly}
+          disabled={disabled}
+          onChange={onChange}
+          onBlur={onBlur}
+          onFocus={onFocus}
+          style={innerStyle}
+          rows={lineCount}
+        />
+      ) : (
+        <input
+          id={id}
+          name={name}
+          type={type}
+          value={value}
+          placeholder={label}
+          readOnly={readonly}
+          disabled={disabled}
+          onChange={onChange}
+          onBlur={onBlur}
+          onFocus={onFocus}
+          style={innerStyle}
+        />
+      )}
       {trailingIcon && trailingIcon}
       {supportingText && <div>{supportingText}</div>}
     </div>

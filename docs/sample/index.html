@@ -10,10 +10,10 @@
     <link rel="stylesheet" type="text/css" href="main.css" />
     <script src="sample.js"></script>
   </head>
-  <body onload="bodyOnLoad()">
+  <body onload="bodyOnLoad();">
     <div class="nav-drawer-layout">
       <div class="nav-rail hidden">
-        <button class="icon" onclick="toggleNavRailWidth(event)">
+        <button class="icon" onclick="toggleNavRailWidth(event);">
           <!-- Material Icons https://fonts.google.com/icons -->
           <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -37,7 +37,7 @@
             />
           </svg>
         </button>
-        <button onclick="toggleNavBarNavRail()">
+        <button onclick="toggleNavBarNavRail();">
           <!-- Material Icons https://fonts.google.com/icons -->
           <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -79,11 +79,11 @@
         </button>
       </div>
 
-      <div class="nav-drawer hidden" onclick="navDrawerHide(event)">
+      <div class="nav-drawer hidden" onclick="navDrawerHide(event);">
         <button
           id="nav-drawer-hide-button"
           class="hidden"
-          onclick="navDrawerHide()"
+          onclick="navDrawerHide();"
         >
           <!-- Material Icons https://fonts.google.com/icons -->
           <svg
@@ -100,7 +100,7 @@
         <button
           id="nav-drawer-modal-button"
           class=""
-          onclick="navDrawerModal()"
+          onclick="navDrawerModal();"
         >
           <!-- Material Icons https://fonts.google.com/icons -->
           <svg
@@ -117,7 +117,7 @@
         <button
           id="nav-drawer-fix-button"
           class="hidden"
-          onclick="navDrawerFix()"
+          onclick="navDrawerFix();"
         >
           <!-- Material Icons https://fonts.google.com/icons -->
           <svg
@@ -173,7 +173,7 @@
           <button
             id="nav-drawer-show-button"
             class=""
-            onclick="navDrawerShow()"
+            onclick="navDrawerShow();"
           >
             <!-- Material Icons https://fonts.google.com/icons -->
             <svg
@@ -192,7 +192,7 @@
             <div class="subtitle">CSS for Material Design 3</div>
           </div>
           <div style="flex-grow: 1"></div>
-          <button onclick="toggleMainMenu()">
+          <button onclick="toggleMainMenu();">
             <!-- Material Icons https://fonts.google.com/icons -->
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -208,9 +208,9 @@
         </header>
 
         <div class="tabs">
-          <a class="active" href="#" onclick="tabItemOnClick(event)">Sample</a>
+          <a class="active" href="#" onclick="tabItemOnClick(event);">Sample</a>
           <a href="../theme">Theme</a>
-          <button onclick="tabItemOnClick(event)">
+          <button onclick="tabItemOnClick(event);">
             <!-- Material Icons https://fonts.google.com/icons -->
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -226,8 +226,8 @@
           </button>
         </div>
 
-        <div id="main-menu" class="menu hidden" onclick="toggleMainMenu()">
-          <button id="light-mode-button" onclick="setDarkMode(event)">
+        <div id="main-menu" class="menu hidden" onclick="toggleMainMenu();">
+          <button id="light-mode-button" onclick="setDarkMode(event);">
             <svg
               xmlns="http://www.w3.org/2000/svg"
               viewBox="0 -960 960 960"
@@ -240,7 +240,7 @@
             </svg>
             Light mode
           </button>
-          <button id="dark-mode-button" onclick="setDarkMode(event)">
+          <button id="dark-mode-button" onclick="setDarkMode(event);">
             <svg
               xmlns="http://www.w3.org/2000/svg"
               viewBox="0 -960 960 960"
@@ -256,7 +256,7 @@
           <button
             id="auto-mode-button"
             class="active"
-            onclick="setDarkMode(event)"
+            onclick="setDarkMode(event);"
           >
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -1974,8 +1974,12 @@ npm install https://github.com/MichinobuMaeda/glassine-paper</pre
                     />
                   </svg>
                 </a>
-                <label> Long placeholder text</label>
-                <input type="email" value="foo@bar." placeholder="Filled" />
+                <label>Long long long placeholder text</label>
+                <input
+                  type="email"
+                  value="foo@bar."
+                  placeholder="Long placeholder text"
+                />
                 <!-- Material Icons https://fonts.google.com/icons -->
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
@@ -2032,12 +2036,146 @@ npm install https://github.com/MichinobuMaeda/glassine-paper</pre
                     d="M120-120v-720h720v720H120Zm80-80h560v-560H200v560Zm0 0v-560 560Z"
                   />
                 </svg>
-                <label> Long placeholder text</label>
+                <label>Long long long placeholder text</label>
                 <input
                   type="email"
                   value="foo@bar."
-                  placeholder="Long placeholder text"
+                  placeholder="Long long long placeholder text"
                 />
+                <!-- Material Icons https://fonts.google.com/icons -->
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  viewBox="0 -960 960 960"
+                  fill="currentColor"
+                >
+                  <path
+                    d="M480-280q17 0 28.5-11.5T520-320q0-17-11.5-28.5T480-360q-17 0-28.5 11.5T440-320q0 17 11.5 28.5T480-280Zm-40-160h80v-240h-80v240Zm40 360q-83 0-156-31.5T197-197q-54-54-85.5-127T80-480q0-83 31.5-156T197-763q54-54 127-85.5T480-880q83 0 156 31.5T763-763q54 54 85.5 127T880-480q0 83-31.5 156T763-197q-54 54-127 85.5T480-80Z"
+                  />
+                </svg>
+                <div>Invalid email address</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="row">
+              <div class="textfield filled" style="width: 12em">
+                <button>
+                  <!-- Material Icons https://fonts.google.com/icons -->
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    viewBox="0 -960 960 960"
+                    fill="currentColor"
+                  >
+                    <path
+                      d="M120-120v-720h720v720H120Zm80-80h560v-560H200v560Zm0 0v-560 560Z"
+                    />
+                  </svg>
+                </button>
+                <label> Filled</label>
+                <textarea rows="3" placeholder="Filled"></textarea>
+                <label>
+                  <input type="checkbox" />
+                  <!-- Material Icons https://fonts.google.com/icons -->
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    viewBox="0 -960 960 960"
+                    fill="currentColor"
+                  >
+                    <path
+                      d="M120-120v-720h720v720H120Zm80-80h560v-560H200v560Zm0 0v-560 560Z"
+                    /></svg
+                ></label>
+                <div>Supporting text</div>
+              </div>
+              <div class="textfield filled" style="width: 4em">
+                <label> Filled number</label>
+                <textarea rows="3" placeholder="Filled"></textarea>
+                <div>Supporting text</div>
+              </div>
+              <div class="textfield filled error" style="width: 12em">
+                <a href="">
+                  <!-- Material Icons https://fonts.google.com/icons -->
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    viewBox="0 -960 960 960"
+                    fill="currentColor"
+                  >
+                    <path
+                      d="M120-120v-720h720v720H120Zm80-80h560v-560H200v560Zm0 0v-560 560Z"
+                    />
+                  </svg>
+                </a>
+                <label>Long long long placeholder text</label>
+                <textarea
+                  rows="3"
+                  placeholder="Long long long placeholder text"
+                >
+foo@bar.</textarea
+                >
+                <!-- Material Icons https://fonts.google.com/icons -->
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  viewBox="0 -960 960 960"
+                  fill="currentColor"
+                >
+                  <path
+                    d="M480-280q17 0 28.5-11.5T520-320q0-17-11.5-28.5T480-360q-17 0-28.5 11.5T440-320q0 17 11.5 28.5T480-280Zm-40-160h80v-240h-80v240Zm40 360q-83 0-156-31.5T197-197q-54-54-85.5-127T80-480q0-83 31.5-156T197-763q54-54 127-85.5T480-880q83 0 156 31.5T763-763q54 54 85.5 127T880-480q0 83-31.5 156T763-197q-54 54-127 85.5T480-80Z"
+                  />
+                </svg>
+                <div>Invalid email address</div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="textfield outlined" style="width: 12em">
+                <!-- Material Icons https://fonts.google.com/icons -->
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  viewBox="0 -960 960 960"
+                  fill="currentColor"
+                >
+                  <path
+                    d="M120-120v-720h720v720H120Zm80-80h560v-560H200v560Zm0 0v-560 560Z"
+                  />
+                </svg>
+                <label> Outlined</label>
+                <textarea rows="3" placeholder="Outlined"></textarea>
+
+                <!-- Material Icons https://fonts.google.com/icons -->
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  viewBox="0 -960 960 960"
+                  fill="currentColor"
+                >
+                  <path
+                    d="M120-120v-720h720v720H120Zm80-80h560v-560H200v560Zm0 0v-560 560Z"
+                  />
+                </svg>
+                <div>Supporting text</div>
+              </div>
+              <div class="textfield outlined" style="width: 4em">
+                <label> Outlined number</label>
+                <textarea rows="3" placeholder="Outlined number"></textarea>
+                <div>Supporting text</div>
+              </div>
+              <div class="textfield outlined error" style="width: 12em">
+                <!-- Material Icons https://fonts.google.com/icons -->
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  viewBox="0 -960 960 960"
+                  fill="currentColor"
+                >
+                  <path
+                    d="M120-120v-720h720v720H120Zm80-80h560v-560H200v560Zm0 0v-560 560Z"
+                  />
+                </svg>
+                <label>Long long long placeholder text</label>
+                <textarea
+                  rows="3"
+                  placeholder="Long long long placeholder text"
+                >
+foo@bar.</textarea
+                >
                 <!-- Material Icons https://fonts.google.com/icons -->
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
@@ -2676,7 +2814,7 @@ npm install https://github.com/MichinobuMaeda/glassine-paper</pre
           <div>Free to use for personal and commercial projects.</div>
         </footer>
         <div class="nav-bar">
-          <button onclick="toggleNavBarNavRail()">
+          <button onclick="toggleNavBarNavRail();">
             <!-- Material Icons https://fonts.google.com/icons -->
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -2689,7 +2827,7 @@ npm install https://github.com/MichinobuMaeda/glassine-paper</pre
             </svg>
             Nav rail
           </button>
-          <button onclick="toggleNavBarWidth(event)">
+          <button onclick="toggleNavBarWidth(event);">
             <!-- Material Icons https://fonts.google.com/icons -->
             <svg
               xmlns="http://www.w3.org/2000/svg"

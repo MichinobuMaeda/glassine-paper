@@ -12,6 +12,8 @@ export interface AppBarItemProps {
   disabled?: boolean;
   onClick?: () => void;
   href?: string;
+  style?: CSSProperties;
+  className?: string;
 }
 
 export interface AppBarProps {
@@ -20,6 +22,7 @@ export interface AppBarProps {
   sticky?: boolean;
   scrolled?: boolean;
   style?: CSSProperties;
+  className?: string;
 }
 
 const AppBarItem: React.FC<AppBarItemProps> = ({
@@ -32,28 +35,32 @@ const AppBarItem: React.FC<AppBarItemProps> = ({
   hidden = false,
   onClick,
   href,
+  style = {},
+  className = '',
 }) => {
-  const classes = [active ? 'active' : ''].join(' ');
-
   if (hidden) {
     return <></>;
   }
   switch (title ? 'title' : type) {
-    case 'button':
+    case 'button': {
+      const classes = [className, active ? 'active' : ''].join(' ');
       return href ? (
-        <a id={id} className={classes} href={href}>
+        <a id={id} className={classes} style={style} href={href}>
           {icon}
         </a>
       ) : (
-        <button id={id} className={classes} onClick={onClick}>
+        <button id={id} className={classes} style={style} onClick={onClick}>
           {icon}
         </button>
       );
+    }
     case 'appLogo':
       return icon;
-    case 'title':
+    case 'title': {
+      const classes = ['title-area', className].join(' ');
+
       return (
-        <div id={id} className="title-area">
+        <div id={id} className={classes} style={style}>
           <div id={`${id}-title`} className="title">
             {title}
           </div>
@@ -64,8 +71,9 @@ const AppBarItem: React.FC<AppBarItemProps> = ({
           )}
         </div>
       );
+    }
     case 'spacer':
-      return <div style={{ flexGrow: 1 }}></div>;
+      return <div className={className} style={{ flexGrow: 1 }}></div>;
   }
 };
 
@@ -86,9 +94,12 @@ const AppBarItem: React.FC<AppBarItemProps> = ({
  * @param {boolean} [props.items[].disabled] Disabled state
  * @param {Function} [props.items[].onClick] Click handler
  * @param {string} [props.items[].href] Link URL (renders as anchor tag)
+ * @param {React.CSSProperties} [props.items[].style] Custom inline styles for the item
+ * @param {string} [props.items[].className] Additional CSS classes for the item
  * @param {boolean} [props.sticky] Whether the app bar sticks to the top
  * @param {boolean} [props.scrolled] Whether the content is scrolled (affects styling)
  * @param {React.CSSProperties} [props.style] Custom inline styles
+ * @param {string} [props.className] Additional CSS classes
  * @returns {JSX.Element}
  *
  * @example
@@ -132,11 +143,13 @@ export const AppBar: React.FC<AppBarProps> = ({
   sticky = false,
   scrolled = false,
   style = {},
+  className = '',
 }) => {
   const classes = [
     'app-bar',
     sticky ? 'sticky' : '',
     scrolled ? 'on-scroll' : '',
+    className,
   ].join(' ');
   return (
     <div id={id} className={classes} style={style}>

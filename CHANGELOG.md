@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file.
 
+## [1.2.0] - 2025-12-07
+
+### Added
+
+- CSS: Textarea support of Text Field
+- React component: multiline support of Text Field
+
 ## [1.1.7] - 2025-11-24
 
 ### Fixed
