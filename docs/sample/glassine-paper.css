@@ -1580,7 +1580,7 @@ input.radio:not([disabled]):active:hover::before {
   flex-wrap: nowrap;
   align-items: center;
   height: calc(4rem + max(0px, env(safe-area-inset-top) - 0.5rem));
-  padding: max(0.5rem, env(safe-area-inset-bottom)) 0.25rem 0.5rem 0;
+  padding: max(0.5rem, env(safe-area-inset-top)) 0.25rem 0.5rem 0;
   background-color: light-dark(var(--color-light-surface), var(--color-dark-surface));
   z-index: var(--app-bar-z-index, 4);
 }

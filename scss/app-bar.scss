@@ -19,8 +19,8 @@ $app-bar-button-size: $spacing-32px;
     $app-bar-height +
       max(0px, env(safe-area-inset-top) - $app-bar-padding-vertical)
   );
-  padding: max($app-bar-padding-vertical, env(safe-area-inset-bottom))
-    $spacing-4px $app-bar-padding-vertical 0;
+  padding: max($app-bar-padding-vertical, env(safe-area-inset-top)) $spacing-4px
+    $app-bar-padding-vertical 0;
   @include bg-color(surface);
   z-index: $app-bar-z-index;
 
