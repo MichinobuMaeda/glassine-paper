@@ -8,6 +8,7 @@ $app-bar-z-index: var(--app-bar-z-index, 4);
 
 $app-bar-height: $spacing-64px;
 $app-bar-padding-vertical: calc(($app-bar-height - $spacing-48px) / 2);
+$app-bar-button-size: $spacing-32px;
 
 .app-bar {
   display: flex;
@@ -19,7 +20,7 @@ $app-bar-padding-vertical: calc(($app-bar-height - $spacing-48px) / 2);
       max(0px, env(safe-area-inset-top) - $app-bar-padding-vertical)
   );
   padding: $app-bar-padding-vertical $spacing-4px
-    max($app-bar-padding-vertical, env(safe-area-inset-bottom)) $spacing-4px;
+    max($app-bar-padding-vertical, env(safe-area-inset-bottom)) 0;
   @include bg-color(surface);
   z-index: $app-bar-z-index;
 
@@ -38,19 +39,20 @@ $app-bar-padding-vertical: calc(($app-bar-height - $spacing-48px) / 2);
     display: flex;
     align-items: center;
     justify-content: center;
-    @include square-size($spacing-48px);
+    @include square-size($app-bar-button-size);
 
     background: inherit;
     border: none;
     outline: none;
     box-shadow: none;
     padding: 0;
+    margin: 0 calc(($spacing-48px - $app-bar-button-size) / 2);
     gap: $spacing-4px;
     user-select: none;
     text-decoration: none;
 
     cursor: pointer;
-    border-radius: $spacing-4px;
+    border-radius: calc($app-bar-button-size / 2);
     @include fg-color(on-surface);
 
     &.hidden {
