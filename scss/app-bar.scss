@@ -65,6 +65,25 @@ $app-bar-padding-vertical: calc(($app-bar-height - $spacing-48px) / 2);
     img {
       @include square-size($spacing-24px);
     }
+
+    &.active {
+      @include bg-color(secondary-container);
+      @include fg-color(on-secondary-container);
+    }
+
+    &.active svg,
+    &.active img {
+      @include fg-color(on-secondary-container);
+    }
+
+    &:hover::after {
+      @include state-overlay(on-surface-variant, $opacity-hovered);
+    }
+
+    &:focus::after,
+    &:active::after {
+      @include state-overlay(on-surface-variant, $opacity-focused);
+    }
   }
 
   & > img,

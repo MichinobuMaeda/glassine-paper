@@ -1645,6 +1645,43 @@ input.radio:not([disabled]):active:hover::before {
   min-height: 1.5rem;
   max-height: 1.5rem;
 }
+.app-bar button.active,
+.app-bar a.active {
+  background-color: light-dark(var(--color-light-secondary-container), var(--color-dark-secondary-container));
+  color: light-dark(var(--color-light-on-secondary-container), var(--color-dark-on-secondary-container));
+}
+.app-bar button.active svg, .app-bar button.active img,
+.app-bar a.active svg,
+.app-bar a.active img {
+  color: light-dark(var(--color-light-on-secondary-container), var(--color-dark-on-secondary-container));
+}
+.app-bar button:hover::after,
+.app-bar a:hover::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  border-radius: inherit;
+  pointer-events: none;
+  background-color: light-dark(var(--color-light-on-surface-variant), var(--color-dark-on-surface-variant));
+  opacity: 0.08;
+}
+.app-bar button:focus::after, .app-bar button:active::after,
+.app-bar a:focus::after,
+.app-bar a:active::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  border-radius: inherit;
+  pointer-events: none;
+  background-color: light-dark(var(--color-light-on-surface-variant), var(--color-dark-on-surface-variant));
+  opacity: 0.1;
+}
 .app-bar > img, .app-bar > svg {
   display: inline-block;
   height: 3rem;
