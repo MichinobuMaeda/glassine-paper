@@ -10,10 +10,10 @@
     <link rel="stylesheet" type="text/css" href="main.css" />
     <script src="sample.js"></script>
   </head>
-  <body onload="bodyOnLoad();">
+  <body onload="bodyOnLoad()">
     <div class="nav-drawer-layout">
       <div class="nav-rail hidden">
-        <button class="icon" onclick="toggleNavRailWidth(event);">
+        <button class="icon" onclick="toggleNavRailWidth(event)">
           <!-- Material Icons https://fonts.google.com/icons -->
           <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -37,7 +37,7 @@
             />
           </svg>
         </button>
-        <button onclick="toggleNavBarNavRail();">
+        <button onclick="toggleNavBarNavRail()">
           <!-- Material Icons https://fonts.google.com/icons -->
           <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -79,11 +79,11 @@
         </button>
       </div>
 
-      <div class="nav-drawer hidden" onclick="navDrawerHide(event);">
+      <div class="nav-drawer hidden" onclick="navDrawerHide(event)">
         <button
           id="nav-drawer-hide-button"
           class="hidden"
-          onclick="navDrawerHide();"
+          onclick="navDrawerHide()"
         >
           <!-- Material Icons https://fonts.google.com/icons -->
           <svg
@@ -100,7 +100,7 @@
         <button
           id="nav-drawer-modal-button"
           class=""
-          onclick="navDrawerModal();"
+          onclick="navDrawerModal()"
         >
           <!-- Material Icons https://fonts.google.com/icons -->
           <svg
@@ -117,7 +117,7 @@
         <button
           id="nav-drawer-fix-button"
           class="hidden"
-          onclick="navDrawerFix();"
+          onclick="navDrawerFix()"
         >
           <!-- Material Icons https://fonts.google.com/icons -->
           <svg
@@ -173,7 +173,7 @@
           <button
             id="nav-drawer-show-button"
             class=""
-            onclick="navDrawerShow();"
+            onclick="navDrawerShow()"
           >
             <!-- Material Icons https://fonts.google.com/icons -->
             <svg
@@ -192,7 +192,7 @@
             <div class="subtitle">CSS for Material Design 3</div>
           </div>
           <div style="flex-grow: 1"></div>
-          <button onclick="toggleMainMenu();">
+          <button onclick="toggleMainMenu()">
             <!-- Material Icons https://fonts.google.com/icons -->
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -208,9 +208,9 @@
         </header>
 
         <div class="tabs">
-          <a class="active" href="#" onclick="tabItemOnClick(event);">Sample</a>
+          <a class="active" href="#" onclick="tabItemOnClick(event)">Sample</a>
           <a href="../theme">Theme</a>
-          <button onclick="tabItemOnClick(event);">
+          <button onclick="tabItemOnClick(event)">
             <!-- Material Icons https://fonts.google.com/icons -->
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -226,8 +226,8 @@
           </button>
         </div>
 
-        <div id="main-menu" class="menu hidden" onclick="toggleMainMenu();">
-          <button id="light-mode-button" onclick="setDarkMode(event);">
+        <div id="main-menu" class="menu hidden" onclick="toggleMainMenu()">
+          <button id="light-mode-button" onclick="setDarkMode(event)">
             <svg
               xmlns="http://www.w3.org/2000/svg"
               viewBox="0 -960 960 960"
@@ -240,7 +240,7 @@
             </svg>
             Light mode
           </button>
-          <button id="dark-mode-button" onclick="setDarkMode(event);">
+          <button id="dark-mode-button" onclick="setDarkMode(event)">
             <svg
               xmlns="http://www.w3.org/2000/svg"
               viewBox="0 -960 960 960"
@@ -256,7 +256,7 @@
           <button
             id="auto-mode-button"
             class="active"
-            onclick="setDarkMode(event);"
+            onclick="setDarkMode(event)"
           >
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -1940,7 +1940,7 @@ npm install https://github.com/MichinobuMaeda/glassine-paper</pre
                     />
                   </svg>
                 </button>
-                <label> Filled</label>
+                <label>Filled</label>
                 <input type="text" value="" placeholder="Filled" />
                 <label>
                   <input type="checkbox" />
@@ -1957,7 +1957,7 @@ npm install https://github.com/MichinobuMaeda/glassine-paper</pre
                 <div>Supporting text</div>
               </div>
               <div class="textfield filled" style="width: 4em">
-                <label> Filled number</label>
+                <label>Filled number</label>
                 <input type="number" value="0" placeholder="Filled number" />
                 <div>Supporting text</div>
               </div>
@@ -2005,7 +2005,7 @@ npm install https://github.com/MichinobuMaeda/glassine-paper</pre
                     d="M120-120v-720h720v720H120Zm80-80h560v-560H200v560Zm0 0v-560 560Z"
                   />
                 </svg>
-                <label> Outlined</label>
+                <label>Outlined</label>
                 <input type="text" value="" placeholder="Outlined" />
 
                 <!-- Material Icons https://fonts.google.com/icons -->
@@ -2072,7 +2072,7 @@ npm install https://github.com/MichinobuMaeda/glassine-paper</pre
                     />
                   </svg>
                 </button>
-                <label> Filled</label>
+                <label>Filled</label>
                 <textarea rows="3" placeholder="Filled"></textarea>
                 <label>
                   <input type="checkbox" />
@@ -2089,7 +2089,7 @@ npm install https://github.com/MichinobuMaeda/glassine-paper</pre
                 <div>Supporting text</div>
               </div>
               <div class="textfield filled" style="width: 4em">
-                <label> Filled number</label>
+                <label>Filled number</label>
                 <textarea rows="3" placeholder="Filled"></textarea>
                 <div>Supporting text</div>
               </div>
@@ -2138,7 +2138,7 @@ foo@bar.</textarea
                     d="M120-120v-720h720v720H120Zm80-80h560v-560H200v560Zm0 0v-560 560Z"
                   />
                 </svg>
-                <label> Outlined</label>
+                <label>Outlined</label>
                 <textarea rows="3" placeholder="Outlined"></textarea>
 
                 <!-- Material Icons https://fonts.google.com/icons -->
@@ -2814,7 +2814,7 @@ foo@bar.</textarea
           <div>Free to use for personal and commercial projects.</div>
         </footer>
         <div class="nav-bar">
-          <button onclick="toggleNavBarNavRail();">
+          <button onclick="toggleNavBarNavRail()">
             <!-- Material Icons https://fonts.google.com/icons -->
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -2827,7 +2827,7 @@ foo@bar.</textarea
             </svg>
             Nav rail
           </button>
-          <button onclick="toggleNavBarWidth(event);">
+          <button onclick="toggleNavBarWidth(event)">
             <!-- Material Icons https://fonts.google.com/icons -->
             <svg
               xmlns="http://www.w3.org/2000/svg"

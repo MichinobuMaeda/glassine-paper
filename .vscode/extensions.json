@@ -4,7 +4,6 @@
     "EditorConfig.EditorConfig",
     "esbenp.prettier-vscode",
     "dbaeumer.vscode-eslint",
-    "ms-vscode.live-server",
-    "mrmlnc.vscode-scss"
+    "ms-vscode.live-server"
   ]
 }
