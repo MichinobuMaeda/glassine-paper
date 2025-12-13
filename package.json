@@ -1,6 +1,6 @@
 {
   "name": "glassine-paper",
-  "version": "1.2.4",
+  "version": "1.2.5",
   "description": "CSS and some React components for Material Design 3",
   "type": "module",
   "main": "lib/index.js",
@@ -40,19 +40,15 @@
     "react-dom": "^18.0.0 || ^19.0.0"
   },
   "scripts": {
-    "build:sample": "sass scss/index.scss docs/sample/glassine-paper.css",
-    "build:compressed": "sass scss/index.scss lib/glassine-paper.min.css --style compressed",
     "build:components": "tsc -p tsconfig.components.json",
     "build:ui": "tsc -b && vite build && sed -e 's/\\/assets\\//.\\/assets\\//g' -i docs/theme/index.html",
-    "build": "npm-run-all --parallel build:sample build:compressed build:components build:ui",
-    "watch:sample": "sass --watch scss/index.scss:docs/sample/glassine-paper.css",
-    "watch:compressed": "sass --watch scss/index.scss:lib/glassine-paper.min.css --style compressed",
-    "watch": "npm-run-all --parallel watch:sample watch:compressed",
+    "build:css": "csso docs/sample/glassine-paper.css -o glassine-paper.min.css -s glassine-paper.min.css.map",
+    "build": "npm-run-all --parallel build:components build:ui build:css",
     "lint": "eslint .",
     "preview": "vite preview",
     "dev:static": "npx http-server docs -a localhost -p 8000",
-    "dev": "vite --host localhost --port 4000",
-    "start": "npm run watch:sample & npm run watch:compressed & npm run dev:static & npx vite"
+    "dev": "vite",
+    "start": "npm-run-all --parallel dev:static dev"
   },
   "author": "Michinobu Maeda",
   "license": "MIT",
@@ -71,6 +67,7 @@
     "@vite-pwa/assets-generator": "^1.0.2",
     "@vitejs/plugin-react": "^5.0.4",
     "color-convert": "^3.1.2",
+    "csso-cli": "^4.0.2",
     "eslint": "^9.37.0",
     "eslint-plugin-react-hooks": "^5.2.0",
     "eslint-plugin-react-refresh": "^0.4.23",
@@ -79,7 +76,6 @@
     "jsdoc-to-markdown": "^9.1.3",
     "npm-run-all": "^4.1.5",
     "prettier": "^3.0.0",
-    "sass": "^1.69.0",
     "typescript": "~5.9.3",
     "typescript-eslint": "^8.45.0",
     "vite": "^7.1.9",
