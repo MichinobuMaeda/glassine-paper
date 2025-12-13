@@ -112,9 +112,6 @@ npm install
 # Build all
 npm run build
 
-# Watch and compile SCSS changes
-npm run watch
-
-# Start development server (theme generator UI)
+# Start development server
 npm start
 ```
