@@ -14,6 +14,8 @@ export interface MenuItemProps {
 export interface MenuProps {
     id?: string;
     items: Iterable<MenuItemProps>;
+    onClose?: () => void;
+    className?: string;
     style?: CSSProperties;
 }
 /**
@@ -32,12 +34,15 @@ export interface MenuProps {
  * @param {boolean} [props.items[].disabled] Disabled state
  * @param {Function} [props.items[].onClick] Click handler
  * @param {string} [props.items[].href] Link URL (renders as anchor tag)
+ * @param {Function} [props.onClose] Called when clicking on the outer area of the menu
+ * @param {string} [props.className] Additional CSS class names
  * @param {React.CSSProperties} [props.style] Custom inline styles
  * @returns {JSX.Element}
  *
  * @example
  * <Menu
  *   id="example-menu"
+ *   onClose={() => console.log('Menu closed')}
  *   items={[
  *     {
  *       leadingIcon: {<svg>...</svg>},
