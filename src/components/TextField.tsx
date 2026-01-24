@@ -54,9 +54,9 @@ export interface TextFieldProps {
  * @param {boolean} [props.error=false] - Whether the input is in error state
  * @param {React.ReactNode} [props.leadingIcon] - Icon element displayed at the start of the input
  * @param {React.ReactNode} [props.trailingIcon] - Icon element displayed at the end of the input
- * @param {(e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => void} [props.onChange] - Change event handler
- * @param {(e: React.FocusEvent<HTMLInputElement | HTMLTextAreaElement>) => void} [props.onBlur] - Blur event handler
- * @param {(e: React.FocusEvent<HTMLInputElement | HTMLTextAreaElement>) => void} [props.onFocus] - Focus event handler
+ * @param {Function} [props.onChange] - Change event handler
+ * @param {Function} [props.onBlur] - Blur event handler
+ * @param {Function} [props.onFocus] - Focus event handler
  * @param {string} [props.className=''] - Additional CSS class names to apply to the container
  * @param {React.CSSProperties} [props.style={}] - Custom inline styles for the container element
  * @param {React.CSSProperties} [props.innerStyle={}] - Custom inline styles for the input/textarea element

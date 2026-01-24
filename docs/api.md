@@ -1,4 +1,4 @@
-# API Documentation glassine-paper 1.2.7
+# API Documentation glassine-paper 1.2.8
 
 ## Modules
 
@@ -40,6 +40,9 @@
 </dd>
 <dt><a href="#TextField">TextField</a> ⇒ <code>JSX.Element</code></dt>
 <dd><p>Material Design 3 TextField component</p>
+<p>A text input field that follows Material Design 3 specifications.
+Supports both single-line and multi-line input with filled or outlined variants.
+Includes support for icons, validation states, and supporting text.</p>
 </dd>
 <dt><a href="#Toolbar">Toolbar</a> ⇒ <code>JSX.Element</code></dt>
 <dd><p>Material Design 3 Toolbar component</p>
@@ -470,51 +473,68 @@ Material Design 3 Tabs component
 ## TextField ⇒ <code>JSX.Element</code>
 Material Design 3 TextField component
 
-**Kind**: global constant  
+A text input field that follows Material Design 3 specifications.
+Supports both single-line and multi-line input with filled or outlined variants.
+Includes support for icons, validation states, and supporting text.
 
-| Param | Type | Description |
-| --- | --- | --- |
-| props | <code>TextFieldProps</code> | TextFieldProps |
-| [props.id] | <code>string</code> | Input id attribute |
-| [props.name] | <code>string</code> | Input name attribute |
-| [props.variant] | <code>&#x27;filled&#x27;</code> \| <code>&#x27;outlined&#x27;</code> | Variant of the text field: 'filled' or 'outlined' |
-| [props.type] | <code>&#x27;text&#x27;</code> \| <code>&#x27;email&#x27;</code> \| <code>&#x27;number&#x27;</code> \| <code>&#x27;password&#x27;</code> \| <code>&#x27;tel&#x27;</code> \| <code>&#x27;url&#x27;</code> | Input type: 'text', 'email', 'number', 'password', 'tel', or 'url' |
-| props.label | <code>string</code> | Label text |
-| [props.placeholder] | <code>string</code> | Placeholder text (should match label) |
-| [props.value] | <code>string</code> \| <code>number</code> | Current value |
-| [props.lineCount] | <code>number</code> | Number of lines for multiline input |
-| [props.error] | <code>boolean</code> | Error state |
-| [props.readonly] | <code>boolean</code> | Readonly state |
-| [props.disabled] | <code>boolean</code> | Disabled state |
-| [props.supportingText] | <code>string</code> | Supporting text or error message |
-| [props.leadingIcon] | <code>React.ReactNode</code> | Leading icon element |
-| [props.trailingIcon] | <code>React.ReactNode</code> | Trailing icon element |
-| [props.onChange] | <code>function</code> | Change handler |
-| [props.onBlur] | <code>function</code> | Blur handler |
-| [props.onFocus] | <code>function</code> | Focus handler |
-| [props.className] | <code>string</code> | Additional CSS class names |
-| [props.style] | <code>React.CSSProperties</code> | Custom inline styles |
-| [props.innerStyle] | <code>React.CSSProperties</code> | Custom inline styles for input element |
+**Kind**: global constant  
+**Returns**: <code>JSX.Element</code> - The rendered TextField component  
+
+| Param | Type | Default | Description |
+| --- | --- | --- | --- |
+| props | <code>TextFieldProps</code> |  | Component props |
+| [props.id] | <code>string</code> |  | HTML id attribute for the input element |
+| [props.name] | <code>string</code> |  | HTML name attribute for the input element |
+| [props.variant] | <code>&#x27;filled&#x27;</code> \| <code>&#x27;outlined&#x27;</code> | <code>&#x27;outlined&#x27;</code> | Visual variant of the text field |
+| [props.type] | <code>&#x27;text&#x27;</code> \| <code>&#x27;email&#x27;</code> \| <code>&#x27;number&#x27;</code> \| <code>&#x27;password&#x27;</code> \| <code>&#x27;tel&#x27;</code> \| <code>&#x27;url&#x27;</code> | <code>&#x27;text&#x27;</code> | HTML input type |
+| [props.label] | <code>string</code> | <code>&quot;&#x27;&#x27;&quot;</code> | Label text displayed above/within the input |
+| [props.value] | <code>string</code> \| <code>number</code> |  | Controlled value of the input |
+| [props.lineCount] | <code>number</code> | <code>1</code> | Number of lines for multiline input (renders textarea if > 1) |
+| [props.readonly] | <code>boolean</code> | <code>false</code> | Whether the input is read-only |
+| [props.disabled] | <code>boolean</code> | <code>false</code> | Whether the input is disabled |
+| [props.supportingText] | <code>string</code> |  | Helper text displayed below the input |
+| [props.errorMessage] | <code>string</code> |  | Error message displayed below the input (overrides supportingText) |
+| [props.error] | <code>boolean</code> | <code>false</code> | Whether the input is in error state |
+| [props.leadingIcon] | <code>React.ReactNode</code> |  | Icon element displayed at the start of the input |
+| [props.trailingIcon] | <code>React.ReactNode</code> |  | Icon element displayed at the end of the input |
+| [props.onChange] | <code>function</code> |  | Change event handler |
+| [props.onBlur] | <code>function</code> |  | Blur event handler |
+| [props.onFocus] | <code>function</code> |  | Focus event handler |
+| [props.className] | <code>string</code> | <code>&quot;&#x27;&#x27;&quot;</code> | Additional CSS class names to apply to the container |
+| [props.style] | <code>React.CSSProperties</code> | <code>{}</code> | Custom inline styles for the container element |
+| [props.innerStyle] | <code>React.CSSProperties</code> | <code>{}</code> | Custom inline styles for the input/textarea element |
 
 **Example**  
 ```js
+// Basic filled text field
 <TextField
   variant="filled"
   label="Email"
-  placeholder="Email"
   type="email"
   supportingText="Enter your email address"
 />
 ```
 **Example**  
 ```js
+// Outlined text field with error state
 <TextField
   variant="outlined"
   label="Password"
-  placeholder="Password"
   type="password"
   error={true}
-  supportingText="Password is required"
+  errorMessage="Password is required"
+/>
+```
+**Example**  
+```js
+// Multi-line text field with icons
+<TextField
+  variant="outlined"
+  label="Description"
+  lineCount={4}
+  leadingIcon={<SvgIcon />}
+  trailingIcon={<ClearIcon />}
+  onChange={(e) => console.log(e.target.value)}
 />
 ```
 <a name="Toolbar"></a>
