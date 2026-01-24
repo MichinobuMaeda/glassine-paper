@@ -243,12 +243,15 @@ Material Design 3 Menu component
 | [props.items[].disabled] | <code>boolean</code> | Disabled state |
 | [props.items[].onClick] | <code>function</code> | Click handler |
 | [props.items[].href] | <code>string</code> | Link URL (renders as anchor tag) |
+| [props.onClose] | <code>function</code> | Called when clicking on the outer area of the menu |
+| [props.className] | <code>string</code> | Additional CSS class names |
 | [props.style] | <code>React.CSSProperties</code> | Custom inline styles |
 
 **Example**  
 ```js
 <Menu
   id="example-menu"
+  onClose={() => console.log('Menu closed')}
   items={[
     {
       leadingIcon: {<svg>...</svg>},
