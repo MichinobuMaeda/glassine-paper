@@ -16,6 +16,8 @@ export interface MenuItemProps {
 export interface MenuProps {
   id?: string;
   items: Iterable<MenuItemProps>;
+  onClose?: () => void;
+  className?: string;
   style?: CSSProperties;
 }
 
@@ -67,12 +69,15 @@ const MenuItem: React.FC<MenuItemProps> = ({
  * @param {boolean} [props.items[].disabled] Disabled state
  * @param {Function} [props.items[].onClick] Click handler
  * @param {string} [props.items[].href] Link URL (renders as anchor tag)
+ * @param {Function} [props.onClose] Called when clicking on the outer area of the menu
+ * @param {string} [props.className] Additional CSS class names
  * @param {React.CSSProperties} [props.style] Custom inline styles
  * @returns {JSX.Element}
  *
  * @example
  * <Menu
  *   id="example-menu"
+ *   onClose={() => console.log('Menu closed')}
  *   items={[
  *     {
  *       leadingIcon: {<svg>...</svg>},
@@ -89,9 +94,20 @@ const MenuItem: React.FC<MenuItemProps> = ({
  *   ]}
  * />
  */
-export const Menu: React.FC<MenuProps> = ({ id, items = [], style }) => {
+export const Menu: React.FC<MenuProps> = ({
+  id,
+  items = [],
+  onClose = () => {},
+  className,
+  style,
+}) => {
   return (
-    <div id={id} className="menu" style={style}>
+    <div
+      id={id}
+      className={`menu ${className || ''}`}
+      onClick={onClose}
+      style={style}
+    >
       {Array.from(items).map((item, index) => (
         <MenuItem key={item.key || index} {...item} />
       ))}

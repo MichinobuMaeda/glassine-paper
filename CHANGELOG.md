@@ -2,6 +2,12 @@
 
 All notable changes to this project will be documented in this file.
 
+## [1.2.7] - 2026-01-24
+
+### Fixed
+
+- React component: add param onClose to Menu
+
 ## [1.2.6] - 2026-01-24
 
 ### Fixed

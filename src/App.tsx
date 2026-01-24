@@ -294,7 +294,6 @@ function App(): JSX.Element {
                 label: LightDarkLabel[mode],
                 onClick: () => {
                   setDarkMode(mode);
-                  setMenuVisible(false);
                 },
                 active: darkMode === mode,
               })),
@@ -319,6 +318,7 @@ function App(): JSX.Element {
                 disabled: true,
               },
             ]}
+            onClose={() => setMenuVisible(false)}
             style={{
               position: 'fixed',
               top: 'calc(env(safe-area-inset-top) + 64px + 0.5rem)',
