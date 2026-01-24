@@ -1,6 +1,6 @@
 {
   "name": "glassine-paper",
-  "version": "1.2.7",
+  "version": "1.2.8",
   "description": "CSS and some React components for Material Design 3",
   "type": "module",
   "main": "lib/index.js",

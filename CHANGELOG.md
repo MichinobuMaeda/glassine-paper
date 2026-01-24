@@ -2,6 +2,20 @@
 
 All notable changes to this project will be documented in this file.
 
+## [1.2.8] - 2026-01-25
+
+### Added
+
+- React component: TextField param errorMessage
+
+### Improved
+
+- React component: Enhanced JSDoc documentation for TextField component
+
+### Removed
+
+- React component: TextField param placeholder (obsoleted)
+
 ## [1.2.7] - 2026-01-24
 
 ### Fixed
