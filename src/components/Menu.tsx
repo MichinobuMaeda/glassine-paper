@@ -15,7 +15,7 @@ export interface MenuItemProps {
 
 export interface MenuProps {
   id?: string;
-  items: Iterable<MenuItemProps>;
+  items: Iterable<MenuItemProps | null | undefined>;
   onClose?: () => void;
   className?: string;
   style?: CSSProperties;
@@ -58,7 +58,7 @@ const MenuItem: React.FC<MenuItemProps> = ({
  *
  * @param {MenuProps} props MenuProps
  * @param {string} [props.id] Element id
- * @param {Iterable<MenuItemProps>} props.items Array of MenuItem configurations
+ * @param {Iterable<(MenuItemProps | null | undefined)>} props.items Array of MenuItem configurations
  * @param {(string | number)} [props.items[].key] Unique key for the item
  * @param {string} [props.items[].id] Element id for the item
  * @param {string} [props.items[].label] Label text
@@ -87,8 +87,12 @@ const MenuItem: React.FC<MenuItemProps> = ({
  *       onClick: () => {},
  *     },
  *     { divider: true },
- *     {
+ *     status !== 'loading' && {
  *       label: "Item 2",
+ *       href: "...",
+ *     },
+ *     {
+ *       label: "Item 3",
  *       href: "...",
  *     },
  *   ]}
@@ -108,9 +112,11 @@ export const Menu: React.FC<MenuProps> = ({
       onClick={onClose}
       style={style}
     >
-      {Array.from(items).map((item, index) => (
-        <MenuItem key={item.key || index} {...item} />
-      ))}
+      {Array.from(items)
+        .filter((item) => !!item)
+        .map((item, index) => (
+          <MenuItem key={item.key || index} {...item} />
+        ))}
     </div>
   );
 };

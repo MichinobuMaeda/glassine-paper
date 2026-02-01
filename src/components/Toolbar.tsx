@@ -16,7 +16,7 @@ export interface ToolbarItemProps {
 
 export interface ToolbarProps {
   id?: string;
-  items: Iterable<ToolbarItemProps>;
+  items: Iterable<ToolbarItemProps | null | undefined>;
   variant?: 'docked' | 'floating';
   color?: 'standard' | 'vibrant';
   style?: CSSProperties;
@@ -77,7 +77,7 @@ const ToolbarItem: React.FC<ToolbarItemProps> = ({
  *
  * @param {ToolbarProps} props ToolbarProps
  * @param {string} [props.id] Element id
- * @param {Iterable<ToolbarItemProps>} props.items Array of ToolbarItem configurations
+ * @param {Iterable<(ToolbarItemProps | null | undefined)>} props.items Array of ToolbarItem configurations
  * @param {(string | number)} [props.items[].key] Unique key for the item
  * @param {string} [props.items[].id] Element id for the item
  * @param {string} [props.items[].label] Label text
@@ -103,7 +103,7 @@ const ToolbarItem: React.FC<ToolbarItemProps> = ({
  *       onClick: () => {},
  *     },
  *     { divider: true },
- *     {
+ *     status !== 'loading' && {
  *       icon: {<svg>...</svg>},
  *       href: "...",
  *     },
@@ -118,17 +118,18 @@ export const Toolbar: React.FC<ToolbarProps> = ({
   color = 'standard',
 }) => {
   const classes = ['toolbar', variant, color].join(' ');
+  const activeItems = Array.from(items).filter((item) => !!item);
 
   return variant === 'floating' ? (
     <div className="toolbar-container" style={style}>
       <div id={id} className={classes}>
-        {Array.from(items)
+        {activeItems
           .filter((item) => !item.fab)
           .map((item, index) => (
             <ToolbarItem key={item.key || index} {...item} />
           ))}
       </div>
-      {Array.from(items)
+      {activeItems
         .filter((item) => item.fab)
         .map((item, index) => (
           <ToolbarItem key={item.key || index} {...item} />
@@ -136,7 +137,7 @@ export const Toolbar: React.FC<ToolbarProps> = ({
     </div>
   ) : (
     <div id={id} className={classes} style={style}>
-      {Array.from(items).map((item, index) => (
+      {activeItems.map((item, index) => (
         <ToolbarItem key={item.key || index} {...item} fab={false} />
       ))}
     </div>

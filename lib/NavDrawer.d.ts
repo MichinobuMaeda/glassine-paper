@@ -14,7 +14,7 @@ export interface NavDrawerItemProps {
 }
 export interface NavDrawerProps {
     id?: string;
-    items: Iterable<NavDrawerItemProps>;
+    items: Iterable<NavDrawerItemProps | null | undefined>;
     className?: string;
     style?: CSSProperties;
 }
@@ -23,7 +23,7 @@ export interface NavDrawerProps {
  *
  * @param {NavDrawerProps} props NavDrawerProps
  * @param {string} [props.id] Element id
- * @param {Iterable<NavDrawerItemProps>} props.items Array of NavDrawerItem configurations
+ * @param {Iterable<(NavDrawerItemProps | null | undefined)>} props.items Array of NavDrawerItem configurations
  * @param {(string | number)} [props.items[].key] Unique key for the item
  * @param {string} [props.items[].id] Element id for the item
  * @param {string} [props.items[].label] Label text
@@ -51,8 +51,12 @@ export interface NavDrawerProps {
  *       onClick: () => {},
  *     },
  *     { divider: true },
- *     {
+ *     status !== 'loading' && {
  *       label: "Item 2",
+ *       href: "...",
+ *     },
+ *     {
+ *       label: "Item 3",
  *       href: "...",
  *     },
  *   ]}

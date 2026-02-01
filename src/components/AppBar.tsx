@@ -18,7 +18,7 @@ export interface AppBarItemProps {
 
 export interface AppBarProps {
   id?: string;
-  items: Iterable<AppBarItemProps>;
+  items: Iterable<AppBarItemProps | null | undefined>;
   sticky?: boolean;
   scrolled?: boolean;
   style?: CSSProperties;
@@ -82,7 +82,7 @@ const AppBarItem: React.FC<AppBarItemProps> = ({
  *
  * @param {AppBarProps} props The props for the AppBar component.
  * @param {string} [props.id] Element id
- * @param {Iterable<AppBarItemProps>} props.items Array of AppBarItem configurations
+ * @param {Iterable<(AppBarItemProps | null | undefined)>} props.items Array of AppBarItem configurations
  * @param {(string | number)} [props.items[].key] Unique key for the item
  * @param {string} [props.items[].id] Element id for the item
  * @param {('button' | 'appLogo' | 'title' | 'spacer')} [props.items[].type] Item type: 'button', 'appLogo', 'title', or 'spacer'
@@ -116,7 +116,7 @@ const AppBarItem: React.FC<AppBarItemProps> = ({
  *   sticky
  *   scrolled={scrolled}
  *   items={[
- *     {
+ *     status !== "loading" && {
  *       icon: <svg>...</svg>,
  *       onClick: () => {...},
  *     },
@@ -153,9 +153,11 @@ export const AppBar: React.FC<AppBarProps> = ({
   ].join(' ');
   return (
     <div id={id} className={classes} style={style}>
-      {Array.from(items).map((item, index) => (
-        <AppBarItem key={item.key || index} {...item} />
-      ))}
+      {Array.from(items)
+        .filter((item) => !!item)
+        .map((item, index) => (
+          <AppBarItem key={item.key || index} {...item} />
+        ))}
     </div>
   );
 };

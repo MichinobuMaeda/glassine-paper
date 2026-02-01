@@ -1,4 +1,4 @@
-# API Documentation glassine-paper 1.2.8
+# API Documentation glassine-paper 1.2.9
 
 ## Modules
 
@@ -65,7 +65,7 @@ Material Design 3 App bar component
 | --- | --- | --- |
 | props | <code>AppBarProps</code> | The props for the AppBar component. |
 | [props.id] | <code>string</code> | Element id |
-| props.items | <code>Iterable.&lt;AppBarItemProps&gt;</code> | Array of AppBarItem configurations |
+| props.items | <code>Iterable.&lt;(AppBarItemProps\|null\|undefined)&gt;</code> | Array of AppBarItem configurations |
 | [props.items[].key] | <code>string</code> \| <code>number</code> | Unique key for the item |
 | [props.items[].id] | <code>string</code> | Element id for the item |
 | [props.items[].type] | <code>&#x27;button&#x27;</code> \| <code>&#x27;appLogo&#x27;</code> \| <code>&#x27;title&#x27;</code> \| <code>&#x27;spacer&#x27;</code> | Item type: 'button', 'appLogo', 'title', or 'spacer' |
@@ -99,7 +99,7 @@ useEffect(() => {
   sticky
   scrolled={scrolled}
   items={[
-    {
+    status !== "loading" && {
       icon: <svg>...</svg>,
       onClick: () => {...},
     },
@@ -235,7 +235,7 @@ Material Design 3 Menu component
 | --- | --- | --- |
 | props | <code>MenuProps</code> | MenuProps |
 | [props.id] | <code>string</code> | Element id |
-| props.items | <code>Iterable.&lt;MenuItemProps&gt;</code> | Array of MenuItem configurations |
+| props.items | <code>Iterable.&lt;(MenuItemProps\|null\|undefined)&gt;</code> | Array of MenuItem configurations |
 | [props.items[].key] | <code>string</code> \| <code>number</code> | Unique key for the item |
 | [props.items[].id] | <code>string</code> | Element id for the item |
 | [props.items[].label] | <code>string</code> | Label text |
@@ -264,8 +264,12 @@ Material Design 3 Menu component
       onClick: () => {},
     },
     { divider: true },
-    {
+    status !== 'loading' && {
       label: "Item 2",
+      href: "...",
+    },
+    {
+      label: "Item 3",
       href: "...",
     },
   ]}
@@ -282,7 +286,7 @@ Material Design 3 NavDrawer component
 | --- | --- | --- |
 | props | <code>NavDrawerProps</code> | NavDrawerProps |
 | [props.id] | <code>string</code> | Element id |
-| props.items | <code>Iterable.&lt;NavDrawerItemProps&gt;</code> | Array of NavDrawerItem configurations |
+| props.items | <code>Iterable.&lt;(NavDrawerItemProps\|null\|undefined)&gt;</code> | Array of NavDrawerItem configurations |
 | [props.items[].key] | <code>string</code> \| <code>number</code> | Unique key for the item |
 | [props.items[].id] | <code>string</code> | Element id for the item |
 | [props.items[].label] | <code>string</code> | Label text |
@@ -310,8 +314,12 @@ Material Design 3 NavDrawer component
       onClick: () => {},
     },
     { divider: true },
-    {
+    status !== 'loading' && {
       label: "Item 2",
+      href: "...",
+    },
+    {
+      label: "Item 3",
       href: "...",
     },
   ]}
@@ -548,7 +556,7 @@ Material Design 3 Toolbar component
 | --- | --- | --- |
 | props | <code>ToolbarProps</code> | ToolbarProps |
 | [props.id] | <code>string</code> | Element id |
-| props.items | <code>Iterable.&lt;ToolbarItemProps&gt;</code> | Array of ToolbarItem configurations |
+| props.items | <code>Iterable.&lt;(ToolbarItemProps\|null\|undefined)&gt;</code> | Array of ToolbarItem configurations |
 | [props.items[].key] | <code>string</code> \| <code>number</code> | Unique key for the item |
 | [props.items[].id] | <code>string</code> | Element id for the item |
 | [props.items[].label] | <code>string</code> | Label text |
@@ -574,7 +582,7 @@ Material Design 3 Toolbar component
       onClick: () => {},
     },
     { divider: true },
-    {
+    status !== 'loading' && {
       icon: {<svg>...</svg>},
       href: "...",
     },
