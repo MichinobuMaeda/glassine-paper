@@ -14,7 +14,7 @@ export interface ToolbarItemProps {
 }
 export interface ToolbarProps {
     id?: string;
-    items: Iterable<ToolbarItemProps | null | undefined>;
+    items: Iterable<ToolbarItemProps | false | null | undefined>;
     variant?: 'docked' | 'floating';
     color?: 'standard' | 'vibrant';
     style?: CSSProperties;
@@ -24,7 +24,7 @@ export interface ToolbarProps {
  *
  * @param {ToolbarProps} props ToolbarProps
  * @param {string} [props.id] Element id
- * @param {Iterable<(ToolbarItemProps | null | undefined)>} props.items Array of ToolbarItem configurations
+ * @param {Iterable<(ToolbarItemProps | false | null | undefined)>} props.items Array of ToolbarItem configurations
  * @param {(string | number)} [props.items[].key] Unique key for the item
  * @param {string} [props.items[].id] Element id for the item
  * @param {string} [props.items[].label] Label text

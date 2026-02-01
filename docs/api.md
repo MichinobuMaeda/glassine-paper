@@ -1,4 +1,4 @@
-# API Documentation glassine-paper 1.2.9
+# API Documentation glassine-paper 1.3.0
 
 ## Modules
 
@@ -65,7 +65,7 @@ Material Design 3 App bar component
 | --- | --- | --- |
 | props | <code>AppBarProps</code> | The props for the AppBar component. |
 | [props.id] | <code>string</code> | Element id |
-| props.items | <code>Iterable.&lt;(AppBarItemProps\|null\|undefined)&gt;</code> | Array of AppBarItem configurations |
+| props.items | <code>Iterable.&lt;(AppBarItemProps\|false\|null\|undefined)&gt;</code> | Array of AppBarItem configurations |
 | [props.items[].key] | <code>string</code> \| <code>number</code> | Unique key for the item |
 | [props.items[].id] | <code>string</code> | Element id for the item |
 | [props.items[].type] | <code>&#x27;button&#x27;</code> \| <code>&#x27;appLogo&#x27;</code> \| <code>&#x27;title&#x27;</code> \| <code>&#x27;spacer&#x27;</code> | Item type: 'button', 'appLogo', 'title', or 'spacer' |
@@ -235,7 +235,7 @@ Material Design 3 Menu component
 | --- | --- | --- |
 | props | <code>MenuProps</code> | MenuProps |
 | [props.id] | <code>string</code> | Element id |
-| props.items | <code>Iterable.&lt;(MenuItemProps\|null\|undefined)&gt;</code> | Array of MenuItem configurations |
+| props.items | <code>Iterable.&lt;(MenuItemProps\|false\|null\|undefined)&gt;</code> | Array of MenuItem configurations |
 | [props.items[].key] | <code>string</code> \| <code>number</code> | Unique key for the item |
 | [props.items[].id] | <code>string</code> | Element id for the item |
 | [props.items[].label] | <code>string</code> | Label text |
@@ -286,7 +286,7 @@ Material Design 3 NavDrawer component
 | --- | --- | --- |
 | props | <code>NavDrawerProps</code> | NavDrawerProps |
 | [props.id] | <code>string</code> | Element id |
-| props.items | <code>Iterable.&lt;(NavDrawerItemProps\|null\|undefined)&gt;</code> | Array of NavDrawerItem configurations |
+| props.items | <code>Iterable.&lt;(NavDrawerItemProps\|false\|null\|undefined)&gt;</code> | Array of NavDrawerItem configurations |
 | [props.items[].key] | <code>string</code> \| <code>number</code> | Unique key for the item |
 | [props.items[].id] | <code>string</code> | Element id for the item |
 | [props.items[].label] | <code>string</code> | Label text |
@@ -556,7 +556,7 @@ Material Design 3 Toolbar component
 | --- | --- | --- |
 | props | <code>ToolbarProps</code> | ToolbarProps |
 | [props.id] | <code>string</code> | Element id |
-| props.items | <code>Iterable.&lt;(ToolbarItemProps\|null\|undefined)&gt;</code> | Array of ToolbarItem configurations |
+| props.items | <code>Iterable.&lt;(ToolbarItemProps\|false\|null\|undefined)&gt;</code> | Array of ToolbarItem configurations |
 | [props.items[].key] | <code>string</code> \| <code>number</code> | Unique key for the item |
 | [props.items[].id] | <code>string</code> | Element id for the item |
 | [props.items[].label] | <code>string</code> | Label text |
