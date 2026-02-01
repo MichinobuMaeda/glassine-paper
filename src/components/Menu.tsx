@@ -15,7 +15,7 @@ export interface MenuItemProps {
 
 export interface MenuProps {
   id?: string;
-  items: Iterable<MenuItemProps | null | undefined>;
+  items: Iterable<MenuItemProps | false | null | undefined>;
   onClose?: () => void;
   className?: string;
   style?: CSSProperties;
@@ -58,7 +58,7 @@ const MenuItem: React.FC<MenuItemProps> = ({
  *
  * @param {MenuProps} props MenuProps
  * @param {string} [props.id] Element id
- * @param {Iterable<(MenuItemProps | null | undefined)>} props.items Array of MenuItem configurations
+ * @param {Iterable<(MenuItemProps | false | null | undefined)>} props.items Array of MenuItem configurations
  * @param {(string | number)} [props.items[].key] Unique key for the item
  * @param {string} [props.items[].id] Element id for the item
  * @param {string} [props.items[].label] Label text

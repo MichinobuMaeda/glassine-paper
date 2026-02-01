@@ -2,6 +2,12 @@
 
 All notable changes to this project will be documented in this file.
 
+## [1.3.0] - 2026-02-01
+
+### Improved
+
+- React components: AppBar, Menu, NavDrawer, and Toolbar now accept false/null/undefined items in their arrays, enhancing conditional rendering patterns
+
 ## [1.2.9] - 2026-02-01
 
 ### Improved

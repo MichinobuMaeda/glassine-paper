@@ -16,7 +16,7 @@ export interface NavDrawerItemProps {
 
 export interface NavDrawerProps {
   id?: string;
-  items: Iterable<NavDrawerItemProps | null | undefined>;
+  items: Iterable<NavDrawerItemProps | false | null | undefined>;
   className?: string;
   style?: CSSProperties;
 }
@@ -61,7 +61,7 @@ const NavDrawerItem: React.FC<NavDrawerItemProps> = ({
  *
  * @param {NavDrawerProps} props NavDrawerProps
  * @param {string} [props.id] Element id
- * @param {Iterable<(NavDrawerItemProps | null | undefined)>} props.items Array of NavDrawerItem configurations
+ * @param {Iterable<(NavDrawerItemProps | false | null | undefined)>} props.items Array of NavDrawerItem configurations
  * @param {(string | number)} [props.items[].key] Unique key for the item
  * @param {string} [props.items[].id] Element id for the item
  * @param {string} [props.items[].label] Label text

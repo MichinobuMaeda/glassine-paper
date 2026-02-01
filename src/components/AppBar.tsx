@@ -18,7 +18,7 @@ export interface AppBarItemProps {
 
 export interface AppBarProps {
   id?: string;
-  items: Iterable<AppBarItemProps | null | undefined>;
+  items: Iterable<AppBarItemProps | false | null | undefined>;
   sticky?: boolean;
   scrolled?: boolean;
   style?: CSSProperties;
@@ -82,7 +82,7 @@ const AppBarItem: React.FC<AppBarItemProps> = ({
  *
  * @param {AppBarProps} props The props for the AppBar component.
  * @param {string} [props.id] Element id
- * @param {Iterable<(AppBarItemProps | null | undefined)>} props.items Array of AppBarItem configurations
+ * @param {Iterable<(AppBarItemProps | false | null | undefined)>} props.items Array of AppBarItem configurations
  * @param {(string | number)} [props.items[].key] Unique key for the item
  * @param {string} [props.items[].id] Element id for the item
  * @param {('button' | 'appLogo' | 'title' | 'spacer')} [props.items[].type] Item type: 'button', 'appLogo', 'title', or 'spacer'
