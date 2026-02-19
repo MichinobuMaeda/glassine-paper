@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file.
 
+## [1.3.1] - 2026-02-20
+
+### Fixed
+
+- React components: Fixed React key prop handling in AppBar, Menu, NavDrawer, Tabs, and Toolbar - keys are now passed directly to JSX elements instead of being spread
+- React components: Changed form input event handlers from onClick to onChange for Checkbox, Radio, Switch, and Button (toggle/select types) to comply with React controlled component patterns
+- React components: Updated Toolbar toggle input to use onChange instead of onClick
+
 ## [1.3.0] - 2026-02-01
 
 ### Improved
