@@ -9,7 +9,7 @@ export interface RadioProps {
   disabled?: boolean;
   value?: string;
   checked?: boolean;
-  onClick?: (e: React.MouseEvent<HTMLInputElement>) => void;
+  onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void;
   className?: string;
   style?: CSSProperties;
 }
@@ -23,7 +23,7 @@ export interface RadioProps {
  * @param {boolean} [props.disabled=false] Whether the radio button is disabled.
  * @param {string} [props.value] The value of the radio button.
  * @param {boolean} [props.checked] Whether the radio button is checked.
- * @param {Function} [props.onClick] The function to call when the radio button is clicked.
+ * @param {Function} [props.onChange] The function to call when the radio button state changes.
  * @param {string} [props.className] Additional CSS classes to apply to the radio button.
  * @param {CSSProperties} [props.style] Additional CSS styles to apply to the radio button.
  * @returns {JSX.Element} A Radio component.
@@ -34,7 +34,7 @@ export interface RadioProps {
  *  name="my-radio-group"
  *  value="option1"
  *  checked={selectedValue === 'option1'}
- *  onClick={() => setSelectedValue('option1')}
+ *  onChange={(e) => setSelectedValue(e.target.value)}
  * />
  */
 export const Radio: React.FC<RadioProps> = ({
@@ -43,7 +43,7 @@ export const Radio: React.FC<RadioProps> = ({
   disabled = false,
   value,
   checked,
-  onClick,
+  onChange,
   className = '',
   style = {},
 }) => {
@@ -59,7 +59,7 @@ export const Radio: React.FC<RadioProps> = ({
       disabled={disabled}
       value={value}
       checked={checked}
-      onClick={(event) => (onClick ? onClick(event) : undefined)}
+      onChange={onChange}
     />
   );
 };

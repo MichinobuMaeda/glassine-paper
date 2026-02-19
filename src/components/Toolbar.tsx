@@ -1,7 +1,6 @@
 import React, { type ReactNode, type CSSProperties } from 'react';
 
 export interface ToolbarItemProps {
-  key?: string | number;
   id?: string;
   label?: string;
   icon?: ReactNode;
@@ -23,7 +22,6 @@ export interface ToolbarProps {
 }
 
 const ToolbarItem: React.FC<ToolbarItemProps> = ({
-  key,
   id,
   label,
   icon,
@@ -39,33 +37,27 @@ const ToolbarItem: React.FC<ToolbarItemProps> = ({
     ' '
   );
   return fab ? (
-    <button
-      key={key}
-      id={id}
-      className={`fab sm`}
-      disabled={disabled}
-      onClick={onClick}
-    >
+    <button id={id} className={`fab sm`} disabled={disabled} onClick={onClick}>
       {icon}
     </button>
   ) : toggle ? (
-    <label key={key} id={id} className={classes}>
+    <label id={id} className={classes}>
       <input
         type="checkbox"
         disabled={disabled}
-        onClick={onClick}
+        onChange={onClick}
         checked={checked}
       />
       {icon}
       {label}
     </label>
   ) : href ? (
-    <a key={key} id={id} className={classes} href={href}>
+    <a id={id} className={classes} href={href}>
       {icon}
       {label}
     </a>
   ) : (
-    <button key={key} id={id} className={classes} onClick={onClick}>
+    <button id={id} className={classes} onClick={onClick}>
       {icon}
       {label}
     </button>
@@ -78,7 +70,6 @@ const ToolbarItem: React.FC<ToolbarItemProps> = ({
  * @param {ToolbarProps} props ToolbarProps
  * @param {string} [props.id] Element id
  * @param {Iterable<(ToolbarItemProps | false | null | undefined)>} props.items Array of ToolbarItem configurations
- * @param {(string | number)} [props.items[].key] Unique key for the item
  * @param {string} [props.items[].id] Element id for the item
  * @param {string} [props.items[].label] Label text
  * @param {React.ReactNode} [props.items[].icon] Icon element
@@ -125,21 +116,33 @@ export const Toolbar: React.FC<ToolbarProps> = ({
       <div id={id} className={classes}>
         {activeItems
           .filter((item) => !item.fab)
-          .map((item, index) => (
-            <ToolbarItem key={item.key || index} {...item} />
-          ))}
+          .map((item, index) => {
+            const { key: itemKey, ...rest } = item as ToolbarItemProps & {
+              key?: string | number;
+            };
+            const key = itemKey ?? index;
+            return <ToolbarItem key={key} {...rest} />;
+          })}
       </div>
       {activeItems
         .filter((item) => item.fab)
-        .map((item, index) => (
-          <ToolbarItem key={item.key || index} {...item} />
-        ))}
+        .map((item, index) => {
+          const { key: itemKey, ...rest } = item as ToolbarItemProps & {
+            key?: string | number;
+          };
+          const key = itemKey ?? index;
+          return <ToolbarItem key={key} {...rest} />;
+        })}
     </div>
   ) : (
     <div id={id} className={classes} style={style}>
-      {activeItems.map((item, index) => (
-        <ToolbarItem key={item.key || index} {...item} fab={false} />
-      ))}
+      {activeItems.map((item, index) => {
+        const { key: itemKey, ...rest } = item as ToolbarItemProps & {
+          key?: string | number;
+        };
+        const key = itemKey ?? index;
+        return <ToolbarItem key={key} {...rest} fab={false} />;
+      })}
     </div>
   );
 };

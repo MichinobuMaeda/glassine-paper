@@ -16,6 +16,7 @@ export interface ButtonProps {
     checked?: boolean;
     disabled?: boolean;
     onClick?: (e: React.MouseEvent<HTMLButtonElement | HTMLInputElement>) => void;
+    onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void;
     className?: string;
     style?: CSSProperties;
 }
@@ -35,7 +36,8 @@ export interface ButtonProps {
  * @param {string} [props.href] Link URL (renders as anchor tag)
  * @param {boolean} [props.checked] Checked state (for toggle/select types)
  * @param {boolean} [props.disabled] Disabled state
- * @param {Function} [props.onClick] Click handler
+ * @param {Function} [props.onClick] Click handler (for button type)
+ * @param {Function} [props.onChange] Change handler (for toggle/select types)
  * @param {string} [props.className] Additional CSS class names
  * @param {React.CSSProperties} [props.style] Custom inline styles
  * @returns {JSX.Element}

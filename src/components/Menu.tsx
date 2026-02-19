@@ -1,7 +1,6 @@
 import React, { type ReactNode, type CSSProperties } from 'react';
 
 export interface MenuItemProps {
-  key?: string | number;
   id?: string;
   label?: string;
   leadingIcon?: ReactNode;
@@ -22,7 +21,6 @@ export interface MenuProps {
 }
 
 const MenuItem: React.FC<MenuItemProps> = ({
-  key,
   id,
   label,
   leadingIcon,
@@ -39,13 +37,13 @@ const MenuItem: React.FC<MenuItemProps> = ({
   return divider ? (
     <hr />
   ) : href ? (
-    <a key={key} id={id} className={classes} href={href}>
+    <a id={id} className={classes} href={href}>
       {leadingIcon}
       {label}
       {trailingIcon}
     </a>
   ) : (
-    <button key={key} id={id} className={classes} onClick={onClick}>
+    <button id={id} className={classes} onClick={onClick}>
       {leadingIcon}
       {label}
       {trailingIcon}
@@ -59,7 +57,6 @@ const MenuItem: React.FC<MenuItemProps> = ({
  * @param {MenuProps} props MenuProps
  * @param {string} [props.id] Element id
  * @param {Iterable<(MenuItemProps | false | null | undefined)>} props.items Array of MenuItem configurations
- * @param {(string | number)} [props.items[].key] Unique key for the item
  * @param {string} [props.items[].id] Element id for the item
  * @param {string} [props.items[].label] Label text
  * @param {React.ReactNode} [props.items[].leadingIcon] Leading icon element
@@ -114,9 +111,13 @@ export const Menu: React.FC<MenuProps> = ({
     >
       {Array.from(items)
         .filter((item) => !!item)
-        .map((item, index) => (
-          <MenuItem key={item.key || index} {...item} />
-        ))}
+        .map((item, index) => {
+          const { key: itemKey, ...rest } = item as MenuItemProps & {
+            key?: string | number;
+          };
+          const key = itemKey ?? index;
+          return <MenuItem key={key} {...rest} />;
+        })}
     </div>
   );
 };

@@ -289,7 +289,6 @@ function App(): JSX.Element {
             id="main-menu"
             items={[
               ...Object.values(LightDark).map((mode) => ({
-                key: mode,
                 leadingIcon: React.createElement(LightDarkIcon[mode]),
                 label: LightDarkLabel[mode],
                 onClick: () => {
@@ -299,20 +298,17 @@ function App(): JSX.Element {
               })),
               { divider: true },
               {
-                key: 'github',
                 leadingIcon: <SvgGitHub />,
                 label: 'GitHub',
                 href: 'https://github.com/MichinobuMaeda/glassine-paper',
               },
               {
-                key: 'menu-item',
                 leadingIcon: <SvgSquare />,
                 label: 'Menu Item',
                 trailingIcon: <SvgSquare />,
               },
-              { key: 'text-only', label: 'Text only' },
+              { label: 'Text only' },
               {
-                key: 'disabled-icon',
                 leadingIcon: <SvgSquare />,
                 label: 'Disabled icon',
                 disabled: true,
@@ -368,7 +364,7 @@ function App(): JSX.Element {
                   label={(
                     key.charAt(0).toUpperCase() + key.slice(1).toLowerCase()
                   ).replace('_', ' ')}
-                  onClick={() => setVariant(value)}
+                  onChange={() => setVariant(value)}
                   checked={variant === value}
                   name="variant"
                   type="select"
@@ -404,7 +400,6 @@ function App(): JSX.Element {
 
           <Tabs
             items={Object.values(ColorModel).map((model) => ({
-              key: model,
               label: model,
               active: colorModel === model,
               onClick: () => setColorModel(model),

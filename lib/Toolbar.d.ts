@@ -1,6 +1,5 @@
 import React, { type ReactNode, type CSSProperties } from 'react';
 export interface ToolbarItemProps {
-    key?: string | number;
     id?: string;
     label?: string;
     icon?: ReactNode;
@@ -25,7 +24,6 @@ export interface ToolbarProps {
  * @param {ToolbarProps} props ToolbarProps
  * @param {string} [props.id] Element id
  * @param {Iterable<(ToolbarItemProps | false | null | undefined)>} props.items Array of ToolbarItem configurations
- * @param {(string | number)} [props.items[].key] Unique key for the item
  * @param {string} [props.items[].id] Element id for the item
  * @param {string} [props.items[].label] Label text
  * @param {React.ReactNode} [props.items[].icon] Icon element

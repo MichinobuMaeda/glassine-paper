@@ -1,6 +1,5 @@
 import React, { type ReactNode, type CSSProperties } from 'react';
 export interface TabItemProps {
-    key?: string | number;
     id?: string;
     label: string;
     leadingIcon?: ReactNode;
@@ -20,7 +19,6 @@ export interface TabsProps {
  * @param {TabsProps} props TabsProps
  * @param {string} [props.id] Element id
  * @param {Iterable<TabItemProps>} props.items Array of TabItem configurations
- * @param {(string | number)} [props.items[].key] Unique key for the item
  * @param {string} [props.items[].id] Element id for the item
  * @param {string} props.items[].label Label text
  * @param {React.ReactNode} [props.items[].leadingIcon] Leading icon element

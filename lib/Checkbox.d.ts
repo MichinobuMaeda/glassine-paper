@@ -9,7 +9,7 @@ export interface CheckboxProps {
     disabled?: boolean;
     value?: string;
     checked?: boolean;
-    onClick?: (e: React.MouseEvent<HTMLInputElement>) => void;
+    onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void;
     className?: string;
     style?: CSSProperties;
 }
@@ -23,7 +23,7 @@ export interface CheckboxProps {
  * @param {boolean} [props.disabled=false] Whether the checkbox is disabled.
  * @param {string} [props.value] The value of the checkbox.
  * @param {boolean} [props.checked] Whether the checkbox is checked.
- * @param {Function} [props.onClick] The function to call when the checkbox is clicked.
+ * @param {Function} [props.onChange] The function to call when the checkbox state changes.
  * @param {string} [props.className] Additional CSS classes to apply to the checkbox.
  * @param {CSSProperties} [props.style] Additional CSS styles to apply to the checkbox.
  * @returns {JSX.Element} A Checkbox component.
@@ -33,7 +33,7 @@ export interface CheckboxProps {
  *  id="my-checkbox"
  *  name="my-checkbox"
  *  checked={isChecked}
- *  onClick={() => setIsChecked(!isChecked)}
+ *  onChange={(e) => setIsChecked(e.target.checked)}
  * />
  */
 export declare const Checkbox: React.FC<CheckboxProps>;

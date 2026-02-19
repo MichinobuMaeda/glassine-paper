@@ -1,7 +1,6 @@
 import React, { type ReactNode, type CSSProperties } from 'react';
 
 export interface NavDrawerItemProps {
-  key?: string | number;
   id?: string;
   label?: string;
   leadingIcon?: ReactNode;
@@ -22,7 +21,6 @@ export interface NavDrawerProps {
 }
 
 const NavDrawerItem: React.FC<NavDrawerItemProps> = ({
-  key,
   id,
   label,
   leadingIcon,
@@ -42,13 +40,13 @@ const NavDrawerItem: React.FC<NavDrawerItemProps> = ({
   return divider ? (
     <hr />
   ) : href ? (
-    <a key={key} id={id} className={classes} href={href}>
+    <a id={id} className={classes} href={href}>
       {leadingIcon}
       {label}
       {trailingIcon}
     </a>
   ) : (
-    <button key={key} id={id} className={classes} onClick={onClick}>
+    <button id={id} className={classes} onClick={onClick}>
       {leadingIcon}
       {label}
       {trailingIcon}
@@ -62,7 +60,6 @@ const NavDrawerItem: React.FC<NavDrawerItemProps> = ({
  * @param {NavDrawerProps} props NavDrawerProps
  * @param {string} [props.id] Element id
  * @param {Iterable<(NavDrawerItemProps | false | null | undefined)>} props.items Array of NavDrawerItem configurations
- * @param {(string | number)} [props.items[].key] Unique key for the item
  * @param {string} [props.items[].id] Element id for the item
  * @param {string} [props.items[].label] Label text
  * @param {React.ReactNode} [props.items[].leadingIcon] Leading icon element
@@ -110,9 +107,13 @@ export const NavDrawer: React.FC<NavDrawerProps> = ({
     <div id={id} className={`nav-drawer ${className || ''}`} style={style}>
       {Array.from(items)
         .filter((item) => !!item)
-        .map((item, index) => (
-          <NavDrawerItem key={item.key || index} {...item} />
-        ))}
+        .map((item, index) => {
+          const { key: itemKey, ...rest } = item as NavDrawerItemProps & {
+            key?: string | number;
+          };
+          const key = itemKey ?? index;
+          return <NavDrawerItem key={key} {...rest} />;
+        })}
     </div>
   );
 };

@@ -1,4 +1,4 @@
-# API Documentation glassine-paper 1.3.0
+# API Documentation glassine-paper 1.3.1
 
 ## Modules
 
@@ -66,7 +66,6 @@ Material Design 3 App bar component
 | props | <code>AppBarProps</code> | The props for the AppBar component. |
 | [props.id] | <code>string</code> | Element id |
 | props.items | <code>Iterable.&lt;(AppBarItemProps\|false\|null\|undefined)&gt;</code> | Array of AppBarItem configurations |
-| [props.items[].key] | <code>string</code> \| <code>number</code> | Unique key for the item |
 | [props.items[].id] | <code>string</code> | Element id for the item |
 | [props.items[].type] | <code>&#x27;button&#x27;</code> \| <code>&#x27;appLogo&#x27;</code> \| <code>&#x27;title&#x27;</code> \| <code>&#x27;spacer&#x27;</code> | Item type: 'button', 'appLogo', 'title', or 'spacer' |
 | [props.items[].icon] | <code>React.ReactNode</code> | Icon element (svg or img) |
@@ -142,7 +141,8 @@ Material Design 3 Button component
 | [props.href] | <code>string</code> | Link URL (renders as anchor tag) |
 | [props.checked] | <code>boolean</code> | Checked state (for toggle/select types) |
 | [props.disabled] | <code>boolean</code> | Disabled state |
-| [props.onClick] | <code>function</code> | Click handler |
+| [props.onClick] | <code>function</code> | Click handler (for button type) |
+| [props.onChange] | <code>function</code> | Change handler (for toggle/select types) |
 | [props.className] | <code>string</code> | Additional CSS class names |
 | [props.style] | <code>React.CSSProperties</code> | Custom inline styles |
 
@@ -211,7 +211,7 @@ Material Design 3 Checkbox component.
 | [props.disabled] | <code>boolean</code> | <code>false</code> | Whether the checkbox is disabled. |
 | [props.value] | <code>string</code> |  | The value of the checkbox. |
 | [props.checked] | <code>boolean</code> |  | Whether the checkbox is checked. |
-| [props.onClick] | <code>function</code> |  | The function to call when the checkbox is clicked. |
+| [props.onChange] | <code>function</code> |  | The function to call when the checkbox state changes. |
 | [props.className] | <code>string</code> |  | Additional CSS classes to apply to the checkbox. |
 | [props.style] | <code>CSSProperties</code> |  | Additional CSS styles to apply to the checkbox. |
 
@@ -221,7 +221,7 @@ Material Design 3 Checkbox component.
  id="my-checkbox"
  name="my-checkbox"
  checked={isChecked}
- onClick={() => setIsChecked(!isChecked)}
+ onChange={(e) => setIsChecked(e.target.checked)}
 />
 ```
 <a name="Menu"></a>
@@ -236,7 +236,6 @@ Material Design 3 Menu component
 | props | <code>MenuProps</code> | MenuProps |
 | [props.id] | <code>string</code> | Element id |
 | props.items | <code>Iterable.&lt;(MenuItemProps\|false\|null\|undefined)&gt;</code> | Array of MenuItem configurations |
-| [props.items[].key] | <code>string</code> \| <code>number</code> | Unique key for the item |
 | [props.items[].id] | <code>string</code> | Element id for the item |
 | [props.items[].label] | <code>string</code> | Label text |
 | [props.items[].leadingIcon] | <code>React.ReactNode</code> | Leading icon element |
@@ -287,7 +286,6 @@ Material Design 3 NavDrawer component
 | props | <code>NavDrawerProps</code> | NavDrawerProps |
 | [props.id] | <code>string</code> | Element id |
 | props.items | <code>Iterable.&lt;(NavDrawerItemProps\|false\|null\|undefined)&gt;</code> | Array of NavDrawerItem configurations |
-| [props.items[].key] | <code>string</code> \| <code>number</code> | Unique key for the item |
 | [props.items[].id] | <code>string</code> | Element id for the item |
 | [props.items[].label] | <code>string</code> | Label text |
 | [props.items[].leadingIcon] | <code>React.ReactNode</code> | Leading icon element |
@@ -341,7 +339,7 @@ Material Design 3 Radio button component.
 | [props.disabled] | <code>boolean</code> | <code>false</code> | Whether the radio button is disabled. |
 | [props.value] | <code>string</code> |  | The value of the radio button. |
 | [props.checked] | <code>boolean</code> |  | Whether the radio button is checked. |
-| [props.onClick] | <code>function</code> |  | The function to call when the radio button is clicked. |
+| [props.onChange] | <code>function</code> |  | The function to call when the radio button state changes. |
 | [props.className] | <code>string</code> |  | Additional CSS classes to apply to the radio button. |
 | [props.style] | <code>CSSProperties</code> |  | Additional CSS styles to apply to the radio button. |
 
@@ -352,7 +350,7 @@ Material Design 3 Radio button component.
  name="my-radio-group"
  value="option1"
  checked={selectedValue === 'option1'}
- onClick={() => setSelectedValue('option1')}
+ onChange={(e) => setSelectedValue(e.target.value)}
 />
 ```
 <a name="Slider"></a>
@@ -426,7 +424,7 @@ Material Design 3 Switch component.
 | [props.disabled] | <code>boolean</code> | <code>false</code> | Whether the switch is disabled. |
 | [props.value] | <code>string</code> |  | The value of the switch. |
 | [props.checked] | <code>boolean</code> |  | Whether the switch is checked. |
-| [props.onClick] | <code>function</code> |  | The function to call when the switch is clicked. |
+| [props.onChange] | <code>function</code> |  | The function to call when the switch state changes. |
 | [props.className] | <code>string</code> |  | Additional CSS classes to apply to the switch. |
 | [props.style] | <code>CSSProperties</code> |  | Additional CSS styles to apply to the switch. |
 
@@ -436,7 +434,7 @@ Material Design 3 Switch component.
  id="my-switch"
  name="my-switch"
  checked={isChecked}
- onClick={() => setIsChecked(!isChecked)}
+ onChange={(e) => setIsChecked(e.target.checked)}
 />
 ```
 <a name="Tabs"></a>
@@ -451,7 +449,6 @@ Material Design 3 Tabs component
 | props | <code>TabsProps</code> | TabsProps |
 | [props.id] | <code>string</code> | Element id |
 | props.items | <code>Iterable.&lt;TabItemProps&gt;</code> | Array of TabItem configurations |
-| [props.items[].key] | <code>string</code> \| <code>number</code> | Unique key for the item |
 | [props.items[].id] | <code>string</code> | Element id for the item |
 | props.items[].label | <code>string</code> | Label text |
 | [props.items[].leadingIcon] | <code>React.ReactNode</code> | Leading icon element |
@@ -557,7 +554,6 @@ Material Design 3 Toolbar component
 | props | <code>ToolbarProps</code> | ToolbarProps |
 | [props.id] | <code>string</code> | Element id |
 | props.items | <code>Iterable.&lt;(ToolbarItemProps\|false\|null\|undefined)&gt;</code> | Array of ToolbarItem configurations |
-| [props.items[].key] | <code>string</code> \| <code>number</code> | Unique key for the item |
 | [props.items[].id] | <code>string</code> | Element id for the item |
 | [props.items[].label] | <code>string</code> | Label text |
 | [props.items[].icon] | <code>React.ReactNode</code> | Icon element |

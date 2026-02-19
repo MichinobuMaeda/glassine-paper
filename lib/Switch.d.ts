@@ -8,7 +8,7 @@ export interface SwitchProps {
     disabled?: boolean;
     value?: string;
     checked?: boolean;
-    onClick?: (e: React.MouseEvent<HTMLInputElement>) => void;
+    onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void;
     className?: string;
     style?: CSSProperties;
 }
@@ -21,7 +21,7 @@ export interface SwitchProps {
  * @param {boolean} [props.disabled=false] Whether the switch is disabled.
  * @param {string} [props.value] The value of the switch.
  * @param {boolean} [props.checked] Whether the switch is checked.
- * @param {Function} [props.onClick] The function to call when the switch is clicked.
+ * @param {Function} [props.onChange] The function to call when the switch state changes.
  * @param {string} [props.className] Additional CSS classes to apply to the switch.
  * @param {CSSProperties} [props.style] Additional CSS styles to apply to the switch.
  * @returns {JSX.Element} A Switch component.
@@ -31,7 +31,7 @@ export interface SwitchProps {
  *  id="my-switch"
  *  name="my-switch"
  *  checked={isChecked}
- *  onClick={() => setIsChecked(!isChecked)}
+ *  onChange={(e) => setIsChecked(e.target.checked)}
  * />
  */
 export declare const Switch: React.FC<SwitchProps>;

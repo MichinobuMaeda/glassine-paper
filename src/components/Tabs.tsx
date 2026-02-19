@@ -1,7 +1,6 @@
 import React, { type ReactNode, type CSSProperties } from 'react';
 
 export interface TabItemProps {
-  key?: string | number;
   id?: string;
   label: string;
   leadingIcon?: ReactNode;
@@ -18,7 +17,6 @@ export interface TabsProps {
 }
 
 const TabItem: React.FC<TabItemProps> = ({
-  key,
   id,
   leadingIcon,
   label,
@@ -28,12 +26,12 @@ const TabItem: React.FC<TabItemProps> = ({
 }) => {
   const classes = [active ? 'active' : ''].join(' ');
   return href ? (
-    <a key={key} id={id} className={classes} href={href}>
+    <a id={id} className={classes} href={href}>
       {leadingIcon}
       {label}
     </a>
   ) : (
-    <button key={key} id={id} className={classes} onClick={onClick}>
+    <button id={id} className={classes} onClick={onClick}>
       {leadingIcon}
       {label}
     </button>
@@ -46,7 +44,6 @@ const TabItem: React.FC<TabItemProps> = ({
  * @param {TabsProps} props TabsProps
  * @param {string} [props.id] Element id
  * @param {Iterable<TabItemProps>} props.items Array of TabItem configurations
- * @param {(string | number)} [props.items[].key] Unique key for the item
  * @param {string} [props.items[].id] Element id for the item
  * @param {string} props.items[].label Label text
  * @param {React.ReactNode} [props.items[].leadingIcon] Leading icon element
@@ -74,9 +71,13 @@ const TabItem: React.FC<TabItemProps> = ({
 export const Tabs: React.FC<TabsProps> = ({ id, items = [], style = {} }) => {
   return (
     <div id={id} className="tabs" style={style}>
-      {Array.from(items).map((item, index) => (
-        <TabItem key={item.key || index} {...item} />
-      ))}
+      {Array.from(items).map((item, index) => {
+        const { key: itemKey, ...rest } = item as TabItemProps & {
+          key?: string | number;
+        };
+        const key = itemKey ?? index;
+        return <TabItem key={key} {...rest} />;
+      })}
     </div>
   );
 };

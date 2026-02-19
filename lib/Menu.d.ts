@@ -1,6 +1,5 @@
 import React, { type ReactNode, type CSSProperties } from 'react';
 export interface MenuItemProps {
-    key?: string | number;
     id?: string;
     label?: string;
     leadingIcon?: ReactNode;
@@ -24,7 +23,6 @@ export interface MenuProps {
  * @param {MenuProps} props MenuProps
  * @param {string} [props.id] Element id
  * @param {Iterable<(MenuItemProps | false | null | undefined)>} props.items Array of MenuItem configurations
- * @param {(string | number)} [props.items[].key] Unique key for the item
  * @param {string} [props.items[].id] Element id for the item
  * @param {string} [props.items[].label] Label text
  * @param {React.ReactNode} [props.items[].leadingIcon] Leading icon element
