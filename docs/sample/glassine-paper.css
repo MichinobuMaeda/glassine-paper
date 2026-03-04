@@ -3692,6 +3692,7 @@ body:has(.nav-drawer:not(.hidden).modal)::after {
 
 .chip {
   display: inline-flex;
+  position: relative;
   flex-direction: row;
   align-items: center;
   flex-wrap: nowrap;
@@ -3705,6 +3706,40 @@ body:has(.nav-drawer:not(.hidden).modal)::after {
     );
   padding: 0 var(--size-16px);
 
+  &::after {
+    content: '';
+    position: absolute;
+    inset: 0 0;
+    border-radius: inherit;
+    pointer-events: none;
+  }
+
+  &:not([disabled]) {
+    &:hover::after {
+      background-color: light-dark(
+        var(--color-light-primary),
+        var(--color-dark-primary)
+      );
+      opacity: 0.08;
+    }
+
+    &:focus::after,
+    &:active::after {
+      background-color: light-dark(
+        var(--color-light-primary),
+        var(--color-dark-primary)
+      );
+      opacity: 0.1;
+    }
+  }
+
+  &:focus,
+  &:has(input:enabled:focus) {
+    outline: solid var(--size-2px)
+      light-dark(var(--color-light-secondary), var(--color-dark-secondary));
+    outline-offset: var(--size-1px);
+  }
+
   &.active,
   &.selected,
   &.checked,
@@ -3714,6 +3749,25 @@ body:has(.nav-drawer:not(.hidden).modal)::after {
       var(--color-light-secondary-container),
       var(--color-dark-secondary-container)
     );
+
+    &:not([disabled]) {
+      &:hover::after {
+        background-color: light-dark(
+          var(--color-light-on-secondary),
+          var(--color-dark-on-secondary)
+        );
+        opacity: 0.08;
+      }
+
+      &:focus::after,
+      &:active::after {
+        background-color: light-dark(
+          var(--color-light-on-secondary),
+          var(--color-dark-on-secondary)
+        );
+        opacity: 0.1;
+      }
+    }
   }
 
   input {
