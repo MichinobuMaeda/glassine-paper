@@ -17,19 +17,59 @@
       "import": "./lib/index.js",
       "types": "./lib/index.d.ts"
     },
-    "./css": "./lib/glassine-paper.min.css",
+    "./AppBar": {
+      "import": "./lib/AppBar.js",
+      "types": "./lib/AppBar.d.ts"
+    },
     "./Button": {
       "import": "./lib/Button.js",
       "types": "./lib/Button.d.ts"
+    },
+    "./Checkbox": {
+      "import": "./lib/Checkbox.js",
+      "types": "./lib/Checkbox.d.ts"
+    },
+    "./Chip": {
+      "import": "./lib/Chip.js",
+      "types": "./lib/Chip.d.ts"
+    },
+    "./FilterChips": {
+      "import": "./lib/FilterChips.js",
+      "types": "./lib/FilterChips.d.ts"
+    },
+    "./Menu": {
+      "import": "./lib/Menu.js",
+      "types": "./lib/Menu.d.ts"
+    },
+    "./NavDrawer": {
+      "import": "./lib/NavDrawer.js",
+      "types": "./lib/NavDrawer.d.ts"
+    },
+    "./Radio": {
+      "import": "./lib/Radio.js",
+      "types": "./lib/Radio.d.ts"
     },
     "./Slider": {
       "import": "./lib/Slider.js",
       "types": "./lib/Slider.d.ts"
     },
+    "./Switch": {
+      "import": "./lib/Switch.js",
+      "types": "./lib/Switch.d.ts"
+    },
+    "./Tabs": {
+      "import": "./lib/Tabs.js",
+      "types": "./lib/Tabs.d.ts"
+    },
     "./TextField": {
       "import": "./lib/TextField.js",
       "types": "./lib/TextField.d.ts"
-    }
+    },
+    "./Toolbar": {
+      "import": "./lib/Toolbar.js",
+      "types": "./lib/Toolbar.d.ts"
+    },
+    "./css": "./lib/glassine-paper.min.css"
   },
   "files": [
     "lib/glassine-paper.min.css",
@@ -58,7 +98,7 @@
   },
   "devDependencies": {
     "@eslint/js": "^9.37.0",
-    "@material/material-color-utilities": "^0.3.0",
+    "@material/material-color-utilities": "^0.4.0",
     "@smakss/react-scroll-direction": "^4.2.0",
     "@types/jsdoc-to-markdown": "^7.0.6",
     "@types/node": "^24.6.2",

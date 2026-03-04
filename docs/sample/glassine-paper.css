@@ -3749,6 +3749,10 @@ body:has(.nav-drawer:not(.hidden).modal)::after {
       var(--color-light-secondary-container),
       var(--color-dark-secondary-container)
     );
+    color: light-dark(
+      var(--color-light-on-secondary-container),
+      var(--color-dark-on-secondary-container)
+    );
 
     &:not([disabled]) {
       &:hover::after {

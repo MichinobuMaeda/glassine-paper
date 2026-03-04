@@ -19,40 +19,41 @@
  * @since 1.0.0
  * @example
  * // Basic theme generation
- * import { generateScheme, applyColorScheme } from './material-theme.js';
+ * import { generateScheme, convertToVariables } from './material-theme.js';
+ * import { Variant } from '@material/material-color-utilities';
  *
- * const scheme = await generateScheme('#1976D2', 0);
- * applyColorScheme(scheme); // Apply theme to document
+ * const scheme = await generateScheme('#1976D2', Variant.TONAL_SPOT, 0);
+ * const variables = convertToVariables(scheme);
+ * // Use variables as CSS custom properties
  * @example
  * // Generate CSS for static inclusion
- * import { generateScheme, generateThemeCss } from './material-theme.js';
+ * import {
+ *   generateScheme,
+ *   convertToVariables,
+ *   generateThemeCss,
+ * } from './material-theme.js';
+ * import { Variant } from '@material/material-color-utilities';
  *
- * const scheme = await generateScheme('#E91E63', 0.2);
- * const cssContent = generateThemeCss(scheme, '#E91E63', 0.2);
+ * const scheme = await generateScheme('#E91E63', Variant.FIDELITY, 0.2);
+ * const variables = convertToVariables(scheme);
+ * const cssContent = generateThemeCss(
+ *   variables,
+ *   '#E91E63',
+ *   0.2,
+ *   Variant.FIDELITY
+ * );
  * // Save cssContent to a .css file
  */
 
 import convert from 'color-convert';
 import {
   argbFromHex,
+  Hct,
   DynamicScheme,
   hexFromArgb,
   themeFromSourceColor,
+  Variant,
 } from '@material/material-color-utilities';
-
-export const Variant = {
-  MONOCHROME: 0,
-  NEUTRAL: 1,
-  TONAL_SPOT: 2,
-  VIBRANT: 3,
-  EXPRESSIVE: 4,
-  FIDELITY: 5,
-  CONTENT: 6,
-  RAINBOW: 7,
-  FRUIT_SALAD: 8,
-} as const;
-
-export type Variant = (typeof Variant)[keyof typeof Variant];
 
 /**
  * A color token pair representing a semantic color name and its hexadecimal value.
@@ -118,6 +119,9 @@ interface ThemeObject {
  * for container elements with primary color associations.
  * @param {string} seedColor - Hex color code (e.g., "#FF5722") to use as the base for generating the entire color scheme.
  *   Must be a valid 6-digit hexadecimal color with # prefix. Invalid colors will throw an error.
+ * @param {Variant} variant - Material Dynamic Color variant from `@material/material-color-utilities`.
+ *   Common values include `Variant.TONAL_SPOT`, `Variant.VIBRANT`, and `Variant.FIDELITY`.
+ *   Defaults to `Variant.TONAL_SPOT`.
  * @param {number} contrast - Contrast level for the scheme, typically ranging from -1.0 to 1.0.
  *   - 0.0: Standard contrast (default Material Design contrast)
  *   - Positive values: Higher contrast for improved accessibility
@@ -131,23 +135,27 @@ interface ThemeObject {
  * @since 1.0.0
  * @example
  * // Generate a blue-based theme with standard contrast
- * const scheme = await generateScheme("#1976D2", 0);
+ * const scheme = await generateScheme("#1976D2", Variant.TONAL_SPOT, 0);
  * // Returns: [
  * //   {brightness: "light", colors: [["primary", "#1976D2"], ["onPrimary", "#FFFFFF"], ...]},
  * //   {brightness: "dark", colors: [["primary", "#90CAF9"], ["onPrimary", "#003258"], ...]}
  * // ]
  * @example
  * // Generate a high-contrast green theme for accessibility
- * const highContrastScheme = await generateScheme("#4CAF50", 0.5);
+ * const highContrastScheme = await generateScheme(
+ *   "#4CAF50",
+ *   Variant.VIBRANT,
+ *   0.5
+ * );
  * @example
  * // Generate theme for brand colors with custom contrast
  * const brandColor = "#E91E63"; // Brand pink
- * const themeData = await generateScheme(brandColor, 0.2);
+ * const themeData = await generateScheme(brandColor, Variant.FIDELITY, 0.2);
  * const [lightTheme, darkTheme] = themeData;
  */
 export async function generateScheme(
   seedColor: string,
-  variant: number = Variant.TONAL_SPOT,
+  variant: Variant = Variant.TONAL_SPOT,
   contrast: number
 ): Promise<Array<ThemeObject>> {
   const theme = themeFromSourceColor(argbFromHex(seedColor));
@@ -157,7 +165,7 @@ export async function generateScheme(
     { key: 'dark', value: true },
   ].map((brightness) => {
     const ds = new DynamicScheme({
-      sourceColorArgb: argbFromHex(seedColor),
+      sourceColorHct: Hct.fromInt(argbFromHex(seedColor)),
       variant: variant,
       contrastLevel: contrast,
       isDark: brightness.value,
@@ -234,7 +242,8 @@ export async function generateScheme(
  *
  * This function processes the output from generateScheme() and formats it as CSS custom properties
  * that can be directly applied to stylesheets. It uses kebab-case naming for CSS variables
- * following CSS best practices (e.g., "primaryContainer" becomes "--primary-container").
+ * following the naming convention `--color-{brightness}-{token-name}`
+ * (e.g., "primaryContainer" becomes "--color-light-primary-container").
  *
  * Each color value is formatted as a hexadecimal color string suitable for CSS usage.
  * The generated variables follow Material Design's semantic naming system for consistent
@@ -244,38 +253,28 @@ export async function generateScheme(
  *   - Must contain at least one theme object
  *   - Each theme must have brightness and colors properties
  *   - colors should be array of [string, string] tuples
- * @returns {object} Object with brightness values as keys ("light", "dark")
- *   and CSS variable objects as values. Each nested object contains CSS variable names
- *   as keys (with -- prefix) and hex color values.
- * @throws {Error} Throws error if scheme is empty, malformed, or contains invalid color data
+ * @returns {Array<[string, string]>} Flattened array of CSS custom property tuples.
+ *   - Each item is [varName, hexColor]
+ *   - varName format: "--color-{brightness}-{token-name}"
+ *   - Example item: ["--color-light-primary", "#6750A4"]
  * @since 1.0.0
  * @example
  * // Convert generated scheme to CSS variables
- * const scheme = await generateScheme("#1976D2", 0);
+ * const scheme = await generateScheme("#1976D2", Variant.TONAL_SPOT, 0);
  * const cssVars = convertToVariables(scheme);
  * console.log(cssVars);
  * // Output:
- * // {
- * //   "light": {
- * //     "--primary": "#1976D2",
- * //     "--on-primary": "#FFFFFF",
- * //     "--primary-container": "#90CAF9",
- * //     "--surface": "#FFFBFE",
- * //     ...
- * //   },
- * //   "dark": {
- * //     "--primary": "#90CAF9",
- * //     "--on-primary": "#003258",
- * //     "--primary-container": "#004881",
- * //     "--surface": "#121212",
- * //     ...
- * //   }
- * // }
+ * // [
+ * //   ["--color-light-primary", "#6750A4"],
+ * //   ["--color-light-on-primary", "#FFFFFF"],
+ * //   ...,
+ * //   ["--color-dark-primary", "#D0BCFF"],
+ * //   ...
+ * // ]
  * @example
  * // Apply to stylesheet dynamically
  * const variables = convertToVariables(themeScheme);
- * const lightVars = variables.light;
- * Object.entries(lightVars).forEach(([prop, value]) => {
+ * variables.forEach(([prop, value]) => {
  *   document.documentElement.style.setProperty(prop, value);
  * });
  */
@@ -312,17 +311,19 @@ export function convertToVariables(
  *
  * The generated CSS includes comprehensive metadata documenting when and how the theme
  * was created, making it easier to track theme generations and their parameters.
- * @param {Array<ThemeObject>} scheme - Color scheme data from generateScheme().
- *   Expected format: Array of {brightness, colors} objects where:
- *   - brightness: "light" or "dark" string identifier
- *   - colors: Array of [tokenName, hexColor] string pair arrays
- *   - Must contain complete color token data for valid CSS generation
+ * @param {Array<[string, string]>} variables - Flattened CSS variable tuples from convertToVariables().
+ *   Expected format: Array of [varName, hexColor] tuples where:
+ *   - varName: CSS custom property name (e.g., "--color-light-primary")
+ *   - hexColor: Color value as hex string (e.g., "#6750A4")
+ *   - Must contain complete variable data for valid CSS generation
  * @param {string} seedColor - The original seed color used to generate the scheme.
  *   Should be a valid hex color (e.g., "#1976D2") used for theme generation metadata.
  *   This value is included in generated CSS comments for documentation purposes.
  * @param {number} contrast - The contrast level used when generating the scheme.
  *   Typically ranges from -1.0 to 1.0, included in CSS metadata for reference.
  *   Used to document the accessibility settings applied to the theme.
+ * @param {Variant} variant - Dynamic Color variant used to generate the source scheme.
+ *   Included in generated CSS metadata comments.
  * @returns {string} CSS string containing complete @theme block with:
  *   - Header comment with generation metadata (timestamp, seed color, contrast)
  *   - All Material Design color custom properties for light and dark modes
@@ -331,18 +332,40 @@ export function convertToVariables(
  * @since 1.0.0
  * @example
  * // Convert scheme to complete CSS theme
- * const scheme = await generateScheme("#1976D2", 0);
- * const cssTheme = generateThemeCss(scheme, "#1976D2", 0);
+ * const scheme = await generateScheme("#1976D2", Variant.TONAL_SPOT, 0);
+ * const variables = convertToVariables(scheme);
+ * const cssTheme = generateThemeCss(
+ *   variables,
+ *   "#1976D2",
+ *   0,
+ *   Variant.TONAL_SPOT
+ * );
  * // Returns formatted CSS with @theme block containing color variables
  * @example
  * // Generate CSS file for build process
- * const brandScheme = await generateScheme("#E91E63", 0.3);
- * const themeCSS = generateThemeCss(brandScheme, "#E91E63", 0.3);
+ * const brandScheme = await generateScheme("#E91E63", Variant.FIDELITY, 0.3);
+ * const brandVars = convertToVariables(brandScheme);
+ * const themeCSS = generateThemeCss(
+ *   brandVars,
+ *   "#E91E63",
+ *   0.3,
+ *   Variant.FIDELITY
+ * );
  * await fs.writeFile('theme.css', themeCSS, 'utf8');
  * @example
  * // Use with CSS injection for dynamic theming
- * const userScheme = await generateScheme(userPickedColor, userContrastLevel);
- * const themeCss = generateThemeCss(userScheme, userPickedColor, userContrastLevel);
+ * const userScheme = await generateScheme(
+ *   userPickedColor,
+ *   Variant.TONAL_SPOT,
+ *   userContrastLevel
+ * );
+ * const userVars = convertToVariables(userScheme);
+ * const themeCss = generateThemeCss(
+ *   userVars,
+ *   userPickedColor,
+ *   userContrastLevel,
+ *   Variant.TONAL_SPOT
+ * );
  * const styleEl = document.createElement('style');
  * styleEl.textContent = themeCss;
  * document.head.appendChild(styleEl);

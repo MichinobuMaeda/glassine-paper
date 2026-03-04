@@ -6,6 +6,12 @@
 export { AppBar, type AppBarProps, type AppBarItemProps } from './AppBar';
 export { Button, type ButtonProps } from './Button';
 export { Checkbox } from './Checkbox';
+export { Chip, type ChipProps, type ChipIconProps } from './Chip';
+export {
+  FilterChips,
+  type FilterChipsProps,
+  type FilterChipsItem,
+} from './FilterChips';
 export { Menu, type MenuProps, type MenuItemProps } from './Menu';
 export {
   NavDrawer,

@@ -1,5 +1,6 @@
 import React, { useState, useEffect, type JSX } from 'react';
 import useDetectScroll, { Axis } from '@smakss/react-scroll-direction';
+import { Variant } from '@material/material-color-utilities';
 import convert from 'color-convert';
 import './App.css';
 import {
@@ -7,7 +8,6 @@ import {
   convertToVariables,
   getContrastColor,
   generateThemeCss,
-  Variant,
 } from './material-theme';
 import Row from './Row';
 import AppBar from './components/AppBar';
@@ -34,6 +34,18 @@ import SvgDarkMode from './icons/SvgDarkMode';
 import SvgAdd from './icons/SvgAdd';
 import SvgDockToBottom from './icons/SvgDockToBottom';
 import SvgColors from './icons/SvgColors';
+
+const valiants = [
+  { value: Variant.MONOCHROME, label: 'Monochrome' },
+  { value: Variant.NEUTRAL, label: 'Neutral' },
+  { value: Variant.TONAL_SPOT, label: 'Tonal Spot' },
+  { value: Variant.VIBRANT, label: 'Vibrant' },
+  { value: Variant.EXPRESSIVE, label: 'Expressive' },
+  { value: Variant.FIDELITY, label: 'Fidelity' },
+  { value: Variant.CONTENT, label: 'Content' },
+  { value: Variant.RAINBOW, label: 'Rainbow' },
+  { value: Variant.FRUIT_SALAD, label: 'Fruit Salad' },
+];
 
 type NavDrawerState = 'hidden' | 'visible' | 'modal';
 
@@ -361,11 +373,9 @@ function App(): JSX.Element {
                 id="variant"
                 name="variant"
                 value={variant.toString()}
-                items={Object.entries(Variant).map(([key, value]) => ({
+                items={valiants.map(({ value, label }) => ({
                   value: value.toString(),
-                  label: (
-                    key.charAt(0).toUpperCase() + key.slice(1).toLowerCase()
-                  ).replace('_', ' '),
+                  label,
                 }))}
                 onChange={(value) => setVariant(Number(value))}
                 style={{
