@@ -1,5 +1,13 @@
 import React, { type CSSProperties } from 'react';
 /**
+ * FilterChipsItem represents an individual item in the FilterChips component.
+ */
+export interface FilterChipsItem {
+    value: string;
+    label: string;
+    disabled?: boolean;
+}
+/**
  * FilterChips component props
  */
 export interface FilterChipsProps {
@@ -7,11 +15,7 @@ export interface FilterChipsProps {
     name?: string;
     disabled?: boolean;
     value?: string | string[];
-    items?: {
-        value: string;
-        label: string;
-        disabled?: boolean;
-    }[];
+    items?: FilterChipsItem[];
     onChange?: (value: string | string[]) => void;
     className?: string;
     style?: CSSProperties;
@@ -24,7 +28,7 @@ export interface FilterChipsProps {
  * @param {string} [props.name] The name of the filter chip.
  * @param {boolean} [props.disabled=false] Whether the filter chip is disabled.
  * @param {string | string[]} [props.value] The value of the filter chip.
- * @param {Array<Object>} [props.items] The items for the filter chip.
+ * @param {Array<FilterChipsItem>} [props.items] The items for the filter chip.
  * @param {string} [props.items[].value] The value of the item.
  * @param {string} [props.items[].label] The label of the item.
  * @param {boolean} [props.items[].disabled] Whether the item is disabled.

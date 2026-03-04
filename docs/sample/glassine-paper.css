@@ -3738,19 +3738,26 @@ body:has(.nav-drawer:not(.hidden).modal)::after {
     cursor: default;
   }
 
-  img,
-  svg {
+  > img,
+  > svg,
+  > .button,
+  > .button img,
+  > .button svg {
     width: var(--size-18px);
     height: var(--size-18px);
+    padding: 0;
+    border-radius: 0;
   }
 
-  &:has(svg + :not(svg, img)),
-  &:has(img + :not(svg, img)) {
+  &:has(> svg + :not(svg, img, .button)),
+  &:has(> img + :not(svg, img, .button)),
+  &:has(> .button + :not(svg, img, .button)) {
     padding-left: var(--size-8px);
   }
 
-  &:has(:not(svg, img) + svg),
-  &:has(:not(svg, img) + img) {
+  &:has(> :not(svg, img, .button) + svg),
+  &:has(> :not(svg, img, .button) + img),
+  &:has(> :not(svg, img, .button) + .button) {
     padding-right: var(--size-8px);
   }
 }

@@ -20,6 +20,9 @@
 <dt><a href="#Checkbox">Checkbox</a> ⇒ <code>JSX.Element</code></dt>
 <dd><p>Material Design 3 Checkbox component.</p>
 </dd>
+<dt><a href="#Chip">Chip</a> ⇒ <code>JSX.Element</code></dt>
+<dd><p>Material Design 3 Chip component</p>
+</dd>
 <dt><a href="#FilterChips">FilterChips</a> ⇒ <code>JSX.Element</code></dt>
 <dd><p>Material Design 3 FilterChips component.</p>
 </dd>
@@ -227,6 +230,27 @@ Material Design 3 Checkbox component.
  onChange={(e) => setIsChecked(e.target.checked)}
 />
 ```
+<a name="Chip"></a>
+
+## Chip ⇒ <code>JSX.Element</code>
+Material Design 3 Chip component
+
+**Kind**: global constant  
+
+| Param | Type | Description |
+| --- | --- | --- |
+| props | <code>ChipProps</code> | ChipProps |
+| [props.id] | <code>string</code> | Input id attribute |
+| [props.name] | <code>string</code> | Input name attribute |
+| [props.label] | <code>string</code> | Label text |
+| [props.leading] | <code>ChipIconProps</code> | Leading icon element |
+| [props.trailing] | <code>ChipIconProps</code> | Trailing icon element |
+| [props.active] | <code>boolean</code> | Active state |
+| [props.disabled] | <code>boolean</code> | Disabled state |
+| [props.onClick] | <code>function</code> | Click handler (for button type) |
+| [props.className] | <code>string</code> | Additional CSS class names |
+| [props.style] | <code>React.CSSProperties</code> | Custom inline styles |
+
 <a name="FilterChips"></a>
 
 ## FilterChips ⇒ <code>JSX.Element</code>
@@ -242,7 +266,7 @@ Material Design 3 FilterChips component.
 | [props.name] | <code>string</code> |  | The name of the filter chip. |
 | [props.disabled] | <code>boolean</code> | <code>false</code> | Whether the filter chip is disabled. |
 | [props.value] | <code>string</code> \| <code>Array.&lt;string&gt;</code> |  | The value of the filter chip. |
-| [props.items] | <code>Array.&lt;Object&gt;</code> |  | The items for the filter chip. |
+| [props.items] | <code>Array.&lt;FilterChipsItem&gt;</code> |  | The items for the filter chip. |
 | [props.items[].value] | <code>string</code> |  | The value of the item. |
 | [props.items[].label] | <code>string</code> |  | The label of the item. |
 | [props.items[].disabled] | <code>boolean</code> |  | Whether the item is disabled. |
