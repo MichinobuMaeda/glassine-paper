@@ -2,6 +2,11 @@
 
 All notable changes to this project will be documented in this file.
 
+## [1.3.2] - 2026-03-04
+
+- CSS: Add chip
+- React components: Add FilterChips
+
 ## [1.3.1] - 2026-02-20
 
 ### Fixed

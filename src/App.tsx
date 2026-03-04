@@ -18,6 +18,7 @@ import Toolbar from './components/Toolbar';
 import TextField from './components/TextField';
 import Button from './components/Button';
 import Slider from './components/Slider';
+import FilterChips from './components/FilterChips';
 import SvgMenu from './icons/SvgMenu';
 import SvgMenuOpen from './icons/SvgMenuOpen';
 import SvgKeep from './icons/SvgKeep';
@@ -355,22 +356,27 @@ function App(): JSX.Element {
                 showValueIndicator
               />
             </Row>
-            <Row align="center" style={{ gap: '0.5rem' }}>
-              {Object.entries(Variant).map(([key, value]) => (
-                <Button
-                  key={key}
-                  variant="filled"
-                  size="sm"
-                  label={(
+            {
+              <FilterChips
+                id="variant"
+                name="variant"
+                value={variant.toString()}
+                items={Object.entries(Variant).map(([key, value]) => ({
+                  value: value.toString(),
+                  label: (
                     key.charAt(0).toUpperCase() + key.slice(1).toLowerCase()
-                  ).replace('_', ' ')}
-                  onChange={() => setVariant(value)}
-                  checked={variant === value}
-                  name="variant"
-                  type="select"
-                />
-              ))}
-            </Row>
+                  ).replace('_', ' '),
+                }))}
+                onChange={(value) => setVariant(Number(value))}
+                style={{
+                  display: 'flex',
+                  alignItems: 'center',
+                  flexWrap: 'wrap',
+                  gap: '0.5rem',
+                  padding: '0.125rem',
+                }}
+              />
+            }
             <Row align="center">
               <Button
                 variant="outlined"

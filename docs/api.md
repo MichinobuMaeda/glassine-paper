@@ -1,4 +1,4 @@
-# API Documentation glassine-paper 1.3.1
+# API Documentation glassine-paper 1.3.2
 
 ## Modules
 
@@ -19,6 +19,9 @@
 </dd>
 <dt><a href="#Checkbox">Checkbox</a> ⇒ <code>JSX.Element</code></dt>
 <dd><p>Material Design 3 Checkbox component.</p>
+</dd>
+<dt><a href="#FilterChips">FilterChips</a> ⇒ <code>JSX.Element</code></dt>
+<dd><p>Material Design 3 FilterChips component.</p>
 </dd>
 <dt><a href="#Menu">Menu</a> ⇒ <code>JSX.Element</code></dt>
 <dd><p>Material Design 3 Menu component</p>
@@ -222,6 +225,39 @@ Material Design 3 Checkbox component.
  name="my-checkbox"
  checked={isChecked}
  onChange={(e) => setIsChecked(e.target.checked)}
+/>
+```
+<a name="FilterChips"></a>
+
+## FilterChips ⇒ <code>JSX.Element</code>
+Material Design 3 FilterChips component.
+
+**Kind**: global constant  
+**Returns**: <code>JSX.Element</code> - A FilterChips component.  
+
+| Param | Type | Default | Description |
+| --- | --- | --- | --- |
+| props | <code>FilterChipsProps</code> |  | The properties for the FilterChips component. |
+| [props.id] | <code>string</code> |  | The ID of the filter chip. |
+| [props.name] | <code>string</code> |  | The name of the filter chip. |
+| [props.disabled] | <code>boolean</code> | <code>false</code> | Whether the filter chip is disabled. |
+| [props.value] | <code>string</code> \| <code>Array.&lt;string&gt;</code> |  | The value of the filter chip. |
+| [props.items] | <code>Array.&lt;Object&gt;</code> |  | The items for the filter chip. |
+| [props.items[].value] | <code>string</code> |  | The value of the item. |
+| [props.items[].label] | <code>string</code> |  | The label of the item. |
+| [props.items[].disabled] | <code>boolean</code> |  | Whether the item is disabled. |
+| [props.onChange] | <code>function</code> |  | The function to call when the filter chip state changes. |
+| [props.className] | <code>string</code> |  | Additional CSS classes to apply to the filter chip. |
+| [props.style] | <code>CSSProperties</code> |  | Additional CSS styles to apply to the filter chip. |
+
+**Example**  
+```js
+<FilterChips
+ id="my-filter-chip"
+ name="my-filter-chip-group"
+ value="option1"
+ items={[{value: 'option1', label: 'Option 1'}, {value: 'option2', label: 'Option 2'}]}
+ onChange={(e) => setSelectedValue(e.target.value)}
 />
 ```
 <a name="Menu"></a>

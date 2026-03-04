@@ -21,6 +21,7 @@ CSS and some React components for Material Design 3
 | Switch       |  o  |   o   |
 | Radio        |  o  |   o   |
 | Nav Drawer   |  o  |   o   |
+| Chips        |  o  |  (1)  |
 | Nav Bar      |  o  |   x   |
 | Nav Rail     |  o  |   x   |
 | Fab          |  o  |   x   |
@@ -28,12 +29,13 @@ CSS and some React components for Material Design 3
 | Search       |  x  |   x   |
 | Card         |  x  |   x   |
 | List         |  x  |   x   |
-| Chips        |  x  |   x   |
 | Badges       |  x  |   x   |
 | Sheets       |  x  |   x   |
 | Dialogs      |  x  |   x   |
 | Snackbar     |  x  |   x   |
 | ... ...      |  x  |   x   |
+
+(1) FilterChips
 
 ## Usage
 

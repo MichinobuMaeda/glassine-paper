@@ -174,7 +174,8 @@ textarea:not([rows]) {
 .toolbar a,
 .toolbar button,
 .toolbar input,
-.toolbar div {
+.toolbar div,
+.chip {
   appearance: none;
   background: none;
   border: none;
@@ -3686,5 +3687,70 @@ body:has(.nav-drawer:not(.hidden).modal)::after {
         writing-mode: sideways-lr;
       }
     }
+  }
+}
+
+.chip {
+  display: inline-flex;
+  flex-direction: row;
+  align-items: center;
+  flex-wrap: nowrap;
+  gap: var(--size-8px);
+  height: var(--size-32px);
+  border-radius: var(--size-8px);
+  outline: var(--size-1px) solid
+    light-dark(
+      var(--color-light-outline-variant),
+      var(--color-dark-outline-variant)
+    );
+  padding: 0 var(--size-16px);
+
+  &.active,
+  &.selected,
+  &.checked,
+  &:has(:checked) {
+    border: none;
+    background-color: light-dark(
+      var(--color-light-secondary-container),
+      var(--color-dark-secondary-container)
+    );
+  }
+
+  input {
+    position: absolute;
+    opacity: 0;
+    pointer-events: none;
+  }
+
+  &.disabled,
+  &:has(.disabled),
+  &:has(:disabled) {
+    background-color: color(
+      from
+        light-dark(var(--color-light-on-surface), var(--color-dark-on-surface))
+        srgb r g b/0.1
+    );
+    color: color(
+      from
+        light-dark(var(--color-light-on-surface), var(--color-dark-on-surface))
+        srgb r g b/0.38
+    );
+    cursor: default;
+  }
+
+  img,
+  svg {
+    width: var(--size-18px);
+    height: var(--size-18px);
+  }
+
+  &:has(svg + :not(svg, img)),
+  &:has(img + :not(svg, img)) {
+    padding-left: var(--size-8px);
+  }
+
+  &:has(:not(svg, img) + svg),
+  &:has(:not(svg, img) + img) {
+    padding-right: var(--size-8px);
   }
 }
